@@ -4,45 +4,58 @@ import { prisma } from "./prisma";
 import { Role, UserStatus } from "../../generated/prisma/enums";
 
 
-
-
 export const auth = betterAuth({
-    database: prismaAdapter(prisma, {
-        provider: "postgresql", 
-    }),
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
+  }),
 
-    emailAndPassword : {
-        enabled: true
+  emailAndPassword: {
+    enabled: true,
+  },
+
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        required: true,
+        defaultValue: Role.APPLICANT,
+      },
+      status: {
+        type: "string",
+        required: true,
+        defaultValue: UserStatus.ACTIVE,
+      },
+      needPasswordChange: {
+        type: "boolean",
+        required: true,
+        defaultValue: false,
+      },
+      isDeleted: {
+        type: "boolean",
+        required: true,
+        defaultValue: false,
+      },
+      deletedAt: {
+        type: "string",
+        required: false,
+        defaultValue: null,
+      },
     },
+  },
+  session: {
+    expiresIn: 60 * 60 * 60 * 24,
+    updateAge: 60 * 60 * 60 * 24,
 
-    user : {
-        additionalFields : {
-            role : {
-                type : "string",
-                required : true,
-                defaultValue : Role.APPLICANT
-            },
-            status : {
-                type : "string",
-                required : true,
-                defaultValue : UserStatus.ACTIVE
-            },
-            needPasswordChange : {
-                type : "boolean",
-                required : true,
-                defaultValue : false
-            },
-            isDeleted : {
-                type : "boolean",
-                required : true,
-                defaultValue : false
-            },
-            deletedAt : {
-                type : "string",
-                required : false,
-                defaultValue : null
-            }
-        }
-    }
+    cookiCache: {
+    enabled: true,
+    maxAge: 60 * 60 * 60 * 24,
+  },
+  },
+
+//    trustedOrigins: [
+//     process.env.BETTER_AUTH_URL || "http://localhost:5000",
+//     envVars.FRONTEND_URL as string,
+//   ],
+
+  
 });
-
