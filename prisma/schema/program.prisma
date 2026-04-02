@@ -1,0 +1,13 @@
+model Program {
+  id             String    @id @default(uuid())
+  name           String    @unique
+  image          String?
+  description    String?   
+  admissionStart DateTime
+  admissionEnd   DateTime
+
+  classes        Class[]
+
+  @@index([name])
+  @@map("program")
+}

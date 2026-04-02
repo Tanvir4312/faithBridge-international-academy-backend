@@ -1,0 +1,13 @@
+model StudentClassHistory {
+  id        String  @id @default(uuid())
+  studentId String
+  classId   String
+  year      String
+
+  student   Student @relation(fields: [studentId], references: [id])
+  class     Class   @relation(fields: [classId], references: [id])
+
+  @@index([studentId])
+  @@index([year])
+  @@map("studentClassHistory")
+}

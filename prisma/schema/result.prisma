@@ -1,0 +1,17 @@
+model Result {
+  id        String  @id @default(uuid())
+  studentId String
+  subjectId String
+  examId    String
+  marks     Float
+  grade     String?
+
+  student   Student @relation(fields: [studentId], references: [id])
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  exam      Exam    @relation(fields: [examId], references: [id])
+
+  @@unique([studentId, subjectId, examId])
+  @@index([studentId])
+  @@index([examId])
+  @@map("result")
+}

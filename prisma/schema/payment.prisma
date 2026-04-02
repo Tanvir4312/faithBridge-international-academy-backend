@@ -1,0 +1,27 @@
+model Payment {
+    id                 String        @id @default(uuid())
+    amount             Float
+    currency           String        @default("BDT")
+    paymentFor         PaymentFor
+    studentId          String
+    applicationId      String?       @unique
+    formFillupId       String?       @unique
+    documentRequestId  String?       @unique
+    status             PaymentStatus @default(PENDING)
+    method             String?
+    transactionId      String?       @unique
+    stripeEventId      String?       @unique
+    paidAt             DateTime?
+    invoiceUrl         String?
+    paymentGatewayData Json?
+
+    student         Student          @relation(fields: [studentId], references: [id])
+    application     Application?     @relation(fields: [applicationId], references: [id])
+    formFillup      FormFillup?      @relation(fields: [formFillupId], references: [id])
+    documentRequest DocumentRequest?
+
+    @@index([status])
+    @@index([paymentFor])
+    @@index([transactionId])
+    @@map("payment")
+}

@@ -1,0 +1,34 @@
+model Student {
+  id                 String                @id @default(uuid())
+  registrationId     String                @unique
+  userId             String                @unique
+  user               User                  @relation(fields: [userId], references: [id])
+  applicationId      String?               @unique
+  application        Application?          @relation(fields: [applicationId], references: [id])
+
+  nameBn             String
+  nameEn             String
+  fatherName         String
+  motherName         String
+  guardianMobile     String
+  presentAddress     String              
+  permanentAddress   String               
+  bloodGroup         String?
+  dob                DateTime
+  gender             String
+  religion           String?
+  birthCertificateNo String                @unique
+
+  classId            String
+  class              Class                 @relation(fields: [classId], references: [id])
+
+  results            Result[]
+  payments           Payment[]
+  formFillups        FormFillup[]
+  classHistories     StudentClassHistory[]
+  documentRequests   DocumentRequest[]
+
+  @@index([classId])
+  @@index([registrationId])
+  @@map("student")
+}

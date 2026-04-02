@@ -1,0 +1,53 @@
+enum Role {
+  student
+  teacher
+  admin
+  applicant
+}
+
+enum PaymentStatus {
+  PAID
+  UNPAID
+  FAILED
+  PENDING
+}
+
+enum RequestStatus {
+  PENDING
+  PROCESSING
+  READY_FOR_PICKUP
+  COMPLETED
+  REJECTED
+}
+
+enum PaymentFor {
+  ADMISSION
+  FORM_FILLUP
+  EXAM
+  TRANSCRIPT
+  CERTIFICATE
+  TESTIMONIAL
+  OTHER
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  VERIFIED
+}
+
+enum NoticeType {
+  GENERAL
+  CLASS_SPECIFIC
+}
+
+enum Day {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}

@@ -1,0 +1,12 @@
+model Media {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  url         String
+  description String?
+  sectionName String   // যেমন: 'HOME_BANNER', 'GALLERY', 'ABOUT_US'
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sectionName])
+  @@map("media")
+}

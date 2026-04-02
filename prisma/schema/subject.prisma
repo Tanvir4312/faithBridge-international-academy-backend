@@ -1,0 +1,11 @@
+model Subject {
+  id              String           @id @default(uuid())
+  name            String           @unique
+
+  classSubjects   ClassSubject[]
+  teacherSubjects TeacherSubject[]
+  results         Result[]
+  routines        Routine[]
+
+  @@map("subject")
+}

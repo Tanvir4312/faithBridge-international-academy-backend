@@ -1,0 +1,12 @@
+model NoticeClass {
+  id       String @id @default(uuid())
+  noticeId String
+  classId  String
+
+  notice   Notice @relation(fields: [noticeId], references: [id])
+  class    Class  @relation(fields: [classId], references: [id])
+
+  @@unique([noticeId, classId])
+  @@index([classId])
+  @@map("noticeClass")
+}

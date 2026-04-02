@@ -1,0 +1,20 @@
+model Routine {
+  id         String   @id @default(uuid())
+  day        Day
+  classId    String
+  teacherId  String
+  subjectId  String
+  timeSlotId String
+
+  class      Class    @relation(fields: [classId], references: [id])
+  teacher    Teacher  @relation(fields: [teacherId], references: [id])
+  subject    Subject  @relation(fields: [subjectId], references: [id])
+  timeSlot   TimeSlot @relation(fields: [timeSlotId], references: [id])
+
+  @@unique([day, timeSlotId, teacherId])
+  @@unique([day, timeSlotId, classId])
+  @@index([day])
+  @@index([classId])
+  @@index([teacherId])
+  @@map("routine")
+}

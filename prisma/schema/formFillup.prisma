@@ -1,0 +1,20 @@
+model FormFillup {
+  id             String   @id @default(uuid())
+  studentId      String
+  classId        String
+  examId         String
+  registrationNo String
+  classRoll      String
+  status         String   @default("pending")
+
+  payment        Payment?
+  student        Student  @relation(fields: [studentId], references: [id])
+  class          Class    @relation(fields: [classId], references: [id])
+  exam           Exam     @relation(fields: [examId], references: [id])
+
+  @@index([studentId])
+  @@index([classId])
+  @@index([examId])
+  @@index([status])
+  @@map("formFillup")
+}

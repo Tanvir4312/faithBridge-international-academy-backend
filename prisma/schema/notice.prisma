@@ -1,0 +1,14 @@
+model Notice {
+  id            String        @id @default(uuid())
+  title         String
+  type          NoticeType    @default(GENERAL)
+  authorId      String
+  author        User          @relation(fields: [authorId], references: [id])
+  createdAt     DateTime      @default(now())
+
+  noticeClasses NoticeClass[]
+
+  @@index([type])
+  @@index([createdAt])
+  @@map("notice")
+}

@@ -1,0 +1,14 @@
+model DocumentRequest {
+  id            String        @id @default(uuid())
+  studentId     String
+  student       Student       @relation(fields: [studentId], references: [id])
+  type          PaymentFor    
+  status        RequestStatus @default(PENDING)
+  applyDate     DateTime      @default(now())
+  paymentId     String?       @unique
+  payment       Payment?      @relation(fields: [paymentId], references: [id])
+
+  @@index([status])
+  @@index([studentId])
+  @@map("documentRequest")
+}

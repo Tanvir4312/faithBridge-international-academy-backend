@@ -1,0 +1,12 @@
+model TeacherSubject {
+  id        String  @id @default(uuid())
+  teacherId String
+  subjectId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  subject   Subject @relation(fields: [subjectId], references: [id])
+
+  @@unique([teacherId, subjectId])
+  @@index([teacherId])
+  @@index([subjectId])
+  @@map("teacherSubject")
+}

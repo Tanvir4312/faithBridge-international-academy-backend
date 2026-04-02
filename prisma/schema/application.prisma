@@ -1,0 +1,36 @@
+model Application {
+    id     String            @id @default(uuid())
+    userId String
+    type   String // ADMISSION, TESTIMONIAL
+    status ApplicationStatus @default(PENDING)
+    user   User              @relation(fields: [userId], references: [id])
+
+    // Applicant data
+    nameBn             String
+    nameEn             String
+    fatherName         String
+    motherName         String
+    guardianMobile     String
+    studentMobile      String?
+    dob                DateTime
+    gender             String
+    religion           String
+    bloodGroup         String?
+    birthCertificateNo String   @unique
+    presentAddress     String
+    permanentAddress   String
+    previousSchool     String?
+    desiredClass       String
+    admissionYear      String
+    examRoll           String   @unique
+    profileImage       String
+    signatureImage     String?
+
+    payment Payment?
+    student Student?
+
+    @@index([status])
+    @@index([examRoll])
+    @@index([admissionYear])
+    @@map("application")
+}

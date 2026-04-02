@@ -1,0 +1,16 @@
+model Class {
+  id               String                @id @default(uuid())
+  name             String
+  programId        String
+  program          Program               @relation(fields: [programId], references: [id])
+
+  students         Student[]
+  classSubjects    ClassSubject[]
+  routines         Routine[]
+  notices          NoticeClass[]
+  formFillups      FormFillup[]
+  studentHistories StudentClassHistory[]
+
+  @@index([programId])
+  @@map("class")
+}

@@ -1,0 +1,8 @@
+model TimeSlot {
+  id        String    @id @default(uuid())
+  startTime String
+  endTime   String
+  routines  Routine[]
+
+  @@map("timeSlot")
+}

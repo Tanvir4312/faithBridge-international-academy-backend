@@ -1,0 +1,10 @@
+model Teacher {
+  id              String           @id @default(uuid())
+  userId          String           @unique
+  user            User             @relation(fields: [userId], references: [id])
+
+  teacherSubjects TeacherSubject[]
+  routines        Routine[]
+
+  @@map("teacher")
+}

@@ -1,0 +1,13 @@
+model Exam {
+  id              String       @id @default(uuid())
+  name            String
+  year            String
+  formFillupStart DateTime
+  formFillupEnd   DateTime
+
+  results         Result[]
+  formFillups     FormFillup[]
+
+  @@index([year])
+  @@map("exam")
+}

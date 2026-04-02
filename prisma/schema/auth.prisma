@@ -1,0 +1,16 @@
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  image        String?
+  role         Role          @default(applicant)
+
+  student      Student?
+  teacher      Teacher?
+  applications Application[]
+  notices      Notice[]
+
+  @@index([role])
+  @@map("user")
+}
