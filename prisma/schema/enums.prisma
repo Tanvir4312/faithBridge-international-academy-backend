@@ -1,8 +1,13 @@
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+}
 enum Role {
-  student
-  teacher
-  admin
-  applicant
+  STUDENT
+  TEACHER
+  ADMIN
+  APPLICANT
 }
 
 enum PaymentStatus {

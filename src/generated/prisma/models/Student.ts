@@ -770,10 +770,12 @@ export type StudentCreateNestedOneWithoutPaymentsInput = {
   connect?: Prisma.StudentWhereUniqueInput
 }
 
-export type StudentUpdateOneRequiredWithoutPaymentsNestedInput = {
+export type StudentUpdateOneWithoutPaymentsNestedInput = {
   create?: Prisma.XOR<Prisma.StudentCreateWithoutPaymentsInput, Prisma.StudentUncheckedCreateWithoutPaymentsInput>
   connectOrCreate?: Prisma.StudentCreateOrConnectWithoutPaymentsInput
   upsert?: Prisma.StudentUpsertWithoutPaymentsInput
+  disconnect?: Prisma.StudentWhereInput | boolean
+  delete?: Prisma.StudentWhereInput | boolean
   connect?: Prisma.StudentWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutPaymentsInput, Prisma.StudentUpdateWithoutPaymentsInput>, Prisma.StudentUncheckedUpdateWithoutPaymentsInput>
 }

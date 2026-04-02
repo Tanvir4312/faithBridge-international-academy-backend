@@ -3,7 +3,7 @@ model Payment {
     amount             Float
     currency           String        @default("BDT")
     paymentFor         PaymentFor
-    studentId          String
+    studentId          String?
     applicationId      String?       @unique
     formFillupId       String?       @unique
     documentRequestId  String?       @unique
@@ -15,7 +15,7 @@ model Payment {
     invoiceUrl         String?
     paymentGatewayData Json?
 
-    student         Student          @relation(fields: [studentId], references: [id])
+    student         Student?          @relation(fields: [studentId], references: [id])
     application     Application?     @relation(fields: [applicationId], references: [id])
     formFillup      FormFillup?      @relation(fields: [formFillupId], references: [id])
     documentRequest DocumentRequest?
