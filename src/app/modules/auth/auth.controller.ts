@@ -1,3 +1,4 @@
+
 import { Request, Response } from "express";
 import { catchAsync } from "../../shared/cathAsync";
 import { AuthServices } from "./auth.services";
@@ -8,6 +9,8 @@ import AppError from "../../errorHelpers/AppError";
 
 import { cookieUtils } from "../../utils/cookie";
 import { prisma } from "../../lib/prisma";
+import { envVars } from "../../config/env";
+import { auth } from "../../lib/auth";
 const registerApplicant = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthServices.registerApplicant(req.body);
 
@@ -206,6 +209,61 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const googleLogin = catchAsync((req: Request, res: Response) => {
+    const redirectPath = req.query.redirect || "/dashboard";
+
+    const encodedRedirectPath = encodeURIComponent(redirectPath as string);
+
+    const callbackUrl = `${envVars.BETTER_AUTH_URL}/api/v1/auth/google/success?redirect=${encodedRedirectPath}`;
+
+    res.render("googleRedirect", {
+        callbackURL : callbackUrl,
+        betterAuthUrl : envVars.BETTER_AUTH_URL,
+    })
+})
+
+const googleLoginSuccess = catchAsync(async (req: Request, res: Response) => {
+    const redirectPath = req.query.redirect as string || "/dashboard";
+
+    const sessionToken = req.cookies["better-auth.session_token"];
+
+    if(!sessionToken){
+        return res.redirect(`${envVars.FRONTEND_URL}/login?error=oauth_failed`);
+    }
+
+    const session = await auth.api.getSession({
+        headers:{
+            "Cookie" : `better-auth.session_token=${sessionToken}`
+        }
+    })
+
+    if (!session) {
+        return res.redirect(`${envVars.FRONTEND_URL}/login?error=no_session_found`);
+    }
+
+
+    if(session && !session.user){
+        return res.redirect(`${envVars.FRONTEND_URL}/login?error=no_user_found`);
+    }
+
+    const result = await AuthServices.googleLoginSuccess(session);
+
+    const {accessToken, refreshToken} = result;
+
+    tokenUtils.setAccessTokenCookie(res, accessToken);
+    tokenUtils.setRefreshTokenCookie(res, refreshToken);
+ // ?redirect=//profile -> /profile
+    const isValidRedirectPath = redirectPath.startsWith("/") && !redirectPath.startsWith("//");
+    const finalRedirectPath = isValidRedirectPath ? redirectPath : "/dashboard";
+
+    res.redirect(`${envVars.FRONTEND_URL}${finalRedirectPath}`);
+})
+
+const handleOAuthError = catchAsync((req: Request, res: Response) => {
+    const error = req.query.error as string || "oauth_failed";
+    res.redirect(`${envVars.FRONTEND_URL}/login?error=${error}`);
+})
+
 export const AuthController = {
   registerApplicant,
   loginUser,
@@ -216,4 +274,7 @@ export const AuthController = {
   verifyEmail,
   forgotPassword,
   resetPassword,
+  googleLogin,
+  googleLoginSuccess,
+  handleOAuthError,
 };

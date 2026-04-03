@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { auth } from "../../lib/auth";
@@ -7,7 +8,7 @@ import {
   ILoginData,
   IRegisterData,
 } from "./auth.interface";
-import { UserStatus } from "../../../generated/prisma/enums";
+import {  UserStatus } from "../../../generated/prisma/enums";
 import { tokenUtils } from "../../utils/token";
 import { prisma } from "../../lib/prisma";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
@@ -207,7 +208,7 @@ const changePassword = async (
     });
   }
 
-  const newAccesToken = tokenUtils.getAccessToken({
+  const newAccessToken = tokenUtils.getAccessToken({
     userId: session.user.id,
     role: session.user.role,
     email: session.user.email,
@@ -228,7 +229,7 @@ const changePassword = async (
 
   return {
     ...result,
-    accessToken: newAccesToken,
+    accessToken: newAccessToken,
     refreshToken: newRefreshToken,
   };
 };
@@ -289,7 +290,11 @@ const forgotPassword = async (email: string) => {
   return result;
 };
 
-const resetPassword = async (email: string, otp: string, password: string) => {
+const resetPassword = async (
+  email: string,
+  otp: string,
+  newPassword: string,
+) => {
   const isExistUser = await prisma.user.findUnique({
     where: {
       email,
@@ -308,11 +313,22 @@ const resetPassword = async (email: string, otp: string, password: string) => {
     throw new AppError(status.BAD_REQUEST, "User is suspended");
   }
 
+  if (isExistUser.needPasswordChange) {
+    await prisma.user.update({
+      where: {
+        id: isExistUser.id,
+      },
+      data: {
+        needPasswordChange: false,
+      },
+    });
+  }
+
   const result = await auth.api.resetPasswordEmailOTP({
     body: {
       email,
       otp,
-      password,
+      password: newPassword,
     },
   });
 
@@ -322,6 +338,46 @@ const resetPassword = async (email: string, otp: string, password: string) => {
     },
   });
   return result;
+};
+
+const googleLoginSuccess = async (session: Record<string, any>) => {
+  const isApplicantExist = await prisma.user.findUnique({
+    where: {
+      email: session.user.email,
+     
+    },
+  });
+  if (!isApplicantExist) {
+    await prisma.user.create({
+      data: {
+        id: session.user.id,
+        email: session.user.email,
+        name: session.user.name,
+      },
+    });
+  }
+  const accessToken = tokenUtils.getAccessToken({
+    userId: session.user.id,
+    role: session.user.role,
+    email: session.user.email,
+    name: session.user.name,
+    status: session.user.status,
+    isDeleted: session.user.isDeleted,
+    emailVerified: session.user.emailVerified,
+  });
+  const refreshToken = tokenUtils.getRefreshToken({
+    userId: session.user.id,
+    role: session.user.role,
+    email: session.user.email,
+    name: session.user.name,
+    status: session.user.status,
+    isDeleted: session.user.isDeleted,
+    emailVerified: session.user.emailVerified,
+  });
+  return {
+    accessToken,
+    refreshToken,
+  };
 };
 
 export const AuthServices = {
@@ -334,4 +390,5 @@ export const AuthServices = {
   verifyEmail,
   forgotPassword,
   resetPassword,
+  googleLoginSuccess,
 };
