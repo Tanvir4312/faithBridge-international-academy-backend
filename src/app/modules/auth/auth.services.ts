@@ -173,7 +173,6 @@ const changePassword = async (
   payload: IChangePasswordPayload,
   sessionToken: string,
 ) => {
-
   const session = await auth.api.getSession({
     headers: new Headers({
       Authorization: `Bearer ${sessionToken}`,
@@ -263,6 +262,68 @@ const verifyEmail = async (email: string, otp: string) => {
   }
 };
 
+const forgotPassword = async (email: string) => {
+  const isExistUser = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!isExistUser) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+
+  if (!isExistUser.emailVerified) {
+    throw new AppError(status.BAD_REQUEST, "User is not verified");
+  }
+
+  if (isExistUser.isDeleted && isExistUser.status === UserStatus.SUSPENDED) {
+    throw new AppError(status.BAD_REQUEST, "User is suspended");
+  }
+
+  const result = await auth.api.requestPasswordResetEmailOTP({
+    body: {
+      email,
+    },
+  });
+  return result;
+};
+
+const resetPassword = async (email: string, otp: string, password: string) => {
+  const isExistUser = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!isExistUser) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+
+  if (!isExistUser.emailVerified) {
+    throw new AppError(status.BAD_REQUEST, "User is not verified");
+  }
+
+  if (isExistUser.isDeleted && isExistUser.status === UserStatus.SUSPENDED) {
+    throw new AppError(status.BAD_REQUEST, "User is suspended");
+  }
+
+  const result = await auth.api.resetPasswordEmailOTP({
+    body: {
+      email,
+      otp,
+      password,
+    },
+  });
+
+  await prisma.session.deleteMany({
+    where: {
+      userId: isExistUser.id,
+    },
+  });
+  return result;
+};
+
 export const AuthServices = {
   registerApplicant,
   loginUser,
@@ -271,4 +332,6 @@ export const AuthServices = {
   changePassword,
   logout,
   verifyEmail,
+  forgotPassword,
+  resetPassword,
 };

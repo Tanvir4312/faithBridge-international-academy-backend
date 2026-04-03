@@ -31,4 +31,12 @@ router.post(
   AuthController.verifyEmail,
 );
 
+router.post(
+  "/forgot-password",
+  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  AuthController.forgotPassword,
+);
+
+router.post("/reset-password", AuthController.resetPassword);
+
 export const AuthRoutes = router;

@@ -169,6 +169,43 @@ const verifyEmail = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+
+  const googleProvider = await prisma.account.findFirst({
+    where: {
+      userId: user.userId,
+      providerId: "google",
+    },
+  });
+
+  if (googleProvider) {
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Google user cannot change password",
+    );
+  }
+  const { email } = req.body;
+  const result = await AuthServices.forgotPassword(email);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Email sent successfully",
+    success: true,
+    data: result,
+  });
+});
+
+const resetPassword = catchAsync(async (req: Request, res: Response) => {
+  const { email, otp, password } = req.body;
+  const result = await AuthServices.resetPassword(email, otp, password);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Password reset successfully",
+    success: true,
+    data: result,
+  });
+});
+
 export const AuthController = {
   registerApplicant,
   loginUser,
@@ -177,4 +214,6 @@ export const AuthController = {
   changePassword,
   logoutUser,
   verifyEmail,
+  forgotPassword,
+  resetPassword,
 };
