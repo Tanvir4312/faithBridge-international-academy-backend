@@ -32,7 +32,7 @@ const setAccessTokenCookie = (res: Response, token: string) => {
   });
 };
 
-const setRefresfhTokenCookie = (res: Response, token: string) => {
+const setRefreshTokenCookie = (res: Response, token: string) => {
   cookieUtils.setCookie(res, "refreshToken", token, {
     httpOnly: true,
     secure: true,
@@ -56,6 +56,6 @@ export const tokenUtils = {
   getAccessToken,
   getRefreshToken,
   setAccessTokenCookie,
-  setRefresfhTokenCookie,
+  setRefreshTokenCookie,
   setBetterAuthSessionCookie,
 };

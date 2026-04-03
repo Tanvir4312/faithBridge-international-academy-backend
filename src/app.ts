@@ -2,10 +2,12 @@ import express, { Application, Request, Response } from "express";
 import { IndexRoutes } from "./app/route";
 import { globalErrorHandler } from "./app/middlewares/globalErrorHandler";
 import cookieParser from "cookie-parser";
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./app/lib/auth";
 
 const app: Application = express();
 
-
+app.use("/api/auth", toNodeHandler(auth));
 // Enable URL-encoded form data parsing
 app.use(express.urlencoded({ extended: true }));
 

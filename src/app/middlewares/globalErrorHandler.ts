@@ -29,7 +29,7 @@ export const globalErrorHandler = (
     stack = err.stack;
     errorSources = [
       {
-        path: req.path,
+        path: "",
         message: err.message,
       },
     ];

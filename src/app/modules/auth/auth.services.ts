@@ -2,9 +2,18 @@ import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { auth } from "../../lib/auth";
 // import { prisma } from "../../lib/prisma";
-import { ILoginData, IRegisterData } from "./auth.interface";
+import {
+  IChangePasswordPayload,
+  ILoginData,
+  IRegisterData,
+} from "./auth.interface";
 import { UserStatus } from "../../../generated/prisma/enums";
 import { tokenUtils } from "../../utils/token";
+import { prisma } from "../../lib/prisma";
+import { IRequestUser } from "../../interfaces/requestUser.inteface";
+import { jwtUtils } from "../../utils/jwt";
+import { envVars } from "../../config/env";
+import { JwtPayload } from "jsonwebtoken";
 
 const registerApplicant = async (payload: IRegisterData) => {
   const { name, email, password } = payload;
@@ -81,7 +90,185 @@ const loginUser = async (payload: ILoginData) => {
   };
 };
 
+const getMe = async (user: IRequestUser) => {
+  return await prisma.user.findUnique({
+    where: {
+      id: user.userId,
+    },
+    include: {
+      teacher: true,
+      student: true,
+      applications: true,
+    },
+  });
+};
+
+const getNewToken = async (refreshToken: string, sessionToken: string) => {
+  const isExistingSessionToken = await prisma.session.findUnique({
+    where: {
+      token: sessionToken,
+    },
+    include: {
+      user: true,
+    },
+  });
+  if (!isExistingSessionToken) {
+    throw new AppError(
+      status.UNAUTHORIZED,
+      "Unauthorized access! No session token provided.",
+    );
+  }
+
+  const verifyRefreshToken = jwtUtils.verifyToken(
+    refreshToken,
+    envVars.REFRESH_TOKEN_SECRET as string,
+  );
+  if (!verifyRefreshToken) {
+    throw new AppError(
+      status.UNAUTHORIZED,
+      "Unauthorized access! Invalid token.",
+    );
+  }
+
+  const data = verifyRefreshToken.data as JwtPayload;
+
+  const newAccesToken = tokenUtils.getAccessToken({
+    userId: data.userId,
+    role: data.role,
+    email: data.email,
+    name: data.name,
+    status: data.status,
+    isDeleted: data.isDeleted,
+    emailVerified: data.emailVerified,
+  });
+  const newRefreshToken = tokenUtils.getRefreshToken({
+    userId: data.userId,
+    role: data.role,
+    email: data.email,
+    name: data.name,
+    status: data.status,
+    isDeleted: data.isDeleted,
+    emailVerified: data.emailVerified,
+  });
+
+  const { token } = await prisma.session.update({
+    where: {
+      token: sessionToken,
+    },
+    data: {
+      token: sessionToken,
+      expiresAt: new Date(Date.now() + 60 * 60 * 60 * 24 * 1000),
+      updatedAt: new Date(),
+    },
+  });
+
+  return {
+    accessToken: newAccesToken,
+    refreshToken: newRefreshToken,
+    sessionToken: token,
+  };
+};
+
+const changePassword = async (
+  payload: IChangePasswordPayload,
+  sessionToken: string,
+) => {
+
+  const session = await auth.api.getSession({
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+
+  if (!session) {
+    throw new AppError(status.UNAUTHORIZED, "Invalid session token");
+  }
+
+  const { currentPassword, newPassword } = payload;
+
+  const result = await auth.api.changePassword({
+    body: {
+      currentPassword,
+      newPassword,
+      revokeOtherSessions: true,
+    },
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+
+  if (session.user.needPasswordChange) {
+    await prisma.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        needPasswordChange: false,
+      },
+    });
+  }
+
+  const newAccesToken = tokenUtils.getAccessToken({
+    userId: session.user.id,
+    role: session.user.role,
+    email: session.user.email,
+    name: session.user.name,
+    status: session.user.status,
+    isDeleted: session.user.isDeleted,
+    emailVerified: session.user.emailVerified,
+  });
+  const newRefreshToken = tokenUtils.getRefreshToken({
+    userId: session.user.id,
+    role: session.user.role,
+    email: session.user.email,
+    name: session.user.name,
+    status: session.user.status,
+    isDeleted: session.user.isDeleted,
+    emailVerified: session.user.emailVerified,
+  });
+
+  return {
+    ...result,
+    accessToken: newAccesToken,
+    refreshToken: newRefreshToken,
+  };
+};
+
+const logout = async (sessionToken: string) => {
+  const result = await auth.api.signOut({
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+
+  return result;
+};
+
+const verifyEmail = async (email: string, otp: string) => {
+  const result = await auth.api.verifyEmailOTP({
+    body: {
+      email,
+      otp,
+    },
+  });
+  if (result.user && !result.user.emailVerified) {
+    await prisma.user.update({
+      where: {
+        id: result.user.id,
+      },
+      data: {
+        emailVerified: true,
+      },
+    });
+  }
+};
+
 export const AuthServices = {
   registerApplicant,
   loginUser,
+  getMe,
+  getNewToken,
+  changePassword,
+  logout,
+  verifyEmail,
 };

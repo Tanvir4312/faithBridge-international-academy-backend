@@ -12,21 +12,18 @@ export const checkAuth =
   (...authRoles: Role[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      //session token varification
+      //Session Token Verification
       const sessionToken = cookieUtils.getCookie(
         req,
         "better-auth.session_token",
       );
-
+ 
       if (!sessionToken) {
-        throw new AppError(
-          status.UNAUTHORIZED,
-          "Unauthorized access! No session token provided.",
-        );
+        throw new Error("Unauthorized access! No session token provided.");
       }
 
       if (sessionToken) {
-        const sessionExist = await prisma.session.findFirst({
+        const sessionExists = await prisma.session.findFirst({
           where: {
             token: sessionToken,
             expiresAt: {
@@ -37,12 +34,15 @@ export const checkAuth =
             user: true,
           },
         });
-        if (sessionExist && sessionExist.user) {
-          const user = sessionExist.user;
+       
+        if (sessionExists && sessionExists.user) {
+          const user = sessionExists.user;
+
           const now = new Date();
-          const expiresAt = new Date(sessionExist.expiresAt);
-          const cretedAt = new Date(sessionExist.createdAt);
-          const sessionLifeTime = expiresAt.getTime() - cretedAt.getTime();
+          const expiresAt = new Date(sessionExists.expiresAt);
+          const createdAt = new Date(sessionExists.createdAt);
+
+          const sessionLifeTime = expiresAt.getTime() - createdAt.getTime();
           const timeRemaining = expiresAt.getTime() - now.getTime();
           const percentRemaining = (timeRemaining / sessionLifeTime) * 100;
 
@@ -51,8 +51,9 @@ export const checkAuth =
             res.setHeader("X-Session-Expires-At", expiresAt.toISOString());
             res.setHeader("X-Time-Remaining", timeRemaining.toString());
 
-            console.log("Session Expiring Soon!!");
+     
           }
+
           if (
             user.status === UserStatus.SUSPENDED ||
             user.status === UserStatus.INACTIVE
@@ -76,23 +77,17 @@ export const checkAuth =
               "Forbidden access! You do not have permission to access this resource.",
             );
           }
+
           req.user = {
             userId: user.id,
             role: user.role,
             email: user.email,
           };
         }
-        const accessToken = cookieUtils.getCookie(req, "accessToken");
-
-        if (!accessToken) {
-          throw new AppError(
-            status.UNAUTHORIZED,
-            "Unauthorized access! No access token provided.",
-          );
-        }
       }
-      //Access Token Verification
+
       const accessToken = cookieUtils.getCookie(req, "accessToken");
+    
 
       if (!accessToken) {
         throw new AppError(
@@ -103,19 +98,20 @@ export const checkAuth =
 
       const verifiedToken = jwtUtils.verifyToken(
         accessToken,
-        envVars.ACCES_TOKEN_SECRET as string,
+        envVars.ACCES_TOKEN_SECRET,
       );
-
+     
       if (!verifiedToken.success) {
         throw new AppError(
           status.UNAUTHORIZED,
           "Unauthorized access! Invalid access token.",
         );
       }
+     
 
       if (
         authRoles.length > 0 &&
-        !authRoles.includes((verifiedToken.data as any)?.role as Role)
+        !authRoles.includes((verifiedToken.data as any).role as Role)
       ) {
         throw new AppError(
           status.FORBIDDEN,
@@ -124,7 +120,7 @@ export const checkAuth =
       }
 
       next();
-    } catch (err: any) {
-      next(err);
+    } catch (error: any) {
+      next(error);
     }
   };

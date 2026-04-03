@@ -1,9 +1,34 @@
 import { Router } from "express";
 import { AuthController } from "./auth.controller";
+import { checkAuth } from "../../middlewares/checkAuth";
+import { Role } from "../../../generated/prisma/enums";
 
-const router = Router()
+const router = Router();
 
-router.post('/register', AuthController.registerApplicant)
-router.post('/login', AuthController.loginUser)
+router.post("/register", AuthController.registerApplicant);
+router.post("/login", AuthController.loginUser);
+router.get(
+  "/me",
+  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  AuthController.getMe,
+);
 
-export const AuthRoutes = router
+router.post("/refresh-token", AuthController.getNewToken);
+router.post(
+  "/change-password",
+  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  AuthController.changePassword,
+);
+router.post(
+  "/logout",
+  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  AuthController.logoutUser,
+);
+
+router.post(
+  "/verify-email",
+  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  AuthController.verifyEmail,
+);
+
+export const AuthRoutes = router;

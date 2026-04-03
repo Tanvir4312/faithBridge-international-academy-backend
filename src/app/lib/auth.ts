@@ -2,7 +2,8 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
 import { Role, UserStatus } from "../../generated/prisma/enums";
-
+import { bearer, emailOTP } from "better-auth/plugins";
+import { sendEmail } from "../utils/email";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -11,6 +12,12 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    sendOnSignIn: true,
+    autoSignInAfterVerification: true,
   },
 
   user: {
@@ -42,20 +49,49 @@ export const auth = betterAuth({
       },
     },
   },
+
+  plugins: [
+    bearer(),
+    emailOTP({
+      overrideDefaultEmailVerification: true,
+      async sendVerificationOTP({ email, otp, type }) {
+        if (type === "email-verification") {
+          const user = await prisma.user.findUnique({
+            where: {
+              email,
+            },
+          });
+
+          if (user && !user.emailVerified) {
+            sendEmail({
+              to: email,
+              subject: "verify your email",
+              templateName: "otp",
+              templateData: {
+                name: user.name,
+                otp,
+              },
+            });
+          }
+        }
+      },
+      expiresIn : 2 * 20,
+      otpLength : 6
+    }),
+  ],
+
   session: {
     expiresIn: 60 * 60 * 60 * 24,
     updateAge: 60 * 60 * 60 * 24,
 
     cookiCache: {
-    enabled: true,
-    maxAge: 60 * 60 * 60 * 24,
-  },
+      enabled: true,
+      maxAge: 60 * 60 * 60 * 24,
+    },
   },
 
-//    trustedOrigins: [
-//     process.env.BETTER_AUTH_URL || "http://localhost:5000",
-//     envVars.FRONTEND_URL as string,
-//   ],
-
-  
+  //    trustedOrigins: [
+  //     process.env.BETTER_AUTH_URL || "http://localhost:5000",
+  //     envVars.FRONTEND_URL as string,
+  //   ],
 });

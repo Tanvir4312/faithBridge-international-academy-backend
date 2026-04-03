@@ -8,13 +8,20 @@ interface EnvConfig {
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
   NODE_ENV: string;
-  ACCES_TOKEN_SECRET: string
-  REFRESH_TOKEN_SECRET: string
-  ACCESS_TOKEN_EXPIRESIN: string
-  REFRESH_TOKEN_EXPIRESIN: string
+  ACCES_TOKEN_SECRET: string;
+  REFRESH_TOKEN_SECRET: string;
+  ACCESS_TOKEN_EXPIRESIN: string;
+  REFRESH_TOKEN_EXPIRESIN: string;
+  EMAIL_SENDER: {
+    SMTP_USER: string;
+    SMTP_PASS: string;
+    SMTP_HOST: string;
+    SMTP_PORT: string;
+    SMTP_FROM: string;
+  };
 }
 
-const loadEnvVariables  = () : EnvConfig =>{
+const loadEnvVariables = (): EnvConfig => {
   const requireEnvVariables = [
     "PORT",
     "DATABASE_URL",
@@ -24,8 +31,12 @@ const loadEnvVariables  = () : EnvConfig =>{
     "ACCES_TOKEN_SECRET",
     "REFRESH_TOKEN_SECRET",
     "ACCESS_TOKEN_EXPIRESIN",
-    "REFRESH_TOKEN_EXPIRESIN"
-  
+    "REFRESH_TOKEN_EXPIRESIN",
+    "EMAIL_SENDER_SMTP_USER",
+    "EMAIL_SENDER_SMTP_PASS",
+    "EMAIL_SENDER_SMTP_HOST",
+    "EMAIL_SENDER_SMTP_PORT",
+    "EMAIL_SENDER_SMTP_FROM",
   ];
 
   requireEnvVariables.forEach((envVariable) => {
@@ -43,7 +54,14 @@ const loadEnvVariables  = () : EnvConfig =>{
     ACCES_TOKEN_SECRET: process.env.ACCES_TOKEN_SECRET as string,
     REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET as string,
     ACCESS_TOKEN_EXPIRESIN: process.env.ACCESS_TOKEN_EXPIRESIN as string,
-    REFRESH_TOKEN_EXPIRESIN: process.env.REFRESH_TOKEN_EXPIRESIN as string
+    REFRESH_TOKEN_EXPIRESIN: process.env.REFRESH_TOKEN_EXPIRESIN as string,
+    EMAIL_SENDER: {
+      SMTP_USER: process.env.EMAIL_SENDER_SMTP_USER as string,
+      SMTP_PASS: process.env.EMAIL_SENDER_SMTP_PASS as string,
+      SMTP_HOST: process.env.EMAIL_SENDER_SMTP_HOST as string,
+      SMTP_PORT: process.env.EMAIL_SENDER_SMTP_PORT as string,
+      SMTP_FROM: process.env.EMAIL_SENDER_SMTP_FROM as string,
+    },
   };
 };
 
