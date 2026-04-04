@@ -7,6 +7,7 @@ import { auth } from "./app/lib/auth";
 import path from "path";
 import { envVars } from "./app/config/env";
 import cors from "cors";
+import { notFound } from "./app/middlewares/notFound";
 
 const app: Application = express();
 
@@ -38,6 +39,7 @@ app.use("/api/v1", IndexRoutes);
 
 // Global error handler
 app.use(globalErrorHandler);
+app.use(notFound);
 
 // Basic route
 app.get("/", (req: Request, res: Response) => {

@@ -13,4 +13,5 @@ export interface ICreateTeacherPayload {
     isDeleted: boolean;
     designation: string;
   };
+  subjects: string[];
 }

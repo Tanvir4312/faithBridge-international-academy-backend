@@ -28,18 +28,27 @@ export type TeacherSubjectMinAggregateOutputType = {
   id: string | null
   teacherId: string | null
   subjectId: string | null
+  isPrimary: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TeacherSubjectMaxAggregateOutputType = {
   id: string | null
   teacherId: string | null
   subjectId: string | null
+  isPrimary: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TeacherSubjectCountAggregateOutputType = {
   id: number
   teacherId: number
   subjectId: number
+  isPrimary: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -48,18 +57,27 @@ export type TeacherSubjectMinAggregateInputType = {
   id?: true
   teacherId?: true
   subjectId?: true
+  isPrimary?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TeacherSubjectMaxAggregateInputType = {
   id?: true
   teacherId?: true
   subjectId?: true
+  isPrimary?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TeacherSubjectCountAggregateInputType = {
   id?: true
   teacherId?: true
   subjectId?: true
+  isPrimary?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -139,6 +157,9 @@ export type TeacherSubjectGroupByOutputType = {
   id: string
   teacherId: string
   subjectId: string
+  isPrimary: boolean
+  createdAt: Date
+  updatedAt: Date
   _count: TeacherSubjectCountAggregateOutputType | null
   _min: TeacherSubjectMinAggregateOutputType | null
   _max: TeacherSubjectMaxAggregateOutputType | null
@@ -166,6 +187,9 @@ export type TeacherSubjectWhereInput = {
   id?: Prisma.StringFilter<"TeacherSubject"> | string
   teacherId?: Prisma.StringFilter<"TeacherSubject"> | string
   subjectId?: Prisma.StringFilter<"TeacherSubject"> | string
+  isPrimary?: Prisma.BoolFilter<"TeacherSubject"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
   teacher?: Prisma.XOR<Prisma.TeacherScalarRelationFilter, Prisma.TeacherWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }
@@ -174,6 +198,9 @@ export type TeacherSubjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   teacher?: Prisma.TeacherOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
 }
@@ -186,6 +213,9 @@ export type TeacherSubjectWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TeacherSubjectWhereInput | Prisma.TeacherSubjectWhereInput[]
   teacherId?: Prisma.StringFilter<"TeacherSubject"> | string
   subjectId?: Prisma.StringFilter<"TeacherSubject"> | string
+  isPrimary?: Prisma.BoolFilter<"TeacherSubject"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
   teacher?: Prisma.XOR<Prisma.TeacherScalarRelationFilter, Prisma.TeacherWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }, "id" | "teacherId_subjectId">
@@ -194,6 +224,9 @@ export type TeacherSubjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.TeacherSubjectCountOrderByAggregateInput
   _max?: Prisma.TeacherSubjectMaxOrderByAggregateInput
   _min?: Prisma.TeacherSubjectMinOrderByAggregateInput
@@ -206,10 +239,16 @@ export type TeacherSubjectScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"TeacherSubject"> | string
   teacherId?: Prisma.StringWithAggregatesFilter<"TeacherSubject"> | string
   subjectId?: Prisma.StringWithAggregatesFilter<"TeacherSubject"> | string
+  isPrimary?: Prisma.BoolWithAggregatesFilter<"TeacherSubject"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"TeacherSubject"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TeacherSubject"> | Date | string
 }
 
 export type TeacherSubjectCreateInput = {
   id?: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   teacher: Prisma.TeacherCreateNestedOneWithoutTeacherSubjectsInput
   subject: Prisma.SubjectCreateNestedOneWithoutTeacherSubjectsInput
 }
@@ -218,10 +257,16 @@ export type TeacherSubjectUncheckedCreateInput = {
   id?: string
   teacherId: string
   subjectId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutTeacherSubjectsNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutTeacherSubjectsNestedInput
 }
@@ -230,22 +275,34 @@ export type TeacherSubjectUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectCreateManyInput = {
   id?: string
   teacherId: string
   subjectId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectListRelationFilter = {
@@ -267,18 +324,27 @@ export type TeacherSubjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TeacherSubjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TeacherSubjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
+  isPrimary?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TeacherSubjectCreateNestedManyWithoutSubjectInput = {
@@ -367,12 +433,18 @@ export type TeacherSubjectUncheckedUpdateManyWithoutTeacherNestedInput = {
 
 export type TeacherSubjectCreateWithoutSubjectInput = {
   id?: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   teacher: Prisma.TeacherCreateNestedOneWithoutTeacherSubjectsInput
 }
 
 export type TeacherSubjectUncheckedCreateWithoutSubjectInput = {
   id?: string
   teacherId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectCreateOrConnectWithoutSubjectInput = {
@@ -408,16 +480,25 @@ export type TeacherSubjectScalarWhereInput = {
   id?: Prisma.StringFilter<"TeacherSubject"> | string
   teacherId?: Prisma.StringFilter<"TeacherSubject"> | string
   subjectId?: Prisma.StringFilter<"TeacherSubject"> | string
+  isPrimary?: Prisma.BoolFilter<"TeacherSubject"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TeacherSubject"> | Date | string
 }
 
 export type TeacherSubjectCreateWithoutTeacherInput = {
   id?: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   subject: Prisma.SubjectCreateNestedOneWithoutTeacherSubjectsInput
 }
 
 export type TeacherSubjectUncheckedCreateWithoutTeacherInput = {
   id?: string
   subjectId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectCreateOrConnectWithoutTeacherInput = {
@@ -449,41 +530,65 @@ export type TeacherSubjectUpdateManyWithWhereWithoutTeacherInput = {
 export type TeacherSubjectCreateManySubjectInput = {
   id?: string
   teacherId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutTeacherSubjectsNestedInput
 }
 
 export type TeacherSubjectUncheckedUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectUncheckedUpdateManyWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectCreateManyTeacherInput = {
   id?: string
   subjectId: string
+  isPrimary?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TeacherSubjectUpdateWithoutTeacherInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subject?: Prisma.SubjectUpdateOneRequiredWithoutTeacherSubjectsNestedInput
 }
 
 export type TeacherSubjectUncheckedUpdateWithoutTeacherInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TeacherSubjectUncheckedUpdateManyWithoutTeacherInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -492,6 +597,9 @@ export type TeacherSubjectSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   teacherId?: boolean
   subjectId?: boolean
+  isPrimary?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacherSubject"]>
@@ -500,6 +608,9 @@ export type TeacherSubjectSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   teacherId?: boolean
   subjectId?: boolean
+  isPrimary?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacherSubject"]>
@@ -508,6 +619,9 @@ export type TeacherSubjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   teacherId?: boolean
   subjectId?: boolean
+  isPrimary?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacherSubject"]>
@@ -516,9 +630,12 @@ export type TeacherSubjectSelectScalar = {
   id?: boolean
   teacherId?: boolean
   subjectId?: boolean
+  isPrimary?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type TeacherSubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "teacherId" | "subjectId", ExtArgs["result"]["teacherSubject"]>
+export type TeacherSubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "teacherId" | "subjectId" | "isPrimary" | "createdAt" | "updatedAt", ExtArgs["result"]["teacherSubject"]>
 export type TeacherSubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -542,6 +659,9 @@ export type $TeacherSubjectPayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     teacherId: string
     subjectId: string
+    isPrimary: boolean
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["teacherSubject"]>
   composites: {}
 }
@@ -970,6 +1090,9 @@ export interface TeacherSubjectFieldRefs {
   readonly id: Prisma.FieldRef<"TeacherSubject", 'String'>
   readonly teacherId: Prisma.FieldRef<"TeacherSubject", 'String'>
   readonly subjectId: Prisma.FieldRef<"TeacherSubject", 'String'>
+  readonly isPrimary: Prisma.FieldRef<"TeacherSubject", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"TeacherSubject", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"TeacherSubject", 'DateTime'>
 }
     
 

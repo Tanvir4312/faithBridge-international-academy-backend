@@ -27,16 +27,28 @@ export type AggregateSubject = {
 export type SubjectMinAggregateOutputType = {
   id: string | null
   name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type SubjectMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type SubjectCountAggregateOutputType = {
   id: number
   name: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -44,16 +56,28 @@ export type SubjectCountAggregateOutputType = {
 export type SubjectMinAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type SubjectMaxAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type SubjectCountAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -132,6 +156,10 @@ export type SubjectGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type SubjectGroupByOutputType = {
   id: string
   name: string
+  createdAt: Date
+  updatedAt: Date
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: SubjectCountAggregateOutputType | null
   _min: SubjectMinAggregateOutputType | null
   _max: SubjectMaxAggregateOutputType | null
@@ -158,6 +186,10 @@ export type SubjectWhereInput = {
   NOT?: Prisma.SubjectWhereInput | Prisma.SubjectWhereInput[]
   id?: Prisma.StringFilter<"Subject"> | string
   name?: Prisma.StringFilter<"Subject"> | string
+  createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Subject"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   teacherSubjects?: Prisma.TeacherSubjectListRelationFilter
   results?: Prisma.ResultListRelationFilter
@@ -167,6 +199,10 @@ export type SubjectWhereInput = {
 export type SubjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   classSubjects?: Prisma.ClassSubjectOrderByRelationAggregateInput
   teacherSubjects?: Prisma.TeacherSubjectOrderByRelationAggregateInput
   results?: Prisma.ResultOrderByRelationAggregateInput
@@ -179,6 +215,10 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SubjectWhereInput | Prisma.SubjectWhereInput[]
   OR?: Prisma.SubjectWhereInput[]
   NOT?: Prisma.SubjectWhereInput | Prisma.SubjectWhereInput[]
+  createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Subject"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Subject"> | Date | string | null
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   teacherSubjects?: Prisma.TeacherSubjectListRelationFilter
   results?: Prisma.ResultListRelationFilter
@@ -188,6 +228,10 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
 export type SubjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SubjectCountOrderByAggregateInput
   _max?: Prisma.SubjectMaxOrderByAggregateInput
   _min?: Prisma.SubjectMinOrderByAggregateInput
@@ -199,11 +243,19 @@ export type SubjectScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SubjectScalarWhereWithAggregatesInput | Prisma.SubjectScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Subject"> | string
   name?: Prisma.StringWithAggregatesFilter<"Subject"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subject"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Subject"> | Date | string
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Subject"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Subject"> | Date | string | null
 }
 
 export type SubjectCreateInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultCreateNestedManyWithoutSubjectInput
@@ -213,6 +265,10 @@ export type SubjectCreateInput = {
 export type SubjectUncheckedCreateInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutSubjectInput
@@ -222,6 +278,10 @@ export type SubjectUncheckedCreateInput = {
 export type SubjectUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUpdateManyWithoutSubjectNestedInput
@@ -231,6 +291,10 @@ export type SubjectUpdateInput = {
 export type SubjectUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutSubjectNestedInput
@@ -240,16 +304,28 @@ export type SubjectUncheckedUpdateInput = {
 export type SubjectCreateManyInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type SubjectUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SubjectUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SubjectScalarRelationFilter = {
@@ -260,16 +336,28 @@ export type SubjectScalarRelationFilter = {
 export type SubjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type SubjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type SubjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type SubjectCreateNestedOneWithoutClassSubjectsInput = {
@@ -331,6 +419,10 @@ export type SubjectUpdateOneRequiredWithoutTeacherSubjectsNestedInput = {
 export type SubjectCreateWithoutClassSubjectsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   teacherSubjects?: Prisma.TeacherSubjectCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineCreateNestedManyWithoutSubjectInput
@@ -339,6 +431,10 @@ export type SubjectCreateWithoutClassSubjectsInput = {
 export type SubjectUncheckedCreateWithoutClassSubjectsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   teacherSubjects?: Prisma.TeacherSubjectUncheckedCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutSubjectInput
@@ -363,6 +459,10 @@ export type SubjectUpdateToOneWithWhereWithoutClassSubjectsInput = {
 export type SubjectUpdateWithoutClassSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   teacherSubjects?: Prisma.TeacherSubjectUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutSubjectNestedInput
@@ -371,6 +471,10 @@ export type SubjectUpdateWithoutClassSubjectsInput = {
 export type SubjectUncheckedUpdateWithoutClassSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   teacherSubjects?: Prisma.TeacherSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutSubjectNestedInput
@@ -379,6 +483,10 @@ export type SubjectUncheckedUpdateWithoutClassSubjectsInput = {
 export type SubjectCreateWithoutResultsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineCreateNestedManyWithoutSubjectInput
@@ -387,6 +495,10 @@ export type SubjectCreateWithoutResultsInput = {
 export type SubjectUncheckedCreateWithoutResultsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutSubjectInput
@@ -411,6 +523,10 @@ export type SubjectUpdateToOneWithWhereWithoutResultsInput = {
 export type SubjectUpdateWithoutResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutSubjectNestedInput
@@ -419,6 +535,10 @@ export type SubjectUpdateWithoutResultsInput = {
 export type SubjectUncheckedUpdateWithoutResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutSubjectNestedInput
@@ -427,6 +547,10 @@ export type SubjectUncheckedUpdateWithoutResultsInput = {
 export type SubjectCreateWithoutRoutinesInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultCreateNestedManyWithoutSubjectInput
@@ -435,6 +559,10 @@ export type SubjectCreateWithoutRoutinesInput = {
 export type SubjectUncheckedCreateWithoutRoutinesInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutSubjectInput
@@ -459,6 +587,10 @@ export type SubjectUpdateToOneWithWhereWithoutRoutinesInput = {
 export type SubjectUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUpdateManyWithoutSubjectNestedInput
@@ -467,6 +599,10 @@ export type SubjectUpdateWithoutRoutinesInput = {
 export type SubjectUncheckedUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   teacherSubjects?: Prisma.TeacherSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutSubjectNestedInput
@@ -475,6 +611,10 @@ export type SubjectUncheckedUpdateWithoutRoutinesInput = {
 export type SubjectCreateWithoutTeacherSubjectsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineCreateNestedManyWithoutSubjectInput
@@ -483,6 +623,10 @@ export type SubjectCreateWithoutTeacherSubjectsInput = {
 export type SubjectUncheckedCreateWithoutTeacherSubjectsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutSubjectInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutSubjectInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutSubjectInput
@@ -507,6 +651,10 @@ export type SubjectUpdateToOneWithWhereWithoutTeacherSubjectsInput = {
 export type SubjectUpdateWithoutTeacherSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutSubjectNestedInput
@@ -515,6 +663,10 @@ export type SubjectUpdateWithoutTeacherSubjectsInput = {
 export type SubjectUncheckedUpdateWithoutTeacherSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutSubjectNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutSubjectNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutSubjectNestedInput
@@ -581,6 +733,10 @@ export type SubjectCountOutputTypeCountRoutinesArgs<ExtArgs extends runtime.Type
 export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   classSubjects?: boolean | Prisma.Subject$classSubjectsArgs<ExtArgs>
   teacherSubjects?: boolean | Prisma.Subject$teacherSubjectsArgs<ExtArgs>
   results?: boolean | Prisma.Subject$resultsArgs<ExtArgs>
@@ -591,19 +747,31 @@ export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type SubjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["subject"]>
 
 export type SubjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["subject"]>
 
 export type SubjectSelectScalar = {
   id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["subject"]>
+export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["subject"]>
 export type SubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   classSubjects?: boolean | Prisma.Subject$classSubjectsArgs<ExtArgs>
   teacherSubjects?: boolean | Prisma.Subject$teacherSubjectsArgs<ExtArgs>
@@ -625,6 +793,10 @@ export type $SubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    createdAt: Date
+    updatedAt: Date
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["subject"]>
   composites: {}
 }
@@ -1054,6 +1226,10 @@ export interface Prisma__SubjectClient<T, Null = never, ExtArgs extends runtime.
 export interface SubjectFieldRefs {
   readonly id: Prisma.FieldRef<"Subject", 'String'>
   readonly name: Prisma.FieldRef<"Subject", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Subject", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Subject", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Subject", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Subject", 'DateTime'>
 }
     
 

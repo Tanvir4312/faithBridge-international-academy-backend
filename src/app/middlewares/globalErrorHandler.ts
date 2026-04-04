@@ -8,6 +8,8 @@ import {
 import status from "http-status";
 import { envVars } from "../config/env";
 import AppError from "../errorHelpers/AppError";
+import z from "zod";
+import { simplifiedZodError } from "../errorHelpers/handleZodError";
 
 export const globalErrorHandler = (
   err: any,
@@ -33,6 +35,12 @@ export const globalErrorHandler = (
         message: err.message,
       },
     ];
+  } else if (err instanceof z.ZodError) {
+    const simplified = simplifiedZodError(err);
+    statusCode = simplified.statusCode as number;
+    message = simplified.message as string;
+    stack = simplified.stack as string | undefined;
+    errorSources = [...simplified.errorSources];
   } else if (err instanceof Error) {
     statusCode = status.BAD_REQUEST;
     message = err.message;
