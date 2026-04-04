@@ -22,6 +22,7 @@ export const Role = {
   STUDENT: 'STUDENT',
   TEACHER: 'TEACHER',
   ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN',
   APPLICANT: 'APPLICANT'
 } as const
 

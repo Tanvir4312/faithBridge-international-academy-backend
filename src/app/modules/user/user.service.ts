@@ -1,7 +1,7 @@
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
-import { ICreateTeacherPayload } from "./user.interface";
+import { ICreateAdmin, ICreateTeacherPayload } from "./user.interface";
 import { auth } from "../../lib/auth";
 import { Role } from "../../../generated/prisma/enums";
 import { Subject } from "../../../generated/prisma/client";
@@ -117,6 +117,50 @@ const createTeacher = async (payload: ICreateTeacherPayload) => {
     console.log(err);
   }
 };
+
+const createAdmins = async (payload: ICreateAdmin) => {
+  const isUserExist = await prisma.user.findUnique({
+    where: {
+      email: payload.admin.email,
+    },
+  });
+
+  if (isUserExist) {
+    throw new AppError(status.BAD_REQUEST, "User already exist");
+  }
+
+  const { password, admin, role } = payload;
+
+  const userdata = await auth.api.signUpEmail({
+    body: {
+      ...admin,
+      role,
+      password,
+      needPasswordChange: true,
+    },
+  });
+
+  try {
+    const adminData = await prisma.admin.create({
+      data: {
+        userId: userdata.user.id,
+        ...admin,
+      },
+      include: {
+        user: true,
+      }
+    });
+    return adminData;
+  } catch (err) {
+    console.log(err);
+    await prisma.user.delete({
+      where: {
+        id: userdata.user.id,
+      },
+    });
+  }
+};
 export const UserService = {
   createTeacher,
+  createAdmins,
 };

@@ -1,12 +1,14 @@
 enum UserStatus {
-    ACTIVE
-    INACTIVE
-    SUSPENDED
+  ACTIVE
+  INACTIVE
+  SUSPENDED
 }
+
 enum Role {
   STUDENT
   TEACHER
   ADMIN
+  SUPER_ADMIN
   APPLICANT
 }
 
