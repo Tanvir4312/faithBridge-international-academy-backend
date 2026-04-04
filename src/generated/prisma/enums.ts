@@ -91,3 +91,11 @@ export const Day = {
 } as const
 
 export type Day = (typeof Day)[keyof typeof Day]
+
+
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]

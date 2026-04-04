@@ -8,7 +8,7 @@ import {
   ILoginData,
   IRegisterData,
 } from "./auth.interface";
-import {  UserStatus } from "../../../generated/prisma/enums";
+import { UserStatus } from "../../../generated/prisma/enums";
 import { tokenUtils } from "../../utils/token";
 import { prisma } from "../../lib/prisma";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
@@ -184,6 +184,20 @@ const changePassword = async (
     throw new AppError(status.UNAUTHORIZED, "Invalid session token");
   }
 
+  const googleProvider = await prisma.account.findFirst({
+    where: {
+      userId: session.user.id,
+      providerId: "google",
+    },
+  });
+
+  if (googleProvider) {
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Google user cannot change password",
+    );
+  }
+
   const { currentPassword, newPassword } = payload;
 
   const result = await auth.api.changePassword({
@@ -282,6 +296,20 @@ const forgotPassword = async (email: string) => {
     throw new AppError(status.BAD_REQUEST, "User is suspended");
   }
 
+  const googleProvider = await prisma.account.findFirst({
+    where: {
+      userId: isExistUser.id,
+      providerId: "google",
+    },
+  });
+
+  if (googleProvider) {
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Google user cannot change password",
+    );
+  }
+
   const result = await auth.api.requestPasswordResetEmailOTP({
     body: {
       email,
@@ -311,6 +339,20 @@ const resetPassword = async (
 
   if (isExistUser.isDeleted && isExistUser.status === UserStatus.SUSPENDED) {
     throw new AppError(status.BAD_REQUEST, "User is suspended");
+  }
+
+  const googleProvider = await prisma.account.findFirst({
+    where: {
+      userId: isExistUser.id,
+      providerId: "google",
+    },
+  });
+
+  if (googleProvider) {
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Google user cannot change password",
+    );
   }
 
   if (isExistUser.needPasswordChange) {
@@ -344,7 +386,6 @@ const googleLoginSuccess = async (session: Record<string, any>) => {
   const isApplicantExist = await prisma.user.findUnique({
     where: {
       email: session.user.email,
-     
     },
   });
   if (!isApplicantExist) {
