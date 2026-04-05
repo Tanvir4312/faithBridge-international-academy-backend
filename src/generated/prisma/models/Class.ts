@@ -27,19 +27,19 @@ export type AggregateClass = {
 export type ClassMinAggregateOutputType = {
   id: string | null
   name: string | null
-  programId: string | null
+  AcademicLevelId: string | null
 }
 
 export type ClassMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  programId: string | null
+  AcademicLevelId: string | null
 }
 
 export type ClassCountAggregateOutputType = {
   id: number
   name: number
-  programId: number
+  AcademicLevelId: number
   _all: number
 }
 
@@ -47,19 +47,19 @@ export type ClassCountAggregateOutputType = {
 export type ClassMinAggregateInputType = {
   id?: true
   name?: true
-  programId?: true
+  AcademicLevelId?: true
 }
 
 export type ClassMaxAggregateInputType = {
   id?: true
   name?: true
-  programId?: true
+  AcademicLevelId?: true
 }
 
 export type ClassCountAggregateInputType = {
   id?: true
   name?: true
-  programId?: true
+  AcademicLevelId?: true
   _all?: true
 }
 
@@ -138,7 +138,7 @@ export type ClassGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ClassGroupByOutputType = {
   id: string
   name: string
-  programId: string
+  AcademicLevelId: string
   _count: ClassCountAggregateOutputType | null
   _min: ClassMinAggregateOutputType | null
   _max: ClassMaxAggregateOutputType | null
@@ -165,8 +165,8 @@ export type ClassWhereInput = {
   NOT?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[]
   id?: Prisma.StringFilter<"Class"> | string
   name?: Prisma.StringFilter<"Class"> | string
-  programId?: Prisma.StringFilter<"Class"> | string
-  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  AcademicLevelId?: Prisma.StringFilter<"Class"> | string
+  AcademicLevel?: Prisma.XOR<Prisma.AcademicLevelScalarRelationFilter, Prisma.AcademicLevelWhereInput>
   students?: Prisma.StudentListRelationFilter
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   routines?: Prisma.RoutineListRelationFilter
@@ -178,8 +178,8 @@ export type ClassWhereInput = {
 export type ClassOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  programId?: Prisma.SortOrder
-  program?: Prisma.ProgramOrderByWithRelationInput
+  AcademicLevelId?: Prisma.SortOrder
+  AcademicLevel?: Prisma.AcademicLevelOrderByWithRelationInput
   students?: Prisma.StudentOrderByRelationAggregateInput
   classSubjects?: Prisma.ClassSubjectOrderByRelationAggregateInput
   routines?: Prisma.RoutineOrderByRelationAggregateInput
@@ -194,8 +194,8 @@ export type ClassWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ClassWhereInput[]
   NOT?: Prisma.ClassWhereInput | Prisma.ClassWhereInput[]
   name?: Prisma.StringFilter<"Class"> | string
-  programId?: Prisma.StringFilter<"Class"> | string
-  program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
+  AcademicLevelId?: Prisma.StringFilter<"Class"> | string
+  AcademicLevel?: Prisma.XOR<Prisma.AcademicLevelScalarRelationFilter, Prisma.AcademicLevelWhereInput>
   students?: Prisma.StudentListRelationFilter
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   routines?: Prisma.RoutineListRelationFilter
@@ -207,7 +207,7 @@ export type ClassWhereUniqueInput = Prisma.AtLeast<{
 export type ClassOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  programId?: Prisma.SortOrder
+  AcademicLevelId?: Prisma.SortOrder
   _count?: Prisma.ClassCountOrderByAggregateInput
   _max?: Prisma.ClassMaxOrderByAggregateInput
   _min?: Prisma.ClassMinOrderByAggregateInput
@@ -219,13 +219,13 @@ export type ClassScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ClassScalarWhereWithAggregatesInput | Prisma.ClassScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Class"> | string
   name?: Prisma.StringWithAggregatesFilter<"Class"> | string
-  programId?: Prisma.StringWithAggregatesFilter<"Class"> | string
+  AcademicLevelId?: Prisma.StringWithAggregatesFilter<"Class"> | string
 }
 
 export type ClassCreateInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -237,7 +237,7 @@ export type ClassCreateInput = {
 export type ClassUncheckedCreateInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -249,7 +249,7 @@ export type ClassUncheckedCreateInput = {
 export type ClassUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -261,7 +261,7 @@ export type ClassUpdateInput = {
 export type ClassUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -273,7 +273,7 @@ export type ClassUncheckedUpdateInput = {
 export type ClassCreateManyInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
 }
 
 export type ClassUpdateManyMutationInput = {
@@ -284,30 +284,7 @@ export type ClassUpdateManyMutationInput = {
 export type ClassUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type ClassCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  programId?: Prisma.SortOrder
-}
-
-export type ClassMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  programId?: Prisma.SortOrder
-}
-
-export type ClassMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  programId?: Prisma.SortOrder
-}
-
-export type ClassScalarRelationFilter = {
-  is?: Prisma.ClassWhereInput
-  isNot?: Prisma.ClassWhereInput
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ClassListRelationFilter = {
@@ -318,6 +295,71 @@ export type ClassListRelationFilter = {
 
 export type ClassOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type ClassCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  AcademicLevelId?: Prisma.SortOrder
+}
+
+export type ClassMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  AcademicLevelId?: Prisma.SortOrder
+}
+
+export type ClassMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  AcademicLevelId?: Prisma.SortOrder
+}
+
+export type ClassScalarRelationFilter = {
+  is?: Prisma.ClassWhereInput
+  isNot?: Prisma.ClassWhereInput
+}
+
+export type ClassCreateNestedManyWithoutAcademicLevelInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput> | Prisma.ClassCreateWithoutAcademicLevelInput[] | Prisma.ClassUncheckedCreateWithoutAcademicLevelInput[]
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAcademicLevelInput | Prisma.ClassCreateOrConnectWithoutAcademicLevelInput[]
+  createMany?: Prisma.ClassCreateManyAcademicLevelInputEnvelope
+  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+}
+
+export type ClassUncheckedCreateNestedManyWithoutAcademicLevelInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput> | Prisma.ClassCreateWithoutAcademicLevelInput[] | Prisma.ClassUncheckedCreateWithoutAcademicLevelInput[]
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAcademicLevelInput | Prisma.ClassCreateOrConnectWithoutAcademicLevelInput[]
+  createMany?: Prisma.ClassCreateManyAcademicLevelInputEnvelope
+  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+}
+
+export type ClassUpdateManyWithoutAcademicLevelNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput> | Prisma.ClassCreateWithoutAcademicLevelInput[] | Prisma.ClassUncheckedCreateWithoutAcademicLevelInput[]
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAcademicLevelInput | Prisma.ClassCreateOrConnectWithoutAcademicLevelInput[]
+  upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutAcademicLevelInput | Prisma.ClassUpsertWithWhereUniqueWithoutAcademicLevelInput[]
+  createMany?: Prisma.ClassCreateManyAcademicLevelInputEnvelope
+  set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  update?: Prisma.ClassUpdateWithWhereUniqueWithoutAcademicLevelInput | Prisma.ClassUpdateWithWhereUniqueWithoutAcademicLevelInput[]
+  updateMany?: Prisma.ClassUpdateManyWithWhereWithoutAcademicLevelInput | Prisma.ClassUpdateManyWithWhereWithoutAcademicLevelInput[]
+  deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
+}
+
+export type ClassUncheckedUpdateManyWithoutAcademicLevelNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput> | Prisma.ClassCreateWithoutAcademicLevelInput[] | Prisma.ClassUncheckedCreateWithoutAcademicLevelInput[]
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutAcademicLevelInput | Prisma.ClassCreateOrConnectWithoutAcademicLevelInput[]
+  upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutAcademicLevelInput | Prisma.ClassUpsertWithWhereUniqueWithoutAcademicLevelInput[]
+  createMany?: Prisma.ClassCreateManyAcademicLevelInputEnvelope
+  set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
+  update?: Prisma.ClassUpdateWithWhereUniqueWithoutAcademicLevelInput | Prisma.ClassUpdateWithWhereUniqueWithoutAcademicLevelInput[]
+  updateMany?: Prisma.ClassUpdateManyWithWhereWithoutAcademicLevelInput | Prisma.ClassUpdateManyWithWhereWithoutAcademicLevelInput[]
+  deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
 }
 
 export type ClassCreateNestedOneWithoutClassSubjectsInput = {
@@ -362,48 +404,6 @@ export type ClassUpdateOneRequiredWithoutNoticesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutNoticesInput, Prisma.ClassUpdateWithoutNoticesInput>, Prisma.ClassUncheckedUpdateWithoutNoticesInput>
 }
 
-export type ClassCreateNestedManyWithoutProgramInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput> | Prisma.ClassCreateWithoutProgramInput[] | Prisma.ClassUncheckedCreateWithoutProgramInput[]
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutProgramInput | Prisma.ClassCreateOrConnectWithoutProgramInput[]
-  createMany?: Prisma.ClassCreateManyProgramInputEnvelope
-  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-}
-
-export type ClassUncheckedCreateNestedManyWithoutProgramInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput> | Prisma.ClassCreateWithoutProgramInput[] | Prisma.ClassUncheckedCreateWithoutProgramInput[]
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutProgramInput | Prisma.ClassCreateOrConnectWithoutProgramInput[]
-  createMany?: Prisma.ClassCreateManyProgramInputEnvelope
-  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-}
-
-export type ClassUpdateManyWithoutProgramNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput> | Prisma.ClassCreateWithoutProgramInput[] | Prisma.ClassUncheckedCreateWithoutProgramInput[]
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutProgramInput | Prisma.ClassCreateOrConnectWithoutProgramInput[]
-  upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutProgramInput | Prisma.ClassUpsertWithWhereUniqueWithoutProgramInput[]
-  createMany?: Prisma.ClassCreateManyProgramInputEnvelope
-  set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  update?: Prisma.ClassUpdateWithWhereUniqueWithoutProgramInput | Prisma.ClassUpdateWithWhereUniqueWithoutProgramInput[]
-  updateMany?: Prisma.ClassUpdateManyWithWhereWithoutProgramInput | Prisma.ClassUpdateManyWithWhereWithoutProgramInput[]
-  deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
-}
-
-export type ClassUncheckedUpdateManyWithoutProgramNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput> | Prisma.ClassCreateWithoutProgramInput[] | Prisma.ClassUncheckedCreateWithoutProgramInput[]
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutProgramInput | Prisma.ClassCreateOrConnectWithoutProgramInput[]
-  upsert?: Prisma.ClassUpsertWithWhereUniqueWithoutProgramInput | Prisma.ClassUpsertWithWhereUniqueWithoutProgramInput[]
-  createMany?: Prisma.ClassCreateManyProgramInputEnvelope
-  set?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  disconnect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  delete?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  connect?: Prisma.ClassWhereUniqueInput | Prisma.ClassWhereUniqueInput[]
-  update?: Prisma.ClassUpdateWithWhereUniqueWithoutProgramInput | Prisma.ClassUpdateWithWhereUniqueWithoutProgramInput[]
-  updateMany?: Prisma.ClassUpdateManyWithWhereWithoutProgramInput | Prisma.ClassUpdateManyWithWhereWithoutProgramInput[]
-  deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
-}
-
 export type ClassCreateNestedOneWithoutRoutinesInput = {
   create?: Prisma.XOR<Prisma.ClassCreateWithoutRoutinesInput, Prisma.ClassUncheckedCreateWithoutRoutinesInput>
   connectOrCreate?: Prisma.ClassCreateOrConnectWithoutRoutinesInput
@@ -446,10 +446,67 @@ export type ClassUpdateOneRequiredWithoutStudentHistoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutStudentHistoriesInput, Prisma.ClassUpdateWithoutStudentHistoriesInput>, Prisma.ClassUncheckedUpdateWithoutStudentHistoriesInput>
 }
 
+export type ClassCreateWithoutAcademicLevelInput = {
+  id?: string
+  name: string
+  students?: Prisma.StudentCreateNestedManyWithoutClassInput
+  classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
+  notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
+  formFillups?: Prisma.FormFillupCreateNestedManyWithoutClassInput
+  studentHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutClassInput
+}
+
+export type ClassUncheckedCreateWithoutAcademicLevelInput = {
+  id?: string
+  name: string
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
+  classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
+  notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
+  formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutClassInput
+  studentHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutClassInput
+}
+
+export type ClassCreateOrConnectWithoutAcademicLevelInput = {
+  where: Prisma.ClassWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput>
+}
+
+export type ClassCreateManyAcademicLevelInputEnvelope = {
+  data: Prisma.ClassCreateManyAcademicLevelInput | Prisma.ClassCreateManyAcademicLevelInput[]
+  skipDuplicates?: boolean
+}
+
+export type ClassUpsertWithWhereUniqueWithoutAcademicLevelInput = {
+  where: Prisma.ClassWhereUniqueInput
+  update: Prisma.XOR<Prisma.ClassUpdateWithoutAcademicLevelInput, Prisma.ClassUncheckedUpdateWithoutAcademicLevelInput>
+  create: Prisma.XOR<Prisma.ClassCreateWithoutAcademicLevelInput, Prisma.ClassUncheckedCreateWithoutAcademicLevelInput>
+}
+
+export type ClassUpdateWithWhereUniqueWithoutAcademicLevelInput = {
+  where: Prisma.ClassWhereUniqueInput
+  data: Prisma.XOR<Prisma.ClassUpdateWithoutAcademicLevelInput, Prisma.ClassUncheckedUpdateWithoutAcademicLevelInput>
+}
+
+export type ClassUpdateManyWithWhereWithoutAcademicLevelInput = {
+  where: Prisma.ClassScalarWhereInput
+  data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyWithoutAcademicLevelInput>
+}
+
+export type ClassScalarWhereInput = {
+  AND?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
+  OR?: Prisma.ClassScalarWhereInput[]
+  NOT?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
+  id?: Prisma.StringFilter<"Class"> | string
+  name?: Prisma.StringFilter<"Class"> | string
+  AcademicLevelId?: Prisma.StringFilter<"Class"> | string
+}
+
 export type ClassCreateWithoutClassSubjectsInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -460,7 +517,7 @@ export type ClassCreateWithoutClassSubjectsInput = {
 export type ClassUncheckedCreateWithoutClassSubjectsInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -487,7 +544,7 @@ export type ClassUpdateToOneWithWhereWithoutClassSubjectsInput = {
 export type ClassUpdateWithoutClassSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -498,7 +555,7 @@ export type ClassUpdateWithoutClassSubjectsInput = {
 export type ClassUncheckedUpdateWithoutClassSubjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
@@ -509,7 +566,7 @@ export type ClassUncheckedUpdateWithoutClassSubjectsInput = {
 export type ClassCreateWithoutFormFillupsInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -520,7 +577,7 @@ export type ClassCreateWithoutFormFillupsInput = {
 export type ClassUncheckedCreateWithoutFormFillupsInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -547,7 +604,7 @@ export type ClassUpdateToOneWithWhereWithoutFormFillupsInput = {
 export type ClassUpdateWithoutFormFillupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -558,7 +615,7 @@ export type ClassUpdateWithoutFormFillupsInput = {
 export type ClassUncheckedUpdateWithoutFormFillupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -569,7 +626,7 @@ export type ClassUncheckedUpdateWithoutFormFillupsInput = {
 export type ClassCreateWithoutNoticesInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -580,7 +637,7 @@ export type ClassCreateWithoutNoticesInput = {
 export type ClassUncheckedCreateWithoutNoticesInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -607,7 +664,7 @@ export type ClassUpdateToOneWithWhereWithoutNoticesInput = {
 export type ClassUpdateWithoutNoticesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -618,7 +675,7 @@ export type ClassUpdateWithoutNoticesInput = {
 export type ClassUncheckedUpdateWithoutNoticesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -626,67 +683,10 @@ export type ClassUncheckedUpdateWithoutNoticesInput = {
   studentHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutClassNestedInput
 }
 
-export type ClassCreateWithoutProgramInput = {
-  id?: string
-  name: string
-  students?: Prisma.StudentCreateNestedManyWithoutClassInput
-  classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
-  notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
-  formFillups?: Prisma.FormFillupCreateNestedManyWithoutClassInput
-  studentHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutClassInput
-}
-
-export type ClassUncheckedCreateWithoutProgramInput = {
-  id?: string
-  name: string
-  students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
-  classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
-  notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
-  formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutClassInput
-  studentHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutClassInput
-}
-
-export type ClassCreateOrConnectWithoutProgramInput = {
-  where: Prisma.ClassWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput>
-}
-
-export type ClassCreateManyProgramInputEnvelope = {
-  data: Prisma.ClassCreateManyProgramInput | Prisma.ClassCreateManyProgramInput[]
-  skipDuplicates?: boolean
-}
-
-export type ClassUpsertWithWhereUniqueWithoutProgramInput = {
-  where: Prisma.ClassWhereUniqueInput
-  update: Prisma.XOR<Prisma.ClassUpdateWithoutProgramInput, Prisma.ClassUncheckedUpdateWithoutProgramInput>
-  create: Prisma.XOR<Prisma.ClassCreateWithoutProgramInput, Prisma.ClassUncheckedCreateWithoutProgramInput>
-}
-
-export type ClassUpdateWithWhereUniqueWithoutProgramInput = {
-  where: Prisma.ClassWhereUniqueInput
-  data: Prisma.XOR<Prisma.ClassUpdateWithoutProgramInput, Prisma.ClassUncheckedUpdateWithoutProgramInput>
-}
-
-export type ClassUpdateManyWithWhereWithoutProgramInput = {
-  where: Prisma.ClassScalarWhereInput
-  data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyWithoutProgramInput>
-}
-
-export type ClassScalarWhereInput = {
-  AND?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
-  OR?: Prisma.ClassScalarWhereInput[]
-  NOT?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
-  id?: Prisma.StringFilter<"Class"> | string
-  name?: Prisma.StringFilter<"Class"> | string
-  programId?: Prisma.StringFilter<"Class"> | string
-}
-
 export type ClassCreateWithoutRoutinesInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -697,7 +697,7 @@ export type ClassCreateWithoutRoutinesInput = {
 export type ClassUncheckedCreateWithoutRoutinesInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -724,7 +724,7 @@ export type ClassUpdateToOneWithWhereWithoutRoutinesInput = {
 export type ClassUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -735,7 +735,7 @@ export type ClassUpdateWithoutRoutinesInput = {
 export type ClassUncheckedUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
@@ -746,7 +746,7 @@ export type ClassUncheckedUpdateWithoutRoutinesInput = {
 export type ClassCreateWithoutStudentsInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -757,7 +757,7 @@ export type ClassCreateWithoutStudentsInput = {
 export type ClassUncheckedCreateWithoutStudentsInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -784,7 +784,7 @@ export type ClassUpdateToOneWithWhereWithoutStudentsInput = {
 export type ClassUpdateWithoutStudentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -795,7 +795,7 @@ export type ClassUpdateWithoutStudentsInput = {
 export type ClassUncheckedUpdateWithoutStudentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
@@ -806,7 +806,7 @@ export type ClassUncheckedUpdateWithoutStudentsInput = {
 export type ClassCreateWithoutStudentHistoriesInput = {
   id?: string
   name: string
-  program: Prisma.ProgramCreateNestedOneWithoutClassesInput
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -817,7 +817,7 @@ export type ClassCreateWithoutStudentHistoriesInput = {
 export type ClassUncheckedCreateWithoutStudentHistoriesInput = {
   id?: string
   name: string
-  programId: string
+  AcademicLevelId: string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -844,7 +844,7 @@ export type ClassUpdateToOneWithWhereWithoutStudentHistoriesInput = {
 export type ClassUpdateWithoutStudentHistoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  program?: Prisma.ProgramUpdateOneRequiredWithoutClassesNestedInput
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -855,7 +855,7 @@ export type ClassUpdateWithoutStudentHistoriesInput = {
 export type ClassUncheckedUpdateWithoutStudentHistoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  programId?: Prisma.StringFieldUpdateOperationsInput | string
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -863,12 +863,12 @@ export type ClassUncheckedUpdateWithoutStudentHistoriesInput = {
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutClassNestedInput
 }
 
-export type ClassCreateManyProgramInput = {
+export type ClassCreateManyAcademicLevelInput = {
   id?: string
   name: string
 }
 
-export type ClassUpdateWithoutProgramInput = {
+export type ClassUpdateWithoutAcademicLevelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
@@ -879,7 +879,7 @@ export type ClassUpdateWithoutProgramInput = {
   studentHistories?: Prisma.StudentClassHistoryUpdateManyWithoutClassNestedInput
 }
 
-export type ClassUncheckedUpdateWithoutProgramInput = {
+export type ClassUncheckedUpdateWithoutAcademicLevelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
@@ -890,7 +890,7 @@ export type ClassUncheckedUpdateWithoutProgramInput = {
   studentHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutClassNestedInput
 }
 
-export type ClassUncheckedUpdateManyWithoutProgramInput = {
+export type ClassUncheckedUpdateManyWithoutAcademicLevelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -974,8 +974,8 @@ export type ClassCountOutputTypeCountStudentHistoriesArgs<ExtArgs extends runtim
 export type ClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  programId?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevelId?: boolean
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
   students?: boolean | Prisma.Class$studentsArgs<ExtArgs>
   classSubjects?: boolean | Prisma.Class$classSubjectsArgs<ExtArgs>
   routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>
@@ -988,26 +988,26 @@ export type ClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ClassSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  programId?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevelId?: boolean
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["class"]>
 
 export type ClassSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  programId?: boolean
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevelId?: boolean
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["class"]>
 
 export type ClassSelectScalar = {
   id?: boolean
   name?: boolean
-  programId?: boolean
+  AcademicLevelId?: boolean
 }
 
-export type ClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "programId", ExtArgs["result"]["class"]>
+export type ClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "AcademicLevelId", ExtArgs["result"]["class"]>
 export type ClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
   students?: boolean | Prisma.Class$studentsArgs<ExtArgs>
   classSubjects?: boolean | Prisma.Class$classSubjectsArgs<ExtArgs>
   routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>
@@ -1017,16 +1017,16 @@ export type ClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   _count?: boolean | Prisma.ClassCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClassIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
 }
 export type ClassIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  program?: boolean | Prisma.ProgramDefaultArgs<ExtArgs>
+  AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
 }
 
 export type $ClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Class"
   objects: {
-    program: Prisma.$ProgramPayload<ExtArgs>
+    AcademicLevel: Prisma.$AcademicLevelPayload<ExtArgs>
     students: Prisma.$StudentPayload<ExtArgs>[]
     classSubjects: Prisma.$ClassSubjectPayload<ExtArgs>[]
     routines: Prisma.$RoutinePayload<ExtArgs>[]
@@ -1037,7 +1037,7 @@ export type $ClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    programId: string
+    AcademicLevelId: string
   }, ExtArgs["result"]["class"]>
   composites: {}
 }
@@ -1432,7 +1432,7 @@ readonly fields: ClassFieldRefs;
  */
 export interface Prisma__ClassClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  program<T extends Prisma.ProgramDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProgramDefaultArgs<ExtArgs>>): Prisma.Prisma__ProgramClient<runtime.Types.Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  AcademicLevel<T extends Prisma.AcademicLevelDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AcademicLevelDefaultArgs<ExtArgs>>): Prisma.Prisma__AcademicLevelClient<runtime.Types.Result.GetResult<Prisma.$AcademicLevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   students<T extends Prisma.Class$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classSubjects<T extends Prisma.Class$classSubjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$classSubjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   routines<T extends Prisma.Class$routinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1470,7 +1470,7 @@ export interface Prisma__ClassClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface ClassFieldRefs {
   readonly id: Prisma.FieldRef<"Class", 'String'>
   readonly name: Prisma.FieldRef<"Class", 'String'>
-  readonly programId: Prisma.FieldRef<"Class", 'String'>
+  readonly AcademicLevelId: Prisma.FieldRef<"Class", 'String'>
 }
     
 

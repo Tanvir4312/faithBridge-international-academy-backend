@@ -575,10 +575,6 @@ export type TeacherUpdateOneRequiredWithoutRoutinesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherUpdateToOneWithWhereWithoutRoutinesInput, Prisma.TeacherUpdateWithoutRoutinesInput>, Prisma.TeacherUncheckedUpdateWithoutRoutinesInput>
 }
 
-export type EnumGenderFieldUpdateOperationsInput = {
-  set?: $Enums.Gender
-}
-
 export type TeacherCreateNestedOneWithoutTeacherSubjectsInput = {
   create?: Prisma.XOR<Prisma.TeacherCreateWithoutTeacherSubjectsInput, Prisma.TeacherUncheckedCreateWithoutTeacherSubjectsInput>
   connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutTeacherSubjectsInput

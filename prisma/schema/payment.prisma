@@ -4,16 +4,17 @@ model Payment {
     currency           String        @default("BDT")
     paymentFor         PaymentFor
     studentId          String?
-    applicationId      String?       @unique
-    formFillupId       String?       @unique
-    documentRequestId  String?       @unique
-    status             PaymentStatus @default(PENDING)
+    status             PaymentStatus @default(UNPAID)
     method             String?
     transactionId      String?       @unique
     stripeEventId      String?       @unique
     paidAt             DateTime?
     invoiceUrl         String?
     paymentGatewayData Json?
+    
+    applicationId      String?       @unique
+    formFillupId       String?       @unique
+    documentRequestId  String?       @unique
 
     student         Student?          @relation(fields: [studentId], references: [id])
     application     Application?     @relation(fields: [applicationId], references: [id])

@@ -49,6 +49,15 @@ const createTeacher = async (payload: ICreateTeacherPayload) => {
         },
       });
 
+      await tx.user.update({
+        where: {
+          id: userdata.user.id,
+        },
+        data: {
+          emailVerified: true,
+        },
+      });
+
       const teacherSubjects = subjects.map((subject) => {
         return {
           teacherId: teacherData.id,
@@ -148,7 +157,7 @@ const createAdmins = async (payload: ICreateAdmin) => {
       },
       include: {
         user: true,
-      }
+      },
     });
     return adminData;
   } catch (err) {

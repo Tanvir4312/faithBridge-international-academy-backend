@@ -384,6 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  AcademicLevel: 'AcademicLevel',
   Admin: 'Admin',
   Application: 'Application',
   User: 'User',
@@ -399,7 +400,6 @@ export const ModelName = {
   Notice: 'Notice',
   NoticeClass: 'NoticeClass',
   Payment: 'Payment',
-  Program: 'Program',
   Result: 'Result',
   Routine: 'Routine',
   Student: 'Student',
@@ -423,10 +423,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "application" | "user" | "session" | "account" | "verification" | "class" | "classSubject" | "documentRequest" | "exam" | "formFillup" | "media" | "notice" | "noticeClass" | "payment" | "program" | "result" | "routine" | "student" | "studentClassHistory" | "subject" | "teacher" | "teacherSubject" | "timeSlot"
+    modelProps: "academicLevel" | "admin" | "application" | "user" | "session" | "account" | "verification" | "class" | "classSubject" | "documentRequest" | "exam" | "formFillup" | "media" | "notice" | "noticeClass" | "payment" | "result" | "routine" | "student" | "studentClassHistory" | "subject" | "teacher" | "teacherSubject" | "timeSlot"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    AcademicLevel: {
+      payload: Prisma.$AcademicLevelPayload<ExtArgs>
+      fields: Prisma.AcademicLevelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AcademicLevelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AcademicLevelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        findFirst: {
+          args: Prisma.AcademicLevelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AcademicLevelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        findMany: {
+          args: Prisma.AcademicLevelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>[]
+        }
+        create: {
+          args: Prisma.AcademicLevelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        createMany: {
+          args: Prisma.AcademicLevelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AcademicLevelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>[]
+        }
+        delete: {
+          args: Prisma.AcademicLevelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        update: {
+          args: Prisma.AcademicLevelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        deleteMany: {
+          args: Prisma.AcademicLevelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AcademicLevelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AcademicLevelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>[]
+        }
+        upsert: {
+          args: Prisma.AcademicLevelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AcademicLevelPayload>
+        }
+        aggregate: {
+          args: Prisma.AcademicLevelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAcademicLevel>
+        }
+        groupBy: {
+          args: Prisma.AcademicLevelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AcademicLevelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AcademicLevelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AcademicLevelCountAggregateOutputType> | number
+        }
+      }
+    }
     Admin: {
       payload: Prisma.$AdminPayload<ExtArgs>
       fields: Prisma.AdminFieldRefs
@@ -1537,80 +1611,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Program: {
-      payload: Prisma.$ProgramPayload<ExtArgs>
-      fields: Prisma.ProgramFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ProgramFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ProgramFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        findFirst: {
-          args: Prisma.ProgramFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ProgramFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        findMany: {
-          args: Prisma.ProgramFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>[]
-        }
-        create: {
-          args: Prisma.ProgramCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        createMany: {
-          args: Prisma.ProgramCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.ProgramCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>[]
-        }
-        delete: {
-          args: Prisma.ProgramDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        update: {
-          args: Prisma.ProgramUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        deleteMany: {
-          args: Prisma.ProgramDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ProgramUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.ProgramUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>[]
-        }
-        upsert: {
-          args: Prisma.ProgramUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgramPayload>
-        }
-        aggregate: {
-          args: Prisma.ProgramAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateProgram>
-        }
-        groupBy: {
-          args: Prisma.ProgramGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ProgramGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ProgramCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ProgramCountAggregateOutputType> | number
-        }
-      }
-    }
     Result: {
       payload: Prisma.$ResultPayload<ExtArgs>
       fields: Prisma.ResultFieldRefs
@@ -2242,6 +2242,16 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AcademicLevelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  image: 'image',
+  description: 'description'
+} as const
+
+export type AcademicLevelScalarFieldEnum = (typeof AcademicLevelScalarFieldEnum)[keyof typeof AcademicLevelScalarFieldEnum]
+
+
 export const AdminScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -2260,9 +2270,12 @@ export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof Ad
 
 export const ApplicationScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   type: 'type',
   status: 'status',
+  paymentStatus: 'paymentStatus',
+  applicationNo: 'applicationNo',
+  applicationFee: 'applicationFee',
+  userId: 'userId',
   nameBn: 'nameBn',
   nameEn: 'nameEn',
   fatherName: 'fatherName',
@@ -2281,7 +2294,11 @@ export const ApplicationScalarFieldEnum = {
   admissionYear: 'admissionYear',
   examRoll: 'examRoll',
   profileImage: 'profileImage',
-  signatureImage: 'signatureImage'
+  signatureImage: 'signatureImage',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
@@ -2353,7 +2370,7 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  programId: 'programId'
+  AcademicLevelId: 'AcademicLevelId'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -2443,31 +2460,19 @@ export const PaymentScalarFieldEnum = {
   currency: 'currency',
   paymentFor: 'paymentFor',
   studentId: 'studentId',
-  applicationId: 'applicationId',
-  formFillupId: 'formFillupId',
-  documentRequestId: 'documentRequestId',
   status: 'status',
   method: 'method',
   transactionId: 'transactionId',
   stripeEventId: 'stripeEventId',
   paidAt: 'paidAt',
   invoiceUrl: 'invoiceUrl',
-  paymentGatewayData: 'paymentGatewayData'
+  paymentGatewayData: 'paymentGatewayData',
+  applicationId: 'applicationId',
+  formFillupId: 'formFillupId',
+  documentRequestId: 'documentRequestId'
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const ProgramScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  image: 'image',
-  description: 'description',
-  admissionStart: 'admissionStart',
-  admissionEnd: 'admissionEnd'
-} as const
-
-export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
 
 
 export const ResultScalarFieldEnum = {
@@ -2511,6 +2516,10 @@ export const StudentScalarFieldEnum = {
   gender: 'gender',
   religion: 'religion',
   birthCertificateNo: 'birthCertificateNo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   classId: 'classId'
 } as const
 
@@ -2677,6 +2686,48 @@ export type ListEnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
+ * Reference to a field of type 'PaymentStatus'
+ */
+export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentStatus[]'
+ */
+export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender'
+ */
+export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender[]'
+ */
+export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -2747,34 +2798,6 @@ export type ListEnumNoticeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentStatus'
- */
-export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
-    
-
-
-/**
- * Reference to a field of type 'PaymentStatus[]'
- */
-export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
-    
-
-
-/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -2799,20 +2822,6 @@ export type EnumDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Day[]'
  */
 export type ListEnumDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Day[]'>
-    
-
-
-/**
- * Reference to a field of type 'Gender'
- */
-export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
-    
-
-
-/**
- * Reference to a field of type 'Gender[]'
- */
-export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
     
 
 
@@ -2924,6 +2933,7 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
+  academicLevel?: Prisma.AcademicLevelOmit
   admin?: Prisma.AdminOmit
   application?: Prisma.ApplicationOmit
   user?: Prisma.UserOmit
@@ -2939,7 +2949,6 @@ export type GlobalOmitConfig = {
   notice?: Prisma.NoticeOmit
   noticeClass?: Prisma.NoticeClassOmit
   payment?: Prisma.PaymentOmit
-  program?: Prisma.ProgramOmit
   result?: Prisma.ResultOmit
   routine?: Prisma.RoutineOmit
   student?: Prisma.StudentOmit

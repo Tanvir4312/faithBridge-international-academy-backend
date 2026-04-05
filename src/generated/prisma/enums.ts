@@ -66,8 +66,7 @@ export type PaymentFor = (typeof PaymentFor)[keyof typeof PaymentFor]
 export const ApplicationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED',
-  VERIFIED: 'VERIFIED'
+  REJECTED: 'REJECTED'
 } as const
 
 export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]

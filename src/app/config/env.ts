@@ -23,6 +23,10 @@ interface EnvConfig {
   GOOGLE_CLIEN_SECRET: string;
   GOOGLE_CALLBACK_URL: string;
   FRONTEND_URL: string;
+  STRIPE: {
+    STRIPE_SECRET_KEY: string;
+    STRIPE_WEBHOOK_KEY: string;
+  };
 }
 
 const loadEnvVariables = (): EnvConfig => {
@@ -45,6 +49,8 @@ const loadEnvVariables = (): EnvConfig => {
     "GOOGLE_CLIEN_SECRET",
     "GOOGLE_CALLBACK_URL",
     "FRONTEND_URL",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_KEY",
   ];
 
   requireEnvVariables.forEach((envVariable) => {
@@ -74,6 +80,10 @@ const loadEnvVariables = (): EnvConfig => {
     GOOGLE_CLIEN_SECRET: process.env.GOOGLE_CLIEN_SECRET as string,
     GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
     FRONTEND_URL: process.env.FRONTEND_URL as string,
+    STRIPE: {
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
+      STRIPE_WEBHOOK_KEY: process.env.STRIPE_WEBHOOK_KEY as string,
+    },
   };
 };
 

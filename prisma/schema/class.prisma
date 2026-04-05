@@ -1,8 +1,8 @@
 model Class {
-  id               String                @id @default(uuid())
-  name             String
-  programId        String
-  program          Program               @relation(fields: [programId], references: [id])
+  id              String        @id @default(uuid())
+  name            String
+  AcademicLevelId String
+  AcademicLevel   AcademicLevel @relation(fields: [AcademicLevelId], references: [id])
 
   students         Student[]
   classSubjects    ClassSubject[]
@@ -11,6 +11,6 @@ model Class {
   formFillups      FormFillup[]
   studentHistories StudentClassHistory[]
 
-  @@index([programId])
+  @@index([AcademicLevelId])
   @@map("class")
 }

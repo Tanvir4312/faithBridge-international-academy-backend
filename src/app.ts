@@ -8,11 +8,25 @@ import path from "path";
 import { envVars } from "./app/config/env";
 import cors from "cors";
 import { notFound } from "./app/middlewares/notFound";
+import { PaymentController } from "./app/modules/payment/payment.controller";
 
 const app: Application = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(process.cwd(), `src/app/templates`));
+
+app.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  // async (req: Request, res: Response) => {
+  //   console.log("✅ Webhook hit logic triggered!");
+
+  //   console.log("Raw Body:", req.body.toString());
+  //   res.status(200).json({ received: true });
+  // },
+  PaymentController.handleStripeWebhookEvent,
+);
+
 app.use(
   cors({
     origin: [

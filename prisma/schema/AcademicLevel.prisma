@@ -1,0 +1,11 @@
+model AcademicLevel {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  image       String?
+  description String?
+
+  classes Class[]
+
+  @@index([name])
+  @@map("academicLevel")
+}

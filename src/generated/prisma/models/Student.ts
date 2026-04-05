@@ -41,6 +41,10 @@ export type StudentMinAggregateOutputType = {
   gender: string | null
   religion: string | null
   birthCertificateNo: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   classId: string | null
 }
 
@@ -61,6 +65,10 @@ export type StudentMaxAggregateOutputType = {
   gender: string | null
   religion: string | null
   birthCertificateNo: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   classId: string | null
 }
 
@@ -81,6 +89,10 @@ export type StudentCountAggregateOutputType = {
   gender: number
   religion: number
   birthCertificateNo: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   classId: number
   _all: number
 }
@@ -103,6 +115,10 @@ export type StudentMinAggregateInputType = {
   gender?: true
   religion?: true
   birthCertificateNo?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   classId?: true
 }
 
@@ -123,6 +139,10 @@ export type StudentMaxAggregateInputType = {
   gender?: true
   religion?: true
   birthCertificateNo?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   classId?: true
 }
 
@@ -143,6 +163,10 @@ export type StudentCountAggregateInputType = {
   gender?: true
   religion?: true
   birthCertificateNo?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   classId?: true
   _all?: true
 }
@@ -236,6 +260,10 @@ export type StudentGroupByOutputType = {
   gender: string
   religion: string | null
   birthCertificateNo: string
+  createdAt: Date
+  updatedAt: Date
+  isDeleted: boolean
+  deletedAt: Date | null
   classId: string
   _count: StudentCountAggregateOutputType | null
   _min: StudentMinAggregateOutputType | null
@@ -277,6 +305,10 @@ export type StudentWhereInput = {
   gender?: Prisma.StringFilter<"Student"> | string
   religion?: Prisma.StringNullableFilter<"Student"> | string | null
   birthCertificateNo?: Prisma.StringFilter<"Student"> | string
+  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Student"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Student"> | Date | string | null
   classId?: Prisma.StringFilter<"Student"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   application?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
@@ -305,6 +337,10 @@ export type StudentOrderByWithRelationInput = {
   gender?: Prisma.SortOrder
   religion?: Prisma.SortOrderInput | Prisma.SortOrder
   birthCertificateNo?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   classId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   application?: Prisma.ApplicationOrderByWithRelationInput
@@ -336,6 +372,10 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   dob?: Prisma.DateTimeFilter<"Student"> | Date | string
   gender?: Prisma.StringFilter<"Student"> | string
   religion?: Prisma.StringNullableFilter<"Student"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Student"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Student"> | Date | string | null
   classId?: Prisma.StringFilter<"Student"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   application?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
@@ -364,6 +404,10 @@ export type StudentOrderByWithAggregationInput = {
   gender?: Prisma.SortOrder
   religion?: Prisma.SortOrderInput | Prisma.SortOrder
   birthCertificateNo?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   classId?: Prisma.SortOrder
   _count?: Prisma.StudentCountOrderByAggregateInput
   _max?: Prisma.StudentMaxOrderByAggregateInput
@@ -390,6 +434,10 @@ export type StudentScalarWhereWithAggregatesInput = {
   gender?: Prisma.StringWithAggregatesFilter<"Student"> | string
   religion?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
   birthCertificateNo?: Prisma.StringWithAggregatesFilter<"Student"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Student"> | Date | string
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Student"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Student"> | Date | string | null
   classId?: Prisma.StringWithAggregatesFilter<"Student"> | string
 }
 
@@ -408,6 +456,10 @@ export type StudentCreateInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -435,6 +487,10 @@ export type StudentUncheckedCreateInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -458,6 +514,10 @@ export type StudentUpdateInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -485,6 +545,10 @@ export type StudentUncheckedUpdateInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -510,6 +574,10 @@ export type StudentCreateManyInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
 }
 
@@ -528,6 +596,10 @@ export type StudentUpdateManyMutationInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentUncheckedUpdateManyInput = {
@@ -547,6 +619,10 @@ export type StudentUncheckedUpdateManyInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -587,6 +663,10 @@ export type StudentCountOrderByAggregateInput = {
   gender?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   birthCertificateNo?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
 }
 
@@ -607,6 +687,10 @@ export type StudentMaxOrderByAggregateInput = {
   gender?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   birthCertificateNo?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
 }
 
@@ -627,6 +711,10 @@ export type StudentMinOrderByAggregateInput = {
   gender?: Prisma.SortOrder
   religion?: Prisma.SortOrder
   birthCertificateNo?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   classId?: Prisma.SortOrder
 }
 
@@ -823,6 +911,10 @@ export type StudentCreateWithoutApplicationInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
@@ -848,6 +940,10 @@ export type StudentUncheckedCreateWithoutApplicationInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -887,6 +983,10 @@ export type StudentUpdateWithoutApplicationInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
@@ -912,6 +1012,10 @@ export type StudentUncheckedUpdateWithoutApplicationInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -935,6 +1039,10 @@ export type StudentCreateWithoutUserInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
@@ -960,6 +1068,10 @@ export type StudentUncheckedCreateWithoutUserInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -999,6 +1111,10 @@ export type StudentUpdateWithoutUserInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
@@ -1024,6 +1140,10 @@ export type StudentUncheckedUpdateWithoutUserInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -1047,6 +1167,10 @@ export type StudentCreateWithoutClassInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
@@ -1073,6 +1197,10 @@ export type StudentUncheckedCreateWithoutClassInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
@@ -1126,6 +1254,10 @@ export type StudentScalarWhereInput = {
   gender?: Prisma.StringFilter<"Student"> | string
   religion?: Prisma.StringNullableFilter<"Student"> | string | null
   birthCertificateNo?: Prisma.StringFilter<"Student"> | string
+  createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Student"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Student"> | Date | string | null
   classId?: Prisma.StringFilter<"Student"> | string
 }
 
@@ -1144,6 +1276,10 @@ export type StudentCreateWithoutDocumentRequestsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -1170,6 +1306,10 @@ export type StudentUncheckedCreateWithoutDocumentRequestsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -1208,6 +1348,10 @@ export type StudentUpdateWithoutDocumentRequestsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -1234,6 +1378,10 @@ export type StudentUncheckedUpdateWithoutDocumentRequestsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -1256,6 +1404,10 @@ export type StudentCreateWithoutFormFillupsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -1282,6 +1434,10 @@ export type StudentUncheckedCreateWithoutFormFillupsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -1320,6 +1476,10 @@ export type StudentUpdateWithoutFormFillupsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -1346,6 +1506,10 @@ export type StudentUncheckedUpdateWithoutFormFillupsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -1368,6 +1532,10 @@ export type StudentCreateWithoutPaymentsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -1394,6 +1562,10 @@ export type StudentUncheckedCreateWithoutPaymentsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
@@ -1432,6 +1604,10 @@ export type StudentUpdateWithoutPaymentsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -1458,6 +1634,10 @@ export type StudentUncheckedUpdateWithoutPaymentsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
@@ -1480,6 +1660,10 @@ export type StudentCreateWithoutResultsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -1506,6 +1690,10 @@ export type StudentUncheckedCreateWithoutResultsInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
@@ -1544,6 +1732,10 @@ export type StudentUpdateWithoutResultsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -1570,6 +1762,10 @@ export type StudentUncheckedUpdateWithoutResultsInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
@@ -1592,6 +1788,10 @@ export type StudentCreateWithoutClassHistoriesInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutStudentInput
   application?: Prisma.ApplicationCreateNestedOneWithoutStudentInput
   class: Prisma.ClassCreateNestedOneWithoutStudentsInput
@@ -1618,6 +1818,10 @@ export type StudentUncheckedCreateWithoutClassHistoriesInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   classId: string
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -1656,6 +1860,10 @@ export type StudentUpdateWithoutClassHistoriesInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentsNestedInput
@@ -1682,6 +1890,10 @@ export type StudentUncheckedUpdateWithoutClassHistoriesInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -1706,6 +1918,10 @@ export type StudentCreateManyClassInput = {
   gender: string
   religion?: string | null
   birthCertificateNo: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentUpdateWithoutClassInput = {
@@ -1723,6 +1939,10 @@ export type StudentUpdateWithoutClassInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutStudentNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutStudentNestedInput
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
@@ -1749,6 +1969,10 @@ export type StudentUncheckedUpdateWithoutClassInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
@@ -1773,6 +1997,10 @@ export type StudentUncheckedUpdateManyWithoutClassInput = {
   gender?: Prisma.StringFieldUpdateOperationsInput | string
   religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1859,6 +2087,10 @@ export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   gender?: boolean
   religion?: boolean
   birthCertificateNo?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   classId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   application?: boolean | Prisma.Student$applicationArgs<ExtArgs>
@@ -1888,6 +2120,10 @@ export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   gender?: boolean
   religion?: boolean
   birthCertificateNo?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   classId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   application?: boolean | Prisma.Student$applicationArgs<ExtArgs>
@@ -1911,6 +2147,10 @@ export type StudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   gender?: boolean
   religion?: boolean
   birthCertificateNo?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   classId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   application?: boolean | Prisma.Student$applicationArgs<ExtArgs>
@@ -1934,10 +2174,14 @@ export type StudentSelectScalar = {
   gender?: boolean
   religion?: boolean
   birthCertificateNo?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   classId?: boolean
 }
 
-export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "registrationId" | "userId" | "applicationId" | "nameBn" | "nameEn" | "fatherName" | "motherName" | "guardianMobile" | "presentAddress" | "permanentAddress" | "bloodGroup" | "dob" | "gender" | "religion" | "birthCertificateNo" | "classId", ExtArgs["result"]["student"]>
+export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "registrationId" | "userId" | "applicationId" | "nameBn" | "nameEn" | "fatherName" | "motherName" | "guardianMobile" | "presentAddress" | "permanentAddress" | "bloodGroup" | "dob" | "gender" | "religion" | "birthCertificateNo" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "classId", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   application?: boolean | Prisma.Student$applicationArgs<ExtArgs>
@@ -1989,6 +2233,10 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     gender: string
     religion: string | null
     birthCertificateNo: string
+    createdAt: Date
+    updatedAt: Date
+    isDeleted: boolean
+    deletedAt: Date | null
     classId: string
   }, ExtArgs["result"]["student"]>
   composites: {}
@@ -2437,6 +2685,10 @@ export interface StudentFieldRefs {
   readonly gender: Prisma.FieldRef<"Student", 'String'>
   readonly religion: Prisma.FieldRef<"Student", 'String'>
   readonly birthCertificateNo: Prisma.FieldRef<"Student", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Student", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Student", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Student", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Student", 'DateTime'>
   readonly classId: Prisma.FieldRef<"Student", 'String'>
 }
     

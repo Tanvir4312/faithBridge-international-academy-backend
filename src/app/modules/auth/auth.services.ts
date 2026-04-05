@@ -99,7 +99,7 @@ const getMe = async (user: IRequestUser) => {
     include: {
       teacher: true,
       student: true,
-      applications: true,
+      application: true,
     },
   });
 };

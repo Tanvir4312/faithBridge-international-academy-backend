@@ -1,5 +1,3 @@
-
-
 model User {
   id                 String     @id @default(uuid())
   name               String
@@ -14,13 +12,13 @@ model User {
   isDeleted          Boolean    @default(false)
   deletedAt          DateTime?
 
-  sessions     Session[]
-  accounts     Account[]
-  student      Student?
-  teacher      Teacher?
-  admin        Admin?
-  applications Application[]
-  notices      Notice[]
+  sessions    Session[]
+  accounts    Account[]
+  student     Student?
+  teacher     Teacher?
+  admin       Admin?
+  application Application?
+  notices     Notice[]
 
   @@unique([email])
   @@map("user")

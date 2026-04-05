@@ -18,6 +18,11 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model AcademicLevel
+ * 
+ */
+export type AcademicLevel = Prisma.AcademicLevelModel
+/**
  * Model Admin
  * 
  */
@@ -92,11 +97,6 @@ export type NoticeClass = Prisma.NoticeClassModel
  * 
  */
 export type Payment = Prisma.PaymentModel
-/**
- * Model Program
- * 
- */
-export type Program = Prisma.ProgramModel
 /**
  * Model Result
  * 

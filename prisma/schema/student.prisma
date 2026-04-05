@@ -1,32 +1,36 @@
 model Student {
-  id                 String                @id @default(uuid())
-  registrationId     String                @unique
-  userId             String                @unique
-  user               User                  @relation(fields: [userId], references: [id])
-  applicationId      String?               @unique
-  application        Application?          @relation(fields: [applicationId], references: [id])
+  id             String       @id @default(uuid())
+  registrationId String       @unique
+  userId         String       @unique
+  user           User         @relation(fields: [userId], references: [id])
+  applicationId  String?      @unique
+  application    Application? @relation(fields: [applicationId], references: [id])
 
   nameBn             String
   nameEn             String
   fatherName         String
   motherName         String
   guardianMobile     String
-  presentAddress     String              
-  permanentAddress   String               
+  presentAddress     String
+  permanentAddress   String
   bloodGroup         String?
   dob                DateTime
   gender             String
   religion           String?
-  birthCertificateNo String                @unique
+  birthCertificateNo String    @unique
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt()
+  isDeleted          Boolean   @default(false)
+  deletedAt          DateTime?
 
-  classId            String
-  class              Class                 @relation(fields: [classId], references: [id])
+  classId String
+  class   Class  @relation(fields: [classId], references: [id])
 
-  results            Result[]
-  payments           Payment[]
-  formFillups        FormFillup[]
-  classHistories     StudentClassHistory[]
-  documentRequests   DocumentRequest[]
+  results          Result[]
+  payments         Payment[]
+  formFillups      FormFillup[]
+  classHistories   StudentClassHistory[]
+  documentRequests DocumentRequest[]
 
   @@index([classId])
   @@index([registrationId])

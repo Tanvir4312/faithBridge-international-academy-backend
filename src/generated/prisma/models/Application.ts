@@ -20,15 +20,28 @@ export type ApplicationModel = runtime.Types.Result.DefaultSelection<Prisma.$App
 
 export type AggregateApplication = {
   _count: ApplicationCountAggregateOutputType | null
+  _avg: ApplicationAvgAggregateOutputType | null
+  _sum: ApplicationSumAggregateOutputType | null
   _min: ApplicationMinAggregateOutputType | null
   _max: ApplicationMaxAggregateOutputType | null
 }
 
+export type ApplicationAvgAggregateOutputType = {
+  applicationFee: number | null
+}
+
+export type ApplicationSumAggregateOutputType = {
+  applicationFee: number | null
+}
+
 export type ApplicationMinAggregateOutputType = {
   id: string | null
-  userId: string | null
   type: string | null
   status: $Enums.ApplicationStatus | null
+  paymentStatus: $Enums.PaymentStatus | null
+  applicationNo: string | null
+  applicationFee: number | null
+  userId: string | null
   nameBn: string | null
   nameEn: string | null
   fatherName: string | null
@@ -36,7 +49,7 @@ export type ApplicationMinAggregateOutputType = {
   guardianMobile: string | null
   studentMobile: string | null
   dob: Date | null
-  gender: string | null
+  gender: $Enums.Gender | null
   religion: string | null
   bloodGroup: string | null
   birthCertificateNo: string | null
@@ -48,13 +61,20 @@ export type ApplicationMinAggregateOutputType = {
   examRoll: string | null
   profileImage: string | null
   signatureImage: string | null
+  isDeleted: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type ApplicationMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
   type: string | null
   status: $Enums.ApplicationStatus | null
+  paymentStatus: $Enums.PaymentStatus | null
+  applicationNo: string | null
+  applicationFee: number | null
+  userId: string | null
   nameBn: string | null
   nameEn: string | null
   fatherName: string | null
@@ -62,7 +82,7 @@ export type ApplicationMaxAggregateOutputType = {
   guardianMobile: string | null
   studentMobile: string | null
   dob: Date | null
-  gender: string | null
+  gender: $Enums.Gender | null
   religion: string | null
   bloodGroup: string | null
   birthCertificateNo: string | null
@@ -74,13 +94,20 @@ export type ApplicationMaxAggregateOutputType = {
   examRoll: string | null
   profileImage: string | null
   signatureImage: string | null
+  isDeleted: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type ApplicationCountAggregateOutputType = {
   id: number
-  userId: number
   type: number
   status: number
+  paymentStatus: number
+  applicationNo: number
+  applicationFee: number
+  userId: number
   nameBn: number
   nameEn: number
   fatherName: number
@@ -100,15 +127,30 @@ export type ApplicationCountAggregateOutputType = {
   examRoll: number
   profileImage: number
   signatureImage: number
+  isDeleted: number
+  createdAt: number
+  updatedAt: number
+  deletedAt: number
   _all: number
 }
 
 
+export type ApplicationAvgAggregateInputType = {
+  applicationFee?: true
+}
+
+export type ApplicationSumAggregateInputType = {
+  applicationFee?: true
+}
+
 export type ApplicationMinAggregateInputType = {
   id?: true
-  userId?: true
   type?: true
   status?: true
+  paymentStatus?: true
+  applicationNo?: true
+  applicationFee?: true
+  userId?: true
   nameBn?: true
   nameEn?: true
   fatherName?: true
@@ -128,13 +170,20 @@ export type ApplicationMinAggregateInputType = {
   examRoll?: true
   profileImage?: true
   signatureImage?: true
+  isDeleted?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type ApplicationMaxAggregateInputType = {
   id?: true
-  userId?: true
   type?: true
   status?: true
+  paymentStatus?: true
+  applicationNo?: true
+  applicationFee?: true
+  userId?: true
   nameBn?: true
   nameEn?: true
   fatherName?: true
@@ -154,13 +203,20 @@ export type ApplicationMaxAggregateInputType = {
   examRoll?: true
   profileImage?: true
   signatureImage?: true
+  isDeleted?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type ApplicationCountAggregateInputType = {
   id?: true
-  userId?: true
   type?: true
   status?: true
+  paymentStatus?: true
+  applicationNo?: true
+  applicationFee?: true
+  userId?: true
   nameBn?: true
   nameEn?: true
   fatherName?: true
@@ -180,6 +236,10 @@ export type ApplicationCountAggregateInputType = {
   examRoll?: true
   profileImage?: true
   signatureImage?: true
+  isDeleted?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -221,6 +281,18 @@ export type ApplicationAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ApplicationAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ApplicationSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ApplicationMinAggregateInputType
@@ -251,15 +323,20 @@ export type ApplicationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: ApplicationCountAggregateInputType | true
+  _avg?: ApplicationAvgAggregateInputType
+  _sum?: ApplicationSumAggregateInputType
   _min?: ApplicationMinAggregateInputType
   _max?: ApplicationMaxAggregateInputType
 }
 
 export type ApplicationGroupByOutputType = {
   id: string
-  userId: string
   type: string
   status: $Enums.ApplicationStatus
+  paymentStatus: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
+  userId: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -267,7 +344,7 @@ export type ApplicationGroupByOutputType = {
   guardianMobile: string
   studentMobile: string | null
   dob: Date
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup: string | null
   birthCertificateNo: string
@@ -276,10 +353,16 @@ export type ApplicationGroupByOutputType = {
   previousSchool: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll: string | null
+  profileImage: string | null
   signatureImage: string | null
+  isDeleted: boolean
+  createdAt: Date
+  updatedAt: Date | null
+  deletedAt: Date | null
   _count: ApplicationCountAggregateOutputType | null
+  _avg: ApplicationAvgAggregateOutputType | null
+  _sum: ApplicationSumAggregateOutputType | null
   _min: ApplicationMinAggregateOutputType | null
   _max: ApplicationMaxAggregateOutputType | null
 }
@@ -304,9 +387,12 @@ export type ApplicationWhereInput = {
   OR?: Prisma.ApplicationWhereInput[]
   NOT?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
   id?: Prisma.StringFilter<"Application"> | string
-  userId?: Prisma.StringFilter<"Application"> | string
   type?: Prisma.StringFilter<"Application"> | string
   status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFilter<"Application"> | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFilter<"Application"> | string
+  applicationFee?: Prisma.FloatFilter<"Application"> | number
+  userId?: Prisma.StringFilter<"Application"> | string
   nameBn?: Prisma.StringFilter<"Application"> | string
   nameEn?: Prisma.StringFilter<"Application"> | string
   fatherName?: Prisma.StringFilter<"Application"> | string
@@ -314,7 +400,7 @@ export type ApplicationWhereInput = {
   guardianMobile?: Prisma.StringFilter<"Application"> | string
   studentMobile?: Prisma.StringNullableFilter<"Application"> | string | null
   dob?: Prisma.DateTimeFilter<"Application"> | Date | string
-  gender?: Prisma.StringFilter<"Application"> | string
+  gender?: Prisma.EnumGenderFilter<"Application"> | $Enums.Gender
   religion?: Prisma.StringFilter<"Application"> | string
   bloodGroup?: Prisma.StringNullableFilter<"Application"> | string | null
   birthCertificateNo?: Prisma.StringFilter<"Application"> | string
@@ -323,9 +409,13 @@ export type ApplicationWhereInput = {
   previousSchool?: Prisma.StringNullableFilter<"Application"> | string | null
   desiredClass?: Prisma.StringFilter<"Application"> | string
   admissionYear?: Prisma.StringFilter<"Application"> | string
-  examRoll?: Prisma.StringFilter<"Application"> | string
-  profileImage?: Prisma.StringFilter<"Application"> | string
+  examRoll?: Prisma.StringNullableFilter<"Application"> | string | null
+  profileImage?: Prisma.StringNullableFilter<"Application"> | string | null
   signatureImage?: Prisma.StringNullableFilter<"Application"> | string | null
+  isDeleted?: Prisma.BoolFilter<"Application"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Application"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
@@ -333,9 +423,12 @@ export type ApplicationWhereInput = {
 
 export type ApplicationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
+  applicationNo?: Prisma.SortOrder
+  applicationFee?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -352,9 +445,13 @@ export type ApplicationOrderByWithRelationInput = {
   previousSchool?: Prisma.SortOrderInput | Prisma.SortOrder
   desiredClass?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
-  examRoll?: Prisma.SortOrder
-  profileImage?: Prisma.SortOrder
+  examRoll?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileImage?: Prisma.SortOrderInput | Prisma.SortOrder
   signatureImage?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
   student?: Prisma.StudentOrderByWithRelationInput
@@ -362,14 +459,17 @@ export type ApplicationOrderByWithRelationInput = {
 
 export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  applicationNo?: string
+  userId?: string
   birthCertificateNo?: string
   examRoll?: string
   AND?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
   OR?: Prisma.ApplicationWhereInput[]
   NOT?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
-  userId?: Prisma.StringFilter<"Application"> | string
   type?: Prisma.StringFilter<"Application"> | string
   status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFilter<"Application"> | $Enums.PaymentStatus
+  applicationFee?: Prisma.FloatFilter<"Application"> | number
   nameBn?: Prisma.StringFilter<"Application"> | string
   nameEn?: Prisma.StringFilter<"Application"> | string
   fatherName?: Prisma.StringFilter<"Application"> | string
@@ -377,7 +477,7 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   guardianMobile?: Prisma.StringFilter<"Application"> | string
   studentMobile?: Prisma.StringNullableFilter<"Application"> | string | null
   dob?: Prisma.DateTimeFilter<"Application"> | Date | string
-  gender?: Prisma.StringFilter<"Application"> | string
+  gender?: Prisma.EnumGenderFilter<"Application"> | $Enums.Gender
   religion?: Prisma.StringFilter<"Application"> | string
   bloodGroup?: Prisma.StringNullableFilter<"Application"> | string | null
   presentAddress?: Prisma.StringFilter<"Application"> | string
@@ -385,18 +485,25 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   previousSchool?: Prisma.StringNullableFilter<"Application"> | string | null
   desiredClass?: Prisma.StringFilter<"Application"> | string
   admissionYear?: Prisma.StringFilter<"Application"> | string
-  profileImage?: Prisma.StringFilter<"Application"> | string
+  profileImage?: Prisma.StringNullableFilter<"Application"> | string | null
   signatureImage?: Prisma.StringNullableFilter<"Application"> | string | null
+  isDeleted?: Prisma.BoolFilter<"Application"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Application"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
-}, "id" | "birthCertificateNo" | "examRoll">
+}, "id" | "applicationNo" | "userId" | "birthCertificateNo" | "examRoll">
 
 export type ApplicationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
+  applicationNo?: Prisma.SortOrder
+  applicationFee?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -413,12 +520,18 @@ export type ApplicationOrderByWithAggregationInput = {
   previousSchool?: Prisma.SortOrderInput | Prisma.SortOrder
   desiredClass?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
-  examRoll?: Prisma.SortOrder
-  profileImage?: Prisma.SortOrder
+  examRoll?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileImage?: Prisma.SortOrderInput | Prisma.SortOrder
   signatureImage?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ApplicationCountOrderByAggregateInput
+  _avg?: Prisma.ApplicationAvgOrderByAggregateInput
   _max?: Prisma.ApplicationMaxOrderByAggregateInput
   _min?: Prisma.ApplicationMinOrderByAggregateInput
+  _sum?: Prisma.ApplicationSumOrderByAggregateInput
 }
 
 export type ApplicationScalarWhereWithAggregatesInput = {
@@ -426,9 +539,12 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   OR?: Prisma.ApplicationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ApplicationScalarWhereWithAggregatesInput | Prisma.ApplicationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Application"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Application"> | string
   type?: Prisma.StringWithAggregatesFilter<"Application"> | string
   status?: Prisma.EnumApplicationStatusWithAggregatesFilter<"Application"> | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusWithAggregatesFilter<"Application"> | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringWithAggregatesFilter<"Application"> | string
+  applicationFee?: Prisma.FloatWithAggregatesFilter<"Application"> | number
+  userId?: Prisma.StringWithAggregatesFilter<"Application"> | string
   nameBn?: Prisma.StringWithAggregatesFilter<"Application"> | string
   nameEn?: Prisma.StringWithAggregatesFilter<"Application"> | string
   fatherName?: Prisma.StringWithAggregatesFilter<"Application"> | string
@@ -436,7 +552,7 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   guardianMobile?: Prisma.StringWithAggregatesFilter<"Application"> | string
   studentMobile?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   dob?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
-  gender?: Prisma.StringWithAggregatesFilter<"Application"> | string
+  gender?: Prisma.EnumGenderWithAggregatesFilter<"Application"> | $Enums.Gender
   religion?: Prisma.StringWithAggregatesFilter<"Application"> | string
   bloodGroup?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   birthCertificateNo?: Prisma.StringWithAggregatesFilter<"Application"> | string
@@ -445,15 +561,22 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   previousSchool?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   desiredClass?: Prisma.StringWithAggregatesFilter<"Application"> | string
   admissionYear?: Prisma.StringWithAggregatesFilter<"Application"> | string
-  examRoll?: Prisma.StringWithAggregatesFilter<"Application"> | string
-  profileImage?: Prisma.StringWithAggregatesFilter<"Application"> | string
+  examRoll?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
+  profileImage?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   signatureImage?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Application"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Application"> | Date | string | null
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Application"> | Date | string | null
 }
 
 export type ApplicationCreateInput = {
   id?: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
   nameBn: string
   nameEn: string
   fatherName: string
@@ -461,7 +584,7 @@ export type ApplicationCreateInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -470,19 +593,26 @@ export type ApplicationCreateInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
-  user: Prisma.UserCreateNestedOneWithoutApplicationsInput
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutApplicationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutApplicationInput
   student?: Prisma.StudentCreateNestedOneWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateInput = {
   id?: string
-  userId: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
+  userId: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -490,7 +620,7 @@ export type ApplicationUncheckedCreateInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -499,9 +629,13 @@ export type ApplicationUncheckedCreateInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutApplicationInput
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutApplicationInput
 }
@@ -510,6 +644,9 @@ export type ApplicationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -517,7 +654,7 @@ export type ApplicationUpdateInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -526,19 +663,26 @@ export type ApplicationUpdateInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutApplicationsNestedInput
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutApplicationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutApplicationNestedInput
   student?: Prisma.StudentUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -546,7 +690,7 @@ export type ApplicationUncheckedUpdateInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -555,18 +699,25 @@ export type ApplicationUncheckedUpdateInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutApplicationNestedInput
   student?: Prisma.StudentUncheckedUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateManyInput = {
   id?: string
-  userId: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
+  userId: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -574,7 +725,7 @@ export type ApplicationCreateManyInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -583,15 +734,22 @@ export type ApplicationCreateManyInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
 }
 
 export type ApplicationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -599,7 +757,7 @@ export type ApplicationUpdateManyMutationInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -608,16 +766,23 @@ export type ApplicationUpdateManyMutationInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ApplicationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -625,7 +790,7 @@ export type ApplicationUncheckedUpdateManyInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -634,16 +799,23 @@ export type ApplicationUncheckedUpdateManyInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ApplicationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
+  applicationNo?: Prisma.SortOrder
+  applicationFee?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -663,13 +835,24 @@ export type ApplicationCountOrderByAggregateInput = {
   examRoll?: Prisma.SortOrder
   profileImage?: Prisma.SortOrder
   signatureImage?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
+}
+
+export type ApplicationAvgOrderByAggregateInput = {
+  applicationFee?: Prisma.SortOrder
 }
 
 export type ApplicationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
+  applicationNo?: Prisma.SortOrder
+  applicationFee?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -689,13 +872,20 @@ export type ApplicationMaxOrderByAggregateInput = {
   examRoll?: Prisma.SortOrder
   profileImage?: Prisma.SortOrder
   signatureImage?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ApplicationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
+  applicationNo?: Prisma.SortOrder
+  applicationFee?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -715,16 +905,14 @@ export type ApplicationMinOrderByAggregateInput = {
   examRoll?: Prisma.SortOrder
   profileImage?: Prisma.SortOrder
   signatureImage?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
-export type ApplicationListRelationFilter = {
-  every?: Prisma.ApplicationWhereInput
-  some?: Prisma.ApplicationWhereInput
-  none?: Prisma.ApplicationWhereInput
-}
-
-export type ApplicationOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type ApplicationSumOrderByAggregateInput = {
+  applicationFee?: Prisma.SortOrder
 }
 
 export type ApplicationNullableScalarRelationFilter = {
@@ -736,46 +924,52 @@ export type EnumApplicationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ApplicationStatus
 }
 
-export type ApplicationCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput> | Prisma.ApplicationCreateWithoutUserInput[] | Prisma.ApplicationUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput | Prisma.ApplicationCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ApplicationCreateManyUserInputEnvelope
-  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+export type EnumPaymentStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PaymentStatus
 }
 
-export type ApplicationUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput> | Prisma.ApplicationCreateWithoutUserInput[] | Prisma.ApplicationUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput | Prisma.ApplicationCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ApplicationCreateManyUserInputEnvelope
-  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
-export type ApplicationUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput> | Prisma.ApplicationCreateWithoutUserInput[] | Prisma.ApplicationUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput | Prisma.ApplicationCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutUserInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ApplicationCreateManyUserInputEnvelope
-  set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutUserInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutUserInput | Prisma.ApplicationUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
+export type EnumGenderFieldUpdateOperationsInput = {
+  set?: $Enums.Gender
 }
 
-export type ApplicationUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput> | Prisma.ApplicationCreateWithoutUserInput[] | Prisma.ApplicationUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput | Prisma.ApplicationCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutUserInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ApplicationCreateManyUserInputEnvelope
-  set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutUserInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutUserInput | Prisma.ApplicationUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
+export type ApplicationCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUncheckedCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput
+  upsert?: Prisma.ApplicationUpsertWithoutUserInput
+  disconnect?: Prisma.ApplicationWhereInput | boolean
+  delete?: Prisma.ApplicationWhereInput | boolean
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutUserInput, Prisma.ApplicationUpdateWithoutUserInput>, Prisma.ApplicationUncheckedUpdateWithoutUserInput>
+}
+
+export type ApplicationUncheckedUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutUserInput
+  upsert?: Prisma.ApplicationUpsertWithoutUserInput
+  disconnect?: Prisma.ApplicationWhereInput | boolean
+  delete?: Prisma.ApplicationWhereInput | boolean
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutUserInput, Prisma.ApplicationUpdateWithoutUserInput>, Prisma.ApplicationUncheckedUpdateWithoutUserInput>
 }
 
 export type ApplicationCreateNestedOneWithoutPaymentInput = {
@@ -812,8 +1006,11 @@ export type ApplicationUpdateOneWithoutStudentNestedInput = {
 
 export type ApplicationCreateWithoutUserInput = {
   id?: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
   nameBn: string
   nameEn: string
   fatherName: string
@@ -821,7 +1018,7 @@ export type ApplicationCreateWithoutUserInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -830,17 +1027,24 @@ export type ApplicationCreateWithoutUserInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutApplicationInput
   student?: Prisma.StudentCreateNestedOneWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutUserInput = {
   id?: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
   nameBn: string
   nameEn: string
   fatherName: string
@@ -848,7 +1052,7 @@ export type ApplicationUncheckedCreateWithoutUserInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -857,9 +1061,13 @@ export type ApplicationUncheckedCreateWithoutUserInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutApplicationInput
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutApplicationInput
 }
@@ -869,60 +1077,92 @@ export type ApplicationCreateOrConnectWithoutUserInput = {
   create: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
 }
 
-export type ApplicationCreateManyUserInputEnvelope = {
-  data: Prisma.ApplicationCreateManyUserInput | Prisma.ApplicationCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type ApplicationUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ApplicationWhereUniqueInput
+export type ApplicationUpsertWithoutUserInput = {
   update: Prisma.XOR<Prisma.ApplicationUpdateWithoutUserInput, Prisma.ApplicationUncheckedUpdateWithoutUserInput>
   create: Prisma.XOR<Prisma.ApplicationCreateWithoutUserInput, Prisma.ApplicationUncheckedCreateWithoutUserInput>
+  where?: Prisma.ApplicationWhereInput
 }
 
-export type ApplicationUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ApplicationWhereUniqueInput
+export type ApplicationUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.ApplicationWhereInput
   data: Prisma.XOR<Prisma.ApplicationUpdateWithoutUserInput, Prisma.ApplicationUncheckedUpdateWithoutUserInput>
 }
 
-export type ApplicationUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ApplicationScalarWhereInput
-  data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutUserInput>
+export type ApplicationUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  nameBn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  fatherName?: Prisma.StringFieldUpdateOperationsInput | string
+  motherName?: Prisma.StringFieldUpdateOperationsInput | string
+  guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
+  studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  presentAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payment?: Prisma.PaymentUpdateOneWithoutApplicationNestedInput
+  student?: Prisma.StudentUpdateOneWithoutApplicationNestedInput
 }
 
-export type ApplicationScalarWhereInput = {
-  AND?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
-  OR?: Prisma.ApplicationScalarWhereInput[]
-  NOT?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
-  id?: Prisma.StringFilter<"Application"> | string
-  userId?: Prisma.StringFilter<"Application"> | string
-  type?: Prisma.StringFilter<"Application"> | string
-  status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
-  nameBn?: Prisma.StringFilter<"Application"> | string
-  nameEn?: Prisma.StringFilter<"Application"> | string
-  fatherName?: Prisma.StringFilter<"Application"> | string
-  motherName?: Prisma.StringFilter<"Application"> | string
-  guardianMobile?: Prisma.StringFilter<"Application"> | string
-  studentMobile?: Prisma.StringNullableFilter<"Application"> | string | null
-  dob?: Prisma.DateTimeFilter<"Application"> | Date | string
-  gender?: Prisma.StringFilter<"Application"> | string
-  religion?: Prisma.StringFilter<"Application"> | string
-  bloodGroup?: Prisma.StringNullableFilter<"Application"> | string | null
-  birthCertificateNo?: Prisma.StringFilter<"Application"> | string
-  presentAddress?: Prisma.StringFilter<"Application"> | string
-  permanentAddress?: Prisma.StringFilter<"Application"> | string
-  previousSchool?: Prisma.StringNullableFilter<"Application"> | string | null
-  desiredClass?: Prisma.StringFilter<"Application"> | string
-  admissionYear?: Prisma.StringFilter<"Application"> | string
-  examRoll?: Prisma.StringFilter<"Application"> | string
-  profileImage?: Prisma.StringFilter<"Application"> | string
-  signatureImage?: Prisma.StringNullableFilter<"Application"> | string | null
+export type ApplicationUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  nameBn?: Prisma.StringFieldUpdateOperationsInput | string
+  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
+  fatherName?: Prisma.StringFieldUpdateOperationsInput | string
+  motherName?: Prisma.StringFieldUpdateOperationsInput | string
+  guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
+  studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  religion?: Prisma.StringFieldUpdateOperationsInput | string
+  bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  presentAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
+  admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutApplicationNestedInput
+  student?: Prisma.StudentUncheckedUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutPaymentInput = {
   id?: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
   nameBn: string
   nameEn: string
   fatherName: string
@@ -930,7 +1170,7 @@ export type ApplicationCreateWithoutPaymentInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -939,18 +1179,25 @@ export type ApplicationCreateWithoutPaymentInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
-  user: Prisma.UserCreateNestedOneWithoutApplicationsInput
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutApplicationInput
   student?: Prisma.StudentCreateNestedOneWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutPaymentInput = {
   id?: string
-  userId: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
+  userId: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -958,7 +1205,7 @@ export type ApplicationUncheckedCreateWithoutPaymentInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -967,9 +1214,13 @@ export type ApplicationUncheckedCreateWithoutPaymentInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutApplicationInput
 }
 
@@ -993,6 +1244,9 @@ export type ApplicationUpdateWithoutPaymentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1000,7 +1254,7 @@ export type ApplicationUpdateWithoutPaymentInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1009,18 +1263,25 @@ export type ApplicationUpdateWithoutPaymentInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutApplicationsNestedInput
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutApplicationNestedInput
   student?: Prisma.StudentUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutPaymentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1028,7 +1289,7 @@ export type ApplicationUncheckedUpdateWithoutPaymentInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1037,16 +1298,23 @@ export type ApplicationUncheckedUpdateWithoutPaymentInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   student?: Prisma.StudentUncheckedUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateWithoutStudentInput = {
   id?: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1054,7 +1322,7 @@ export type ApplicationCreateWithoutStudentInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -1063,18 +1331,25 @@ export type ApplicationCreateWithoutStudentInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
-  user: Prisma.UserCreateNestedOneWithoutApplicationsInput
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutApplicationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateWithoutStudentInput = {
   id?: string
-  userId: string
-  type: string
+  type?: string
   status?: $Enums.ApplicationStatus
+  paymentStatus?: $Enums.PaymentStatus
+  applicationNo: string
+  applicationFee: number
+  userId: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1082,7 +1357,7 @@ export type ApplicationUncheckedCreateWithoutStudentInput = {
   guardianMobile: string
   studentMobile?: string | null
   dob: Date | string
-  gender: string
+  gender: $Enums.Gender
   religion: string
   bloodGroup?: string | null
   birthCertificateNo: string
@@ -1091,9 +1366,13 @@ export type ApplicationUncheckedCreateWithoutStudentInput = {
   previousSchool?: string | null
   desiredClass: string
   admissionYear: string
-  examRoll: string
-  profileImage: string
+  examRoll?: string | null
+  profileImage?: string | null
   signatureImage?: string | null
+  isDeleted?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutApplicationInput
 }
 
@@ -1117,6 +1396,9 @@ export type ApplicationUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1124,7 +1406,7 @@ export type ApplicationUpdateWithoutStudentInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1133,18 +1415,25 @@ export type ApplicationUpdateWithoutStudentInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutApplicationsNestedInput
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutApplicationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  applicationNo?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationFee?: Prisma.FloatFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1152,7 +1441,7 @@ export type ApplicationUncheckedUpdateWithoutStudentInput = {
   guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
   studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   religion?: Prisma.StringFieldUpdateOperationsInput | string
   bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1161,123 +1450,26 @@ export type ApplicationUncheckedUpdateWithoutStudentInput = {
   previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
+  examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutApplicationNestedInput
-}
-
-export type ApplicationCreateManyUserInput = {
-  id?: string
-  type: string
-  status?: $Enums.ApplicationStatus
-  nameBn: string
-  nameEn: string
-  fatherName: string
-  motherName: string
-  guardianMobile: string
-  studentMobile?: string | null
-  dob: Date | string
-  gender: string
-  religion: string
-  bloodGroup?: string | null
-  birthCertificateNo: string
-  presentAddress: string
-  permanentAddress: string
-  previousSchool?: string | null
-  desiredClass: string
-  admissionYear: string
-  examRoll: string
-  profileImage: string
-  signatureImage?: string | null
-}
-
-export type ApplicationUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
-  nameBn?: Prisma.StringFieldUpdateOperationsInput | string
-  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  fatherName?: Prisma.StringFieldUpdateOperationsInput | string
-  motherName?: Prisma.StringFieldUpdateOperationsInput | string
-  guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
-  studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
-  religion?: Prisma.StringFieldUpdateOperationsInput | string
-  bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
-  presentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payment?: Prisma.PaymentUpdateOneWithoutApplicationNestedInput
-  student?: Prisma.StudentUpdateOneWithoutApplicationNestedInput
-}
-
-export type ApplicationUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
-  nameBn?: Prisma.StringFieldUpdateOperationsInput | string
-  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  fatherName?: Prisma.StringFieldUpdateOperationsInput | string
-  motherName?: Prisma.StringFieldUpdateOperationsInput | string
-  guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
-  studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
-  religion?: Prisma.StringFieldUpdateOperationsInput | string
-  bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
-  presentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutApplicationNestedInput
-  student?: Prisma.StudentUncheckedUpdateOneWithoutApplicationNestedInput
-}
-
-export type ApplicationUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
-  nameBn?: Prisma.StringFieldUpdateOperationsInput | string
-  nameEn?: Prisma.StringFieldUpdateOperationsInput | string
-  fatherName?: Prisma.StringFieldUpdateOperationsInput | string
-  motherName?: Prisma.StringFieldUpdateOperationsInput | string
-  guardianMobile?: Prisma.StringFieldUpdateOperationsInput | string
-  studentMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gender?: Prisma.StringFieldUpdateOperationsInput | string
-  religion?: Prisma.StringFieldUpdateOperationsInput | string
-  bloodGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthCertificateNo?: Prisma.StringFieldUpdateOperationsInput | string
-  presentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  permanentAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  previousSchool?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
-  admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
-  examRoll?: Prisma.StringFieldUpdateOperationsInput | string
-  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   type?: boolean
   status?: boolean
+  paymentStatus?: boolean
+  applicationNo?: boolean
+  applicationFee?: boolean
+  userId?: boolean
   nameBn?: boolean
   nameEn?: boolean
   fatherName?: boolean
@@ -1297,6 +1489,10 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   examRoll?: boolean
   profileImage?: boolean
   signatureImage?: boolean
+  isDeleted?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.Application$paymentArgs<ExtArgs>
   student?: boolean | Prisma.Application$studentArgs<ExtArgs>
@@ -1304,9 +1500,12 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   type?: boolean
   status?: boolean
+  paymentStatus?: boolean
+  applicationNo?: boolean
+  applicationFee?: boolean
+  userId?: boolean
   nameBn?: boolean
   nameEn?: boolean
   fatherName?: boolean
@@ -1326,14 +1525,21 @@ export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   examRoll?: boolean
   profileImage?: boolean
   signatureImage?: boolean
+  isDeleted?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
 export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   type?: boolean
   status?: boolean
+  paymentStatus?: boolean
+  applicationNo?: boolean
+  applicationFee?: boolean
+  userId?: boolean
   nameBn?: boolean
   nameEn?: boolean
   fatherName?: boolean
@@ -1353,14 +1559,21 @@ export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   examRoll?: boolean
   profileImage?: boolean
   signatureImage?: boolean
+  isDeleted?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
 export type ApplicationSelectScalar = {
   id?: boolean
-  userId?: boolean
   type?: boolean
   status?: boolean
+  paymentStatus?: boolean
+  applicationNo?: boolean
+  applicationFee?: boolean
+  userId?: boolean
   nameBn?: boolean
   nameEn?: boolean
   fatherName?: boolean
@@ -1380,9 +1593,13 @@ export type ApplicationSelectScalar = {
   examRoll?: boolean
   profileImage?: boolean
   signatureImage?: boolean
+  isDeleted?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
 }
 
-export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "type" | "status" | "nameBn" | "nameEn" | "fatherName" | "motherName" | "guardianMobile" | "studentMobile" | "dob" | "gender" | "religion" | "bloodGroup" | "birthCertificateNo" | "presentAddress" | "permanentAddress" | "previousSchool" | "desiredClass" | "admissionYear" | "examRoll" | "profileImage" | "signatureImage", ExtArgs["result"]["application"]>
+export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "paymentStatus" | "applicationNo" | "applicationFee" | "userId" | "nameBn" | "nameEn" | "fatherName" | "motherName" | "guardianMobile" | "studentMobile" | "dob" | "gender" | "religion" | "bloodGroup" | "birthCertificateNo" | "presentAddress" | "permanentAddress" | "previousSchool" | "desiredClass" | "admissionYear" | "examRoll" | "profileImage" | "signatureImage" | "isDeleted" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["application"]>
 export type ApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.Application$paymentArgs<ExtArgs>
@@ -1404,9 +1621,12 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string
     type: string
     status: $Enums.ApplicationStatus
+    paymentStatus: $Enums.PaymentStatus
+    applicationNo: string
+    applicationFee: number
+    userId: string
     nameBn: string
     nameEn: string
     fatherName: string
@@ -1414,7 +1634,7 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     guardianMobile: string
     studentMobile: string | null
     dob: Date
-    gender: string
+    gender: $Enums.Gender
     religion: string
     bloodGroup: string | null
     birthCertificateNo: string
@@ -1423,9 +1643,13 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     previousSchool: string | null
     desiredClass: string
     admissionYear: string
-    examRoll: string
-    profileImage: string
+    examRoll: string | null
+    profileImage: string | null
     signatureImage: string | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date | null
+    deletedAt: Date | null
   }, ExtArgs["result"]["application"]>
   composites: {}
 }
@@ -1853,9 +2077,12 @@ export interface Prisma__ApplicationClient<T, Null = never, ExtArgs extends runt
  */
 export interface ApplicationFieldRefs {
   readonly id: Prisma.FieldRef<"Application", 'String'>
-  readonly userId: Prisma.FieldRef<"Application", 'String'>
   readonly type: Prisma.FieldRef<"Application", 'String'>
   readonly status: Prisma.FieldRef<"Application", 'ApplicationStatus'>
+  readonly paymentStatus: Prisma.FieldRef<"Application", 'PaymentStatus'>
+  readonly applicationNo: Prisma.FieldRef<"Application", 'String'>
+  readonly applicationFee: Prisma.FieldRef<"Application", 'Float'>
+  readonly userId: Prisma.FieldRef<"Application", 'String'>
   readonly nameBn: Prisma.FieldRef<"Application", 'String'>
   readonly nameEn: Prisma.FieldRef<"Application", 'String'>
   readonly fatherName: Prisma.FieldRef<"Application", 'String'>
@@ -1863,7 +2090,7 @@ export interface ApplicationFieldRefs {
   readonly guardianMobile: Prisma.FieldRef<"Application", 'String'>
   readonly studentMobile: Prisma.FieldRef<"Application", 'String'>
   readonly dob: Prisma.FieldRef<"Application", 'DateTime'>
-  readonly gender: Prisma.FieldRef<"Application", 'String'>
+  readonly gender: Prisma.FieldRef<"Application", 'Gender'>
   readonly religion: Prisma.FieldRef<"Application", 'String'>
   readonly bloodGroup: Prisma.FieldRef<"Application", 'String'>
   readonly birthCertificateNo: Prisma.FieldRef<"Application", 'String'>
@@ -1875,6 +2102,10 @@ export interface ApplicationFieldRefs {
   readonly examRoll: Prisma.FieldRef<"Application", 'String'>
   readonly profileImage: Prisma.FieldRef<"Application", 'String'>
   readonly signatureImage: Prisma.FieldRef<"Application", 'String'>
+  readonly isDeleted: Prisma.FieldRef<"Application", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Application", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Application", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Application", 'DateTime'>
 }
     
 

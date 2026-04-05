@@ -243,7 +243,7 @@ export type UserWhereInput = {
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
   teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
   admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
-  applications?: Prisma.ApplicationListRelationFilter
+  application?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
   notices?: Prisma.NoticeListRelationFilter
 }
 
@@ -265,7 +265,7 @@ export type UserOrderByWithRelationInput = {
   student?: Prisma.StudentOrderByWithRelationInput
   teacher?: Prisma.TeacherOrderByWithRelationInput
   admin?: Prisma.AdminOrderByWithRelationInput
-  applications?: Prisma.ApplicationOrderByRelationAggregateInput
+  application?: Prisma.ApplicationOrderByWithRelationInput
   notices?: Prisma.NoticeOrderByRelationAggregateInput
 }
 
@@ -290,7 +290,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
   teacher?: Prisma.XOR<Prisma.TeacherNullableScalarRelationFilter, Prisma.TeacherWhereInput> | null
   admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
-  applications?: Prisma.ApplicationListRelationFilter
+  application?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
   notices?: Prisma.NoticeListRelationFilter
 }, "id" | "email">
 
@@ -348,7 +348,7 @@ export type UserCreateInput = {
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -370,7 +370,7 @@ export type UserUncheckedCreateInput = {
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -392,7 +392,7 @@ export type UserUpdateInput = {
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -414,7 +414,7 @@ export type UserUncheckedUpdateInput = {
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -527,18 +527,18 @@ export type UserUpdateOneRequiredWithoutAdminNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAdminInput, Prisma.UserUpdateWithoutAdminInput>, Prisma.UserUncheckedUpdateWithoutAdminInput>
 }
 
-export type UserCreateNestedOneWithoutApplicationsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationsInput, Prisma.UserUncheckedCreateWithoutApplicationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationsInput
+export type UserCreateNestedOneWithoutApplicationInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationInput, Prisma.UserUncheckedCreateWithoutApplicationInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutApplicationsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationsInput, Prisma.UserUncheckedCreateWithoutApplicationsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationsInput
-  upsert?: Prisma.UserUpsertWithoutApplicationsInput
+export type UserUpdateOneRequiredWithoutApplicationNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationInput, Prisma.UserUncheckedCreateWithoutApplicationInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationInput
+  upsert?: Prisma.UserUpsertWithoutApplicationInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApplicationsInput, Prisma.UserUpdateWithoutApplicationsInput>, Prisma.UserUncheckedUpdateWithoutApplicationsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApplicationInput, Prisma.UserUpdateWithoutApplicationInput>, Prisma.UserUncheckedUpdateWithoutApplicationInput>
 }
 
 export type EnumRoleFieldUpdateOperationsInput = {
@@ -636,7 +636,7 @@ export type UserCreateWithoutAdminInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -657,7 +657,7 @@ export type UserUncheckedCreateWithoutAdminInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -694,7 +694,7 @@ export type UserUpdateWithoutAdminInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -715,11 +715,11 @@ export type UserUncheckedUpdateWithoutAdminInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserCreateWithoutApplicationsInput = {
+export type UserCreateWithoutApplicationInput = {
   id?: string
   name: string
   email: string
@@ -740,7 +740,7 @@ export type UserCreateWithoutApplicationsInput = {
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
-export type UserUncheckedCreateWithoutApplicationsInput = {
+export type UserUncheckedCreateWithoutApplicationInput = {
   id?: string
   name: string
   email: string
@@ -761,23 +761,23 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
-export type UserCreateOrConnectWithoutApplicationsInput = {
+export type UserCreateOrConnectWithoutApplicationInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationsInput, Prisma.UserUncheckedCreateWithoutApplicationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationInput, Prisma.UserUncheckedCreateWithoutApplicationInput>
 }
 
-export type UserUpsertWithoutApplicationsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutApplicationsInput, Prisma.UserUncheckedUpdateWithoutApplicationsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationsInput, Prisma.UserUncheckedCreateWithoutApplicationsInput>
+export type UserUpsertWithoutApplicationInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApplicationInput, Prisma.UserUncheckedUpdateWithoutApplicationInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationInput, Prisma.UserUncheckedCreateWithoutApplicationInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutApplicationsInput = {
+export type UserUpdateToOneWithWhereWithoutApplicationInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutApplicationsInput, Prisma.UserUncheckedUpdateWithoutApplicationsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApplicationInput, Prisma.UserUncheckedUpdateWithoutApplicationInput>
 }
 
-export type UserUpdateWithoutApplicationsInput = {
+export type UserUpdateWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -798,7 +798,7 @@ export type UserUpdateWithoutApplicationsInput = {
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutApplicationsInput = {
+export type UserUncheckedUpdateWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -836,7 +836,7 @@ export type UserCreateWithoutSessionsInput = {
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -857,7 +857,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -894,7 +894,7 @@ export type UserUpdateWithoutSessionsInput = {
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -915,7 +915,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -936,7 +936,7 @@ export type UserCreateWithoutAccountsInput = {
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -957,7 +957,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -994,7 +994,7 @@ export type UserUpdateWithoutAccountsInput = {
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1015,7 +1015,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1037,7 +1037,7 @@ export type UserCreateWithoutNoticesInput = {
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNoticesInput = {
@@ -1058,7 +1058,7 @@ export type UserUncheckedCreateWithoutNoticesInput = {
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNoticesInput = {
@@ -1095,7 +1095,7 @@ export type UserUpdateWithoutNoticesInput = {
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNoticesInput = {
@@ -1116,7 +1116,7 @@ export type UserUncheckedUpdateWithoutNoticesInput = {
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStudentInput = {
@@ -1136,7 +1136,7 @@ export type UserCreateWithoutStudentInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   teacher?: Prisma.TeacherCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -1157,7 +1157,7 @@ export type UserUncheckedCreateWithoutStudentInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   teacher?: Prisma.TeacherUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1194,7 +1194,7 @@ export type UserUpdateWithoutStudentInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   teacher?: Prisma.TeacherUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1215,7 +1215,7 @@ export type UserUncheckedUpdateWithoutStudentInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   teacher?: Prisma.TeacherUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1236,7 +1236,7 @@ export type UserCreateWithoutTeacherInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeCreateNestedManyWithoutAuthorInput
 }
 
@@ -1257,7 +1257,7 @@ export type UserUncheckedCreateWithoutTeacherInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
+  application?: Prisma.ApplicationUncheckedCreateNestedOneWithoutUserInput
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1294,7 +1294,7 @@ export type UserUpdateWithoutTeacherInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1315,7 +1315,7 @@ export type UserUncheckedUpdateWithoutTeacherInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
+  application?: Prisma.ApplicationUncheckedUpdateOneWithoutUserNestedInput
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1327,14 +1327,12 @@ export type UserUncheckedUpdateWithoutTeacherInput = {
 export type UserCountOutputType = {
   sessions: number
   accounts: number
-  applications: number
   notices: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-  applications?: boolean | UserCountOutputTypeCountApplicationsArgs
   notices?: boolean | UserCountOutputTypeCountNoticesArgs
 }
 
@@ -1365,13 +1363,6 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApplicationWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountNoticesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.NoticeWhereInput
 }
@@ -1395,7 +1386,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   student?: boolean | Prisma.User$studentArgs<ExtArgs>
   teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
   admin?: boolean | Prisma.User$adminArgs<ExtArgs>
-  applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
+  application?: boolean | Prisma.User$applicationArgs<ExtArgs>
   notices?: boolean | Prisma.User$noticesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1452,7 +1443,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   student?: boolean | Prisma.User$studentArgs<ExtArgs>
   teacher?: boolean | Prisma.User$teacherArgs<ExtArgs>
   admin?: boolean | Prisma.User$adminArgs<ExtArgs>
-  applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
+  application?: boolean | Prisma.User$applicationArgs<ExtArgs>
   notices?: boolean | Prisma.User$noticesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1467,7 +1458,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     student: Prisma.$StudentPayload<ExtArgs> | null
     teacher: Prisma.$TeacherPayload<ExtArgs> | null
     admin: Prisma.$AdminPayload<ExtArgs> | null
-    applications: Prisma.$ApplicationPayload<ExtArgs>[]
+    application: Prisma.$ApplicationPayload<ExtArgs> | null
     notices: Prisma.$NoticePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1882,7 +1873,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   student<T extends Prisma.User$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   teacher<T extends Prisma.User$teacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teacherArgs<ExtArgs>>): Prisma.Prisma__TeacherClient<runtime.Types.Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   admin<T extends Prisma.User$adminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$adminArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  applications<T extends Prisma.User$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  application<T extends Prisma.User$applicationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$applicationArgs<ExtArgs>>): Prisma.Prisma__ApplicationClient<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   notices<T extends Prisma.User$noticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$noticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2423,9 +2414,9 @@ export type User$adminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }
 
 /**
- * User.applications
+ * User.application
  */
-export type User$applicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$applicationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Application
    */
@@ -2439,11 +2430,6 @@ export type User$applicationsArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.ApplicationInclude<ExtArgs> | null
   where?: Prisma.ApplicationWhereInput
-  orderBy?: Prisma.ApplicationOrderByWithRelationInput | Prisma.ApplicationOrderByWithRelationInput[]
-  cursor?: Prisma.ApplicationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ApplicationScalarFieldEnum | Prisma.ApplicationScalarFieldEnum[]
 }
 
 /**

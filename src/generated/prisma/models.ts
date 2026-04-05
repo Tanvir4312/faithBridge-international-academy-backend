@@ -8,6 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/AcademicLevel'
 export type * from './models/Admin'
 export type * from './models/Application'
 export type * from './models/User'
@@ -23,7 +24,6 @@ export type * from './models/Media'
 export type * from './models/Notice'
 export type * from './models/NoticeClass'
 export type * from './models/Payment'
-export type * from './models/Program'
 export type * from './models/Result'
 export type * from './models/Routine'
 export type * from './models/Student'

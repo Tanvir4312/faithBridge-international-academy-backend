@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  AcademicLevel: 'AcademicLevel',
   Admin: 'Admin',
   Application: 'Application',
   User: 'User',
@@ -66,7 +67,6 @@ export const ModelName = {
   Notice: 'Notice',
   NoticeClass: 'NoticeClass',
   Payment: 'Payment',
-  Program: 'Program',
   Result: 'Result',
   Routine: 'Routine',
   Student: 'Student',
@@ -93,6 +93,16 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AcademicLevelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  image: 'image',
+  description: 'description'
+} as const
+
+export type AcademicLevelScalarFieldEnum = (typeof AcademicLevelScalarFieldEnum)[keyof typeof AcademicLevelScalarFieldEnum]
+
+
 export const AdminScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -111,9 +121,12 @@ export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof Ad
 
 export const ApplicationScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   type: 'type',
   status: 'status',
+  paymentStatus: 'paymentStatus',
+  applicationNo: 'applicationNo',
+  applicationFee: 'applicationFee',
+  userId: 'userId',
   nameBn: 'nameBn',
   nameEn: 'nameEn',
   fatherName: 'fatherName',
@@ -132,7 +145,11 @@ export const ApplicationScalarFieldEnum = {
   admissionYear: 'admissionYear',
   examRoll: 'examRoll',
   profileImage: 'profileImage',
-  signatureImage: 'signatureImage'
+  signatureImage: 'signatureImage',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
@@ -204,7 +221,7 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  programId: 'programId'
+  AcademicLevelId: 'AcademicLevelId'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -294,31 +311,19 @@ export const PaymentScalarFieldEnum = {
   currency: 'currency',
   paymentFor: 'paymentFor',
   studentId: 'studentId',
-  applicationId: 'applicationId',
-  formFillupId: 'formFillupId',
-  documentRequestId: 'documentRequestId',
   status: 'status',
   method: 'method',
   transactionId: 'transactionId',
   stripeEventId: 'stripeEventId',
   paidAt: 'paidAt',
   invoiceUrl: 'invoiceUrl',
-  paymentGatewayData: 'paymentGatewayData'
+  paymentGatewayData: 'paymentGatewayData',
+  applicationId: 'applicationId',
+  formFillupId: 'formFillupId',
+  documentRequestId: 'documentRequestId'
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const ProgramScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  image: 'image',
-  description: 'description',
-  admissionStart: 'admissionStart',
-  admissionEnd: 'admissionEnd'
-} as const
-
-export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
 
 
 export const ResultScalarFieldEnum = {
@@ -362,6 +367,10 @@ export const StudentScalarFieldEnum = {
   gender: 'gender',
   religion: 'religion',
   birthCertificateNo: 'birthCertificateNo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   classId: 'classId'
 } as const
 

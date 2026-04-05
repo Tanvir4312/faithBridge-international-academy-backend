@@ -41,7 +41,7 @@ enum ApplicationStatus {
   PENDING
   APPROVED
   REJECTED
-  VERIFIED
+ 
 }
 
 enum NoticeType {
