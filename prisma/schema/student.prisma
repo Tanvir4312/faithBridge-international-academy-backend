@@ -2,10 +2,11 @@ model Student {
   id             String       @id @default(uuid())
   registrationId String       @unique
   userId         String       @unique
-  user           User         @relation(fields: [userId], references: [id],onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   applicationId  String?      @unique
   application    Application? @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 
+  profileImage       String
   nameBn             String
   nameEn             String
   fatherName         String

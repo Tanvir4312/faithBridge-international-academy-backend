@@ -27,7 +27,7 @@ model Application {
     desiredClass       String
     admissionYear      String
     examRoll           String?   @unique
-    profileImage       String?
+    profileImage       String
     signatureImage     String?
     isDeleted          Boolean   @default(false)
     createdAt          DateTime  @default(now())

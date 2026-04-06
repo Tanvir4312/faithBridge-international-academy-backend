@@ -48,7 +48,8 @@ const createApplication = async (
         user: true,
       },
     });
-    //TODO : Payment Integration will be here
+    // TODO SEND EMAIL AFTER CREATING APPLICATION
+
     const transactionId = String(uuidv7());
 
     const paymentData = await tx.payment.create({
@@ -258,7 +259,7 @@ const applicationUpdateByAdmin = async (id: string) => {
           guardianMobile: isApplicationExist.guardianMobile,
           presentAddress: isApplicationExist.presentAddress,
           permanentAddress: isApplicationExist.permanentAddress,
-
+          profileImage: isApplicationExist.profileImage,
           bloodGroup: isApplicationExist.bloodGroup,
           dob: isApplicationExist.dob,
           gender: isApplicationExist.gender,
@@ -318,7 +319,7 @@ const applicationUpdateByAdmin = async (id: string) => {
   }
 };
 
-const applicationRegectByAdmin = async (id: string) => {
+const applicationRejectByAdmin = async (id: string) => {
   const isApplicationExist = await prisma.application.findUnique({
     where: {
       id,
@@ -349,20 +350,19 @@ const applicationRegectByAdmin = async (id: string) => {
 };
 
 const deleteUnpaidApplications = async () => {
-  const targetTime = new Date("2026-04-06T06:00:00");
-  const thirtyMinutesAgo = new Date(targetTime.getTime() - 30 * 60 * 1000);
+  const targetTime = new Date("2026-05-06T06:00:00+06:00");
+  const triggerTime = new Date(targetTime.getTime() - 30 * 60 * 1000);
 
-  const result = await prisma.application.deleteMany({
-    where: {
-      isDeleted: false,
-      status: "PENDING",
-      paymentStatus: "UNPAID",
-      createdAt: {
-        lte: thirtyMinutesAgo,
+  const now = new Date();
+  if (now >= triggerTime && now <= targetTime) {
+    await prisma.application.deleteMany({
+      where: {
+        isDeleted: false,
+        status: "PENDING",
+        paymentStatus: "UNPAID",
       },
-    },
-  });
-  return result;
+    });
+  }
 };
 export const ApplicationService = {
   createApplication,
@@ -371,6 +371,6 @@ export const ApplicationService = {
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,
-  applicationRegectByAdmin,
+  applicationRejectByAdmin,
   deleteUnpaidApplications,
 };

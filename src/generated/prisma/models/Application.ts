@@ -354,7 +354,7 @@ export type ApplicationGroupByOutputType = {
   desiredClass: string
   admissionYear: string
   examRoll: string | null
-  profileImage: string | null
+  profileImage: string
   signatureImage: string | null
   isDeleted: boolean
   createdAt: Date
@@ -410,7 +410,7 @@ export type ApplicationWhereInput = {
   desiredClass?: Prisma.StringFilter<"Application"> | string
   admissionYear?: Prisma.StringFilter<"Application"> | string
   examRoll?: Prisma.StringNullableFilter<"Application"> | string | null
-  profileImage?: Prisma.StringNullableFilter<"Application"> | string | null
+  profileImage?: Prisma.StringFilter<"Application"> | string
   signatureImage?: Prisma.StringNullableFilter<"Application"> | string | null
   isDeleted?: Prisma.BoolFilter<"Application"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Application"> | Date | string
@@ -446,7 +446,7 @@ export type ApplicationOrderByWithRelationInput = {
   desiredClass?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
   examRoll?: Prisma.SortOrderInput | Prisma.SortOrder
-  profileImage?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileImage?: Prisma.SortOrder
   signatureImage?: Prisma.SortOrderInput | Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -485,7 +485,7 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   previousSchool?: Prisma.StringNullableFilter<"Application"> | string | null
   desiredClass?: Prisma.StringFilter<"Application"> | string
   admissionYear?: Prisma.StringFilter<"Application"> | string
-  profileImage?: Prisma.StringNullableFilter<"Application"> | string | null
+  profileImage?: Prisma.StringFilter<"Application"> | string
   signatureImage?: Prisma.StringNullableFilter<"Application"> | string | null
   isDeleted?: Prisma.BoolFilter<"Application"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Application"> | Date | string
@@ -521,7 +521,7 @@ export type ApplicationOrderByWithAggregationInput = {
   desiredClass?: Prisma.SortOrder
   admissionYear?: Prisma.SortOrder
   examRoll?: Prisma.SortOrderInput | Prisma.SortOrder
-  profileImage?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileImage?: Prisma.SortOrder
   signatureImage?: Prisma.SortOrderInput | Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -562,7 +562,7 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   desiredClass?: Prisma.StringWithAggregatesFilter<"Application"> | string
   admissionYear?: Prisma.StringWithAggregatesFilter<"Application"> | string
   examRoll?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
-  profileImage?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
+  profileImage?: Prisma.StringWithAggregatesFilter<"Application"> | string
   signatureImage?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Application"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
@@ -594,7 +594,7 @@ export type ApplicationCreateInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -630,7 +630,7 @@ export type ApplicationUncheckedCreateInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -664,7 +664,7 @@ export type ApplicationUpdateInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -700,7 +700,7 @@ export type ApplicationUncheckedUpdateInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -735,7 +735,7 @@ export type ApplicationCreateManyInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -767,7 +767,7 @@ export type ApplicationUpdateManyMutationInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -800,7 +800,7 @@ export type ApplicationUncheckedUpdateManyInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1028,7 +1028,7 @@ export type ApplicationCreateWithoutUserInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1062,7 +1062,7 @@ export type ApplicationUncheckedCreateWithoutUserInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1112,7 +1112,7 @@ export type ApplicationUpdateWithoutUserInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1146,7 +1146,7 @@ export type ApplicationUncheckedUpdateWithoutUserInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1180,7 +1180,7 @@ export type ApplicationCreateWithoutPaymentInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1215,7 +1215,7 @@ export type ApplicationUncheckedCreateWithoutPaymentInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1264,7 +1264,7 @@ export type ApplicationUpdateWithoutPaymentInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1299,7 +1299,7 @@ export type ApplicationUncheckedUpdateWithoutPaymentInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1332,7 +1332,7 @@ export type ApplicationCreateWithoutStudentInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1367,7 +1367,7 @@ export type ApplicationUncheckedCreateWithoutStudentInput = {
   desiredClass: string
   admissionYear: string
   examRoll?: string | null
-  profileImage?: string | null
+  profileImage: string
   signatureImage?: string | null
   isDeleted?: boolean
   createdAt?: Date | string
@@ -1416,7 +1416,7 @@ export type ApplicationUpdateWithoutStudentInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1451,7 +1451,7 @@ export type ApplicationUncheckedUpdateWithoutStudentInput = {
   desiredClass?: Prisma.StringFieldUpdateOperationsInput | string
   admissionYear?: Prisma.StringFieldUpdateOperationsInput | string
   examRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.StringFieldUpdateOperationsInput | string
   signatureImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1644,7 +1644,7 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     desiredClass: string
     admissionYear: string
     examRoll: string | null
-    profileImage: string | null
+    profileImage: string
     signatureImage: string | null
     isDeleted: boolean
     createdAt: Date

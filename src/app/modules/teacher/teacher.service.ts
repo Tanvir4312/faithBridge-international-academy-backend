@@ -65,6 +65,7 @@ const teacherUpdate = async (
   id: string,
   payload: ITeacherUpadatePayload,
   user: IRequestUser,
+  profilePhoto: string
 ) => {
   const isTeacherExis = await prisma.teacher.findUnique({
     where: {
@@ -99,6 +100,7 @@ const teacherUpdate = async (
         },
         data: {
           ...teacherData,
+          profilePhoto : profilePhoto
         },
       });
     }

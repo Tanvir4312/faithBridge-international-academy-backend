@@ -6,9 +6,12 @@ import status from "http-status";
 import { ApplicationService } from "./application.services";
 
 const createApplication = catchAsync(async (req: Request, res: Response) => {
+  const payload = {
+    ...req.body,
+    profileImage: req.file?.path,
+  };
   const user = req.user;
-
-  const result = await ApplicationService.createApplication(req.body, user);
+  const result = await ApplicationService.createApplication(payload, user);
   sendResponse(res, {
     httpStatusCode: status.CREATED,
     message: "Application created successfully",
@@ -78,10 +81,10 @@ const applicationUpdateByAdmin = catchAsync(
   },
 );
 
-const applicationRegectByAdmin = catchAsync(
+const applicationRejectByAdmin = catchAsync(
   async (req: Request, res: Response) => {
     const id = req.params.id;
-    const result = await ApplicationService.applicationRegectByAdmin(
+    const result = await ApplicationService.applicationRejectByAdmin(
       id as string,
     );
     sendResponse(res, {
@@ -100,5 +103,5 @@ export const ApplicationController = {
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,
-  applicationRegectByAdmin,
+  applicationRejectByAdmin,
 };

@@ -4,12 +4,14 @@ import { checkAuth } from "../../middlewares/checkAuth";
 import { Role } from "../../../generated/prisma/enums";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { createStudentApplicationSchema } from "./application.validation";
+import { multerUpload } from "../../config/multer.config";
 
 const router = Router();
 
 router.post(
   "/create-application",
   checkAuth(Role.APPLICANT),
+  multerUpload.single("profileImage"),
   validateRequest(createStudentApplicationSchema),
   ApplicationController.createApplication,
 );
@@ -47,7 +49,7 @@ router.put(
 router.put(
   "/reject/:id",
   checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
-  ApplicationController.applicationRegectByAdmin,
+  ApplicationController.applicationRejectByAdmin,
 );
 
 export const ApplicationRoutes = router;

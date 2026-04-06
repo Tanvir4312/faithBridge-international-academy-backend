@@ -29,11 +29,14 @@ const getTeacherById = catchAsync(async (req: Request, res: Response) => {
 const teacherUpdate = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const payload = req.body;
+  const profilePhoto = req.file?.path;
   const user = req.user;
+
   const result = await TeacherService.teacherUpdate(
     id as string,
     payload,
     user,
+    profilePhoto as string,
   );
   sendResponse(res, {
     httpStatusCode: status.OK,
@@ -54,12 +57,9 @@ const teacherDelete = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
-
 export const TeacherController = {
   getAllTeacher,
   getTeacherById,
   teacherUpdate,
   teacherDelete,
- 
 };

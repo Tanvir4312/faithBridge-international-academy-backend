@@ -355,6 +355,7 @@ export const StudentScalarFieldEnum = {
   registrationId: 'registrationId',
   userId: 'userId',
   applicationId: 'applicationId',
+  profileImage: 'profileImage',
   nameBn: 'nameBn',
   nameEn: 'nameEn',
   fatherName: 'fatherName',
