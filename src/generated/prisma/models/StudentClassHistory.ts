@@ -29,6 +29,8 @@ export type StudentClassHistoryMinAggregateOutputType = {
   studentId: string | null
   classId: string | null
   year: string | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type StudentClassHistoryMaxAggregateOutputType = {
@@ -36,6 +38,8 @@ export type StudentClassHistoryMaxAggregateOutputType = {
   studentId: string | null
   classId: string | null
   year: string | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type StudentClassHistoryCountAggregateOutputType = {
@@ -43,6 +47,8 @@ export type StudentClassHistoryCountAggregateOutputType = {
   studentId: number
   classId: number
   year: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -52,6 +58,8 @@ export type StudentClassHistoryMinAggregateInputType = {
   studentId?: true
   classId?: true
   year?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type StudentClassHistoryMaxAggregateInputType = {
@@ -59,6 +67,8 @@ export type StudentClassHistoryMaxAggregateInputType = {
   studentId?: true
   classId?: true
   year?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type StudentClassHistoryCountAggregateInputType = {
@@ -66,6 +76,8 @@ export type StudentClassHistoryCountAggregateInputType = {
   studentId?: true
   classId?: true
   year?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -146,6 +158,8 @@ export type StudentClassHistoryGroupByOutputType = {
   studentId: string
   classId: string
   year: string
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: StudentClassHistoryCountAggregateOutputType | null
   _min: StudentClassHistoryMinAggregateOutputType | null
   _max: StudentClassHistoryMaxAggregateOutputType | null
@@ -174,6 +188,8 @@ export type StudentClassHistoryWhereInput = {
   studentId?: Prisma.StringFilter<"StudentClassHistory"> | string
   classId?: Prisma.StringFilter<"StudentClassHistory"> | string
   year?: Prisma.StringFilter<"StudentClassHistory"> | string
+  isDeleted?: Prisma.BoolFilter<"StudentClassHistory"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"StudentClassHistory"> | Date | string | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }
@@ -183,6 +199,8 @@ export type StudentClassHistoryOrderByWithRelationInput = {
   studentId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   student?: Prisma.StudentOrderByWithRelationInput
   class?: Prisma.ClassOrderByWithRelationInput
 }
@@ -195,6 +213,8 @@ export type StudentClassHistoryWhereUniqueInput = Prisma.AtLeast<{
   studentId?: Prisma.StringFilter<"StudentClassHistory"> | string
   classId?: Prisma.StringFilter<"StudentClassHistory"> | string
   year?: Prisma.StringFilter<"StudentClassHistory"> | string
+  isDeleted?: Prisma.BoolFilter<"StudentClassHistory"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"StudentClassHistory"> | Date | string | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }, "id">
@@ -204,6 +224,8 @@ export type StudentClassHistoryOrderByWithAggregationInput = {
   studentId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StudentClassHistoryCountOrderByAggregateInput
   _max?: Prisma.StudentClassHistoryMaxOrderByAggregateInput
   _min?: Prisma.StudentClassHistoryMinOrderByAggregateInput
@@ -217,11 +239,15 @@ export type StudentClassHistoryScalarWhereWithAggregatesInput = {
   studentId?: Prisma.StringWithAggregatesFilter<"StudentClassHistory"> | string
   classId?: Prisma.StringWithAggregatesFilter<"StudentClassHistory"> | string
   year?: Prisma.StringWithAggregatesFilter<"StudentClassHistory"> | string
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"StudentClassHistory"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"StudentClassHistory"> | Date | string | null
 }
 
 export type StudentClassHistoryCreateInput = {
   id?: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   student: Prisma.StudentCreateNestedOneWithoutClassHistoriesInput
   class: Prisma.ClassCreateNestedOneWithoutStudentHistoriesInput
 }
@@ -231,11 +257,15 @@ export type StudentClassHistoryUncheckedCreateInput = {
   studentId: string
   classId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   student?: Prisma.StudentUpdateOneRequiredWithoutClassHistoriesNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentHistoriesNestedInput
 }
@@ -245,6 +275,8 @@ export type StudentClassHistoryUncheckedUpdateInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryCreateManyInput = {
@@ -252,11 +284,15 @@ export type StudentClassHistoryCreateManyInput = {
   studentId: string
   classId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryUncheckedUpdateManyInput = {
@@ -264,6 +300,8 @@ export type StudentClassHistoryUncheckedUpdateManyInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryListRelationFilter = {
@@ -281,6 +319,8 @@ export type StudentClassHistoryCountOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type StudentClassHistoryMaxOrderByAggregateInput = {
@@ -288,6 +328,8 @@ export type StudentClassHistoryMaxOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type StudentClassHistoryMinOrderByAggregateInput = {
@@ -295,6 +337,8 @@ export type StudentClassHistoryMinOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
   year?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type StudentClassHistoryCreateNestedManyWithoutClassInput = {
@@ -384,6 +428,8 @@ export type StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput = {
 export type StudentClassHistoryCreateWithoutClassInput = {
   id?: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   student: Prisma.StudentCreateNestedOneWithoutClassHistoriesInput
 }
 
@@ -391,6 +437,8 @@ export type StudentClassHistoryUncheckedCreateWithoutClassInput = {
   id?: string
   studentId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryCreateOrConnectWithoutClassInput = {
@@ -427,11 +475,15 @@ export type StudentClassHistoryScalarWhereInput = {
   studentId?: Prisma.StringFilter<"StudentClassHistory"> | string
   classId?: Prisma.StringFilter<"StudentClassHistory"> | string
   year?: Prisma.StringFilter<"StudentClassHistory"> | string
+  isDeleted?: Prisma.BoolFilter<"StudentClassHistory"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"StudentClassHistory"> | Date | string | null
 }
 
 export type StudentClassHistoryCreateWithoutStudentInput = {
   id?: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutStudentHistoriesInput
 }
 
@@ -439,6 +491,8 @@ export type StudentClassHistoryUncheckedCreateWithoutStudentInput = {
   id?: string
   classId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryCreateOrConnectWithoutStudentInput = {
@@ -471,11 +525,15 @@ export type StudentClassHistoryCreateManyClassInput = {
   id?: string
   studentId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   student?: Prisma.StudentUpdateOneRequiredWithoutClassHistoriesNestedInput
 }
 
@@ -483,23 +541,31 @@ export type StudentClassHistoryUncheckedUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryUncheckedUpdateManyWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryCreateManyStudentInput = {
   id?: string
   classId: string
   year: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type StudentClassHistoryUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutStudentHistoriesNestedInput
 }
 
@@ -507,12 +573,16 @@ export type StudentClassHistoryUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StudentClassHistoryUncheckedUpdateManyWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -522,6 +592,8 @@ export type StudentClassHistorySelect<ExtArgs extends runtime.Types.Extensions.I
   studentId?: boolean
   classId?: boolean
   year?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentClassHistory"]>
@@ -531,6 +603,8 @@ export type StudentClassHistorySelectCreateManyAndReturn<ExtArgs extends runtime
   studentId?: boolean
   classId?: boolean
   year?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentClassHistory"]>
@@ -540,6 +614,8 @@ export type StudentClassHistorySelectUpdateManyAndReturn<ExtArgs extends runtime
   studentId?: boolean
   classId?: boolean
   year?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentClassHistory"]>
@@ -549,9 +625,11 @@ export type StudentClassHistorySelectScalar = {
   studentId?: boolean
   classId?: boolean
   year?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type StudentClassHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "year", ExtArgs["result"]["studentClassHistory"]>
+export type StudentClassHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "year" | "isDeleted" | "deletedAt", ExtArgs["result"]["studentClassHistory"]>
 export type StudentClassHistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
@@ -576,6 +654,8 @@ export type $StudentClassHistoryPayload<ExtArgs extends runtime.Types.Extensions
     studentId: string
     classId: string
     year: string
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["studentClassHistory"]>
   composites: {}
 }
@@ -1005,6 +1085,8 @@ export interface StudentClassHistoryFieldRefs {
   readonly studentId: Prisma.FieldRef<"StudentClassHistory", 'String'>
   readonly classId: Prisma.FieldRef<"StudentClassHistory", 'String'>
   readonly year: Prisma.FieldRef<"StudentClassHistory", 'String'>
+  readonly isDeleted: Prisma.FieldRef<"StudentClassHistory", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"StudentClassHistory", 'DateTime'>
 }
     
 

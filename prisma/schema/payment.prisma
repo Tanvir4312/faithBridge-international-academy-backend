@@ -16,9 +16,9 @@ model Payment {
     formFillupId       String?       @unique
     documentRequestId  String?       @unique
 
-    student         Student?          @relation(fields: [studentId], references: [id])
-    application     Application?     @relation(fields: [applicationId], references: [id])
-    formFillup      FormFillup?      @relation(fields: [formFillupId], references: [id])
+    student         Student?          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+    application     Application?     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+    formFillup      FormFillup?      @relation(fields: [formFillupId], references: [id], onDelete: Cascade)
     documentRequest DocumentRequest?
 
     @@index([status])

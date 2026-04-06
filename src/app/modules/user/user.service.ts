@@ -4,22 +4,8 @@ import { prisma } from "../../lib/prisma";
 import { ICreateAdmin, ICreateTeacherPayload } from "./user.interface";
 import { auth } from "../../lib/auth";
 import { Role } from "../../../generated/prisma/enums";
-import { Subject } from "../../../generated/prisma/client";
 
 const createTeacher = async (payload: ICreateTeacherPayload) => {
-  const subjects: Subject[] = [];
-  for (const subjectId of payload.subjects) {
-    const subject = await prisma.subject.findUnique({
-      where: {
-        id: subjectId,
-      },
-    });
-    if (!subject) {
-      throw new AppError(status.NOT_FOUND, "Subject not found");
-    }
-    subjects.push(subject);
-  }
-
   const isExitUser = await prisma.user.findUnique({
     where: {
       email: payload.teacher.email,
@@ -54,19 +40,8 @@ const createTeacher = async (payload: ICreateTeacherPayload) => {
           id: userdata.user.id,
         },
         data: {
-          emailVerified: true,
+          emailVerified: false,
         },
-      });
-
-      const teacherSubjects = subjects.map((subject) => {
-        return {
-          teacherId: teacherData.id,
-          subjectId: subject.id,
-        };
-      });
-
-      await tx.teacherSubject.createMany({
-        data: teacherSubjects,
       });
 
       const teacher = await tx.teacher.findUnique({
@@ -99,16 +74,6 @@ const createTeacher = async (payload: ICreateTeacherPayload) => {
               needPasswordChange: true,
               isDeleted: true,
               deletedAt: true,
-            },
-          },
-          teacherSubjects: {
-            select: {
-              subject: {
-                select: {
-                  id: true,
-                  name: true,
-                },
-              },
             },
           },
         },

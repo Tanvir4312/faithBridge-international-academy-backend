@@ -44,4 +44,10 @@ router.put(
   ApplicationController.applicationUpdateByAdmin,
 );
 
+router.put(
+  "/reject/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  ApplicationController.applicationRegectByAdmin,
+);
+
 export const ApplicationRoutes = router;

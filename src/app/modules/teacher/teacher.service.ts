@@ -1,7 +1,12 @@
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
-import { ITeacherUpadatePayload } from "./teacher.interface";
+import {
+
+  ITeacherUpadatePayload,
+} from "./teacher.interface";
+import { IRequestUser } from "../../interfaces/requestUser.inteface";
+
 
 const getAllTeacher = async () => {
   const teacher = await prisma.teacher.findMany({
@@ -20,7 +25,29 @@ const getAllTeacher = async () => {
   return teacher;
 };
 
-const getTeacherById = async (id: string) => {
+const getTeacherById = async (id: string, user: IRequestUser) => {
+  const isExisTeacher = await prisma.teacher.findUnique({
+    where: {
+      id,
+      isDeleted: false,
+    },
+    include: {
+      user: true,
+    },
+  });
+  if (!isExisTeacher) {
+    throw new AppError(status.NOT_FOUND, "Teacher not found");
+  }
+
+  if (user.role === "TEACHER") {
+    if (user.userId !== isExisTeacher.userId) {
+      throw new AppError(
+        status.UNAUTHORIZED,
+        "You are not authorized to access this teacher",
+      );
+    }
+  }
+
   const teacher = await prisma.teacher.findUnique({
     where: {
       id,
@@ -38,11 +65,18 @@ const getTeacherById = async (id: string) => {
   return teacher;
 };
 
-const teacherUpdate = async (id: string, payload: ITeacherUpadatePayload) => {
+const teacherUpdate = async (
+  id: string,
+  payload: ITeacherUpadatePayload,
+  user: IRequestUser,
+) => {
   const isTeacherExis = await prisma.teacher.findUnique({
     where: {
       id,
       isDeleted: false,
+    },
+    include: {
+      user: true,
     },
   });
 
@@ -50,10 +84,18 @@ const teacherUpdate = async (id: string, payload: ITeacherUpadatePayload) => {
     throw new AppError(status.NOT_FOUND, "Teacher not found");
   }
 
-  const { teacher: teacherData, subjects } = payload;
+  if (user.role === "TEACHER") {
+    if (user.email !== isTeacherExis.user.email) {
+      throw new AppError(
+        status.UNAUTHORIZED,
+        "You are not authorized to update this teacher",
+      );
+    }
+  }
 
+  const { teacher: teacherData } = payload;
 
-  await prisma.$transaction(async (tx) => {
+  return await prisma.$transaction(async (tx) => {
     if (teacherData) {
       await tx.teacher.update({
         where: {
@@ -75,39 +117,21 @@ const teacherUpdate = async (id: string, payload: ITeacherUpadatePayload) => {
       });
     }
 
-    if (subjects && subjects.length > 0) {
-      for (const subject of subjects) {
-        const { subjectId, isDeleted } = subject;
-
-        if (isDeleted) {
-          await tx.teacherSubject.delete({
-            where: {
-              teacherId_subjectId: {
-                teacherId: id,
-                subjectId,
-              },
-            },
-          });
-        } else {
-          await tx.teacherSubject.upsert({
-            where: {
-              teacherId_subjectId: {
-                teacherId: id,
-                subjectId,
-              },
-            },
-            create: {
-              teacherId: id,
-              subjectId,
-            },
-            update: {},
-          });
-        }
-      }
-    }
+    const teacher = await tx.teacher.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        user: true,
+        teacherSubjects: {
+          include: {
+            subject: true,
+          },
+        },
+      },
+    });
+    return teacher;
   });
-  const teacher = await getTeacherById(id);
-  return teacher;
 };
 
 const teacherDelete = async (id: string) => {
@@ -147,9 +171,11 @@ const teacherDelete = async (id: string) => {
   });
 };
 
+
 export const TeacherService = {
   getAllTeacher,
   getTeacherById,
   teacherUpdate,
   teacherDelete,
+ 
 };

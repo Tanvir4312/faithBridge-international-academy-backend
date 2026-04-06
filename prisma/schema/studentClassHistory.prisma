@@ -1,11 +1,13 @@
 model StudentClassHistory {
-  id        String  @id @default(uuid())
+  id        String    @id @default(uuid())
   studentId String
   classId   String
   year      String
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
 
-  student   Student @relation(fields: [studentId], references: [id])
-  class     Class   @relation(fields: [classId], references: [id])
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   @@index([studentId])
   @@index([year])

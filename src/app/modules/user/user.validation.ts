@@ -47,13 +47,6 @@ export const createTeacherValidationSchema = z.object({
       .string("Designation is required")
       .min(2, "Designation must be at least 2 characters"),
   }),
-
-  subjects: z
-    .array(
-      z.uuid(),
-      "Each subject ID must be a valid UUID, Subjects must be an array of valid IDs",
-    )
-    .min(1, "At least one subject is required to create a teacher profile"),
 });
 
 export const createAdminZodSchema = z.object({

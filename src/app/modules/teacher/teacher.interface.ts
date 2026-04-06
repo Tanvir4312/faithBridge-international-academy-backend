@@ -1,8 +1,5 @@
 import { Gender } from "../../../generated/prisma/enums";
-export interface IUpdateSubcetsPayload {
-  subjectId: string;
-  isDeleted: boolean;
-}
+
 export interface ITeacherUpadatePayload {
   teacher?: {
     name?: string;
@@ -14,5 +11,6 @@ export interface ITeacherUpadatePayload {
     profilePhoto?: string;
     designation?: string;
   };
-  subjects?: IUpdateSubcetsPayload[];
 }
+
+

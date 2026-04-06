@@ -381,7 +381,9 @@ export const StudentClassHistoryScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   classId: 'classId',
-  year: 'year'
+  year: 'year',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type StudentClassHistoryScalarFieldEnum = (typeof StudentClassHistoryScalarFieldEnum)[keyof typeof StudentClassHistoryScalarFieldEnum]

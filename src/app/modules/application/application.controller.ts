@@ -78,6 +78,21 @@ const applicationUpdateByAdmin = catchAsync(
   },
 );
 
+const applicationRegectByAdmin = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const result = await ApplicationService.applicationRegectByAdmin(
+      id as string,
+    );
+    sendResponse(res, {
+      httpStatusCode: status.OK,
+      message: "Application rejected successfully",
+      success: true,
+      data: result,
+    });
+  },
+);
+
 export const ApplicationController = {
   createApplication,
   getAllApplication,
@@ -85,4 +100,5 @@ export const ApplicationController = {
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,
+  applicationRegectByAdmin,
 };

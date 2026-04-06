@@ -5,6 +5,8 @@ import { TeacherRoutes } from "../modules/teacher/teacher.route";
 import { SubjectRoutes } from "../modules/subject/subject.route";
 import { AdminRoutes } from "../modules/admin/admin.route";
 import { ApplicationRoutes } from "../modules/application/application.route";
+import { StudentRoutes } from "../modules/student/student.route";
+import { TeacherSubjectRoutes } from "../modules/teacherSubject/teacherSubject.route";
 
 const router = Router();
 
@@ -14,5 +16,7 @@ router.use("/teacher", TeacherRoutes);
 router.use("/subject", SubjectRoutes);
 router.use("/admin", AdminRoutes);
 router.use("/application", ApplicationRoutes);
+router.use("/student", StudentRoutes);
+router.use("/teacher-subject", TeacherSubjectRoutes);
 
 export const IndexRoutes = router;

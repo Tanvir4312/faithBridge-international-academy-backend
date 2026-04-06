@@ -2,9 +2,9 @@ model Student {
   id             String       @id @default(uuid())
   registrationId String       @unique
   userId         String       @unique
-  user           User         @relation(fields: [userId], references: [id])
+  user           User         @relation(fields: [userId], references: [id],onDelete: Cascade)
   applicationId  String?      @unique
-  application    Application? @relation(fields: [applicationId], references: [id])
+  application    Application? @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 
   nameBn             String
   nameEn             String
@@ -24,7 +24,7 @@ model Student {
   deletedAt          DateTime?
 
   classId String
-  class   Class  @relation(fields: [classId], references: [id])
+  class   Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   results          Result[]
   payments         Payment[]

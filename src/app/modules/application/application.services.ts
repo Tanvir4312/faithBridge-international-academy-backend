@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
@@ -162,6 +163,7 @@ const applicationUpdateByAdmin = async (id: string) => {
       isDeleted: false,
     },
     include: {
+      user: true,
       payment: true,
       student: true,
     },
@@ -169,6 +171,10 @@ const applicationUpdateByAdmin = async (id: string) => {
 
   if (!isApplicationExist) {
     throw new AppError(status.NOT_FOUND, "Application not found");
+  }
+
+  if (isApplicationExist.user.status !== "ACTIVE") {
+    throw new AppError(status.BAD_REQUEST, "User is suspended or Inactive");
   }
 
   if (isApplicationExist.student?.id) {
@@ -222,8 +228,12 @@ const applicationUpdateByAdmin = async (id: string) => {
         ? "PRIMARY"
         : "SECONDARY";
 
-      const academic_level = await tx.academicLevel.create({
-        data: {
+      const academic_level = await tx.academicLevel.upsert({
+        where: {
+          name: academicData,
+        },
+        update: {},
+        create: {
           name: academicData,
         },
       });
@@ -280,10 +290,13 @@ const applicationUpdateByAdmin = async (id: string) => {
             year: new Date().getFullYear().toString(),
           },
         });
+
+        //TODO EMAIL SEND AFTER STUDENT CREATE
       }
+      return student;
     });
     return result;
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     const isApplicationExist = await prisma.application.findUnique({
       where: {
@@ -293,12 +306,46 @@ const applicationUpdateByAdmin = async (id: string) => {
     if (!isApplicationExist) {
       throw new AppError(status.NOT_FOUND, "Application not found");
     }
-    await prisma.student.delete({
+    await prisma.student.deleteMany({
       where: {
         userId: isApplicationExist.userId,
       },
     });
+    throw new AppError(
+      status.INTERNAL_SERVER_ERROR,
+      error.message || "Transaction failed",
+    );
   }
+};
+
+const applicationRegectByAdmin = async (id: string) => {
+  const isApplicationExist = await prisma.application.findUnique({
+    where: {
+      id,
+      isDeleted: false,
+    },
+    include: {
+      payment: true,
+      student: true,
+    },
+  });
+
+  if (!isApplicationExist) {
+    throw new AppError(status.NOT_FOUND, "Application not found");
+  }
+  if (isApplicationExist.status === "APPROVED") {
+    throw new AppError(status.BAD_REQUEST, "Application is already accepted");
+  }
+  const result = await prisma.application.update({
+    where: {
+      id,
+    },
+    data: {
+      status: "REJECTED",
+      updatedAt: new Date(),
+    },
+  });
+  return result;
 };
 export const ApplicationService = {
   createApplication,
@@ -307,4 +354,5 @@ export const ApplicationService = {
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,
+  applicationRegectByAdmin,
 };
