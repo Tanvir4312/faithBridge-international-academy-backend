@@ -427,7 +427,9 @@ export const TeacherSubjectScalarFieldEnum = {
   subjectId: 'subjectId',
   isPrimary: 'isPrimary',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type TeacherSubjectScalarFieldEnum = (typeof TeacherSubjectScalarFieldEnum)[keyof typeof TeacherSubjectScalarFieldEnum]

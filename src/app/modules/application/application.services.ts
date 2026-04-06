@@ -347,6 +347,23 @@ const applicationRegectByAdmin = async (id: string) => {
   });
   return result;
 };
+
+const deleteUnpaidApplications = async () => {
+  const targetTime = new Date("2026-04-06T06:00:00");
+  const thirtyMinutesAgo = new Date(targetTime.getTime() - 30 * 60 * 1000);
+
+  const result = await prisma.application.deleteMany({
+    where: {
+      isDeleted: false,
+      status: "PENDING",
+      paymentStatus: "UNPAID",
+      createdAt: {
+        lte: thirtyMinutesAgo,
+      },
+    },
+  });
+  return result;
+};
 export const ApplicationService = {
   createApplication,
   getAllApplication,
@@ -355,4 +372,5 @@ export const ApplicationService = {
   applicationSoftDelete,
   applicationUpdateByAdmin,
   applicationRegectByAdmin,
+  deleteUnpaidApplications,
 };

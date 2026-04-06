@@ -1,12 +1,8 @@
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
-import {
-
-  ITeacherUpadatePayload,
-} from "./teacher.interface";
+import { ITeacherUpadatePayload } from "./teacher.interface";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
-
 
 const getAllTeacher = async () => {
   const teacher = await prisma.teacher.findMany({
@@ -163,6 +159,15 @@ const teacherDelete = async (id: string) => {
         deletedAt: new Date(),
       },
     });
+    await tx.teacherSubject.updateMany({
+      where: {
+        teacherId: id,
+      },
+      data: {
+        isDeleted: true,
+        deletedAt: new Date(),
+      },
+    });
     await tx.session.deleteMany({
       where: {
         userId: isExisTeacher.userId,
@@ -171,11 +176,9 @@ const teacherDelete = async (id: string) => {
   });
 };
 
-
 export const TeacherService = {
   getAllTeacher,
   getTeacherById,
   teacherUpdate,
   teacherDelete,
- 
 };
