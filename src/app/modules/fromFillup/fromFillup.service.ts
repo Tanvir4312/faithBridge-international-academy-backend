@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import {
@@ -8,6 +9,9 @@ import { prisma } from "../../lib/prisma";
 import { v7 as uuidv7 } from "uuid";
 import { stripe } from "../../config/stripe.config";
 import { envVars } from "../../config/env";
+import { generateAdmitCardPDF } from "./fromFillup.utils";
+import { uploadFileToCloudinary } from "../../config/cloudinary.config";
+import { sendEmail } from "../../utils/email";
 const createFromFillup = async (payload: ICreateFromFillupPayload) => {
   const alreadyFromFillup = await prisma.formFillup.findUnique({
     where: {
@@ -103,13 +107,9 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
 
       success_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-success`,
 
-      // cancel_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-failed`,
+    
       cancel_url: `${envVars.FRONTEND_URL}/dashboard/from-fillup`,
     });
-
-    if (fromFillupData.status === "APPROVED") {
-      // TODO SEND EMAIL AFTER from fillup approved
-    }
 
     return {
       fromFillupData,
@@ -133,7 +133,37 @@ const updateFromFillUpStatus = async (
   payload: IUpdateFromFillupStatusPayload,
   id: string,
 ) => {
-  const result = await prisma.formFillup.update({
+  const fromFillupData = await prisma.formFillup.findUnique({
+    where: {
+      id,
+    },
+  });
+  if (!fromFillupData) {
+    throw new AppError(status.NOT_FOUND, "From fillup not found");
+  }
+  if (payload.status === fromFillupData.status) {
+    throw new AppError(status.BAD_REQUEST, "From fillup already approved");
+  }
+  const student = await prisma.student.findUnique({
+    where: {
+      id: fromFillupData.studentId,
+    },
+    include: {
+      user: true,
+    },
+  });
+  const studentClass = await prisma.class.findUnique({
+    where: {
+      id: fromFillupData.classId,
+    },
+  });
+  const exam = await prisma.exam.findUnique({
+    where: {
+      id: fromFillupData.examId,
+    },
+  });
+
+  await prisma.formFillup.update({
     where: {
       id,
     },
@@ -141,7 +171,64 @@ const updateFromFillUpStatus = async (
       status: payload.status,
     },
   });
-  return result;
+
+  if (payload.status === "APPROVED") {
+    // DONE SEND Admit Card AND EMAIL AFTER from fillup approved
+    const adimtCardData = { student, exam, studentClass };
+    const pdfBuffer = await generateAdmitCardPDF(adimtCardData);
+
+    const fileName = `Admit-card-${Date.now()}.pdf`;
+    const uploadFile = await uploadFileToCloudinary(pdfBuffer, fileName);
+    const pdfUrl = uploadFile.secure_url;
+
+    const updatedFromFillup = await prisma.formFillup.update({
+      where: {
+        id,
+      },
+      data: {
+        admitCard: pdfUrl,
+      },
+    });
+
+    try {
+      await sendEmail({
+        to: student?.user.email as string,
+        subject: "You have received your admit card for the exam",
+        templateName: "fromFillupSuccess",
+        templateData: {
+          studentName: student?.nameEn,
+          examName: exam?.name,
+          examYear: exam?.year,
+          className: studentClass?.name,
+          classRoll: student?.classRoll,
+          admitCardUrl: pdfUrl,
+          currentYear: new Date().getFullYear(),
+        },
+        attachments: [
+          {
+            filename: fileName,
+            content: pdfBuffer,
+            contentType: "application/pdf",
+          },
+        ],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    return updatedFromFillup;
+  }
+  const updatedFromFillup = await prisma.formFillup.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      student: true,
+      class: true,
+      exam: true,
+    },
+  });
+  return updatedFromFillup;
 };
 
 const deleteFromFillup = async (id: string) => {

@@ -33,6 +33,7 @@ export type FormFillupMinAggregateOutputType = {
   classRoll: string | null
   status: $Enums.FromFillupStatus | null
   paymentStatus: $Enums.PaymentStatus | null
+  admitCard: string | null
 }
 
 export type FormFillupMaxAggregateOutputType = {
@@ -44,6 +45,7 @@ export type FormFillupMaxAggregateOutputType = {
   classRoll: string | null
   status: $Enums.FromFillupStatus | null
   paymentStatus: $Enums.PaymentStatus | null
+  admitCard: string | null
 }
 
 export type FormFillupCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type FormFillupCountAggregateOutputType = {
   classRoll: number
   status: number
   paymentStatus: number
+  admitCard: number
   _all: number
 }
 
@@ -68,6 +71,7 @@ export type FormFillupMinAggregateInputType = {
   classRoll?: true
   status?: true
   paymentStatus?: true
+  admitCard?: true
 }
 
 export type FormFillupMaxAggregateInputType = {
@@ -79,6 +83,7 @@ export type FormFillupMaxAggregateInputType = {
   classRoll?: true
   status?: true
   paymentStatus?: true
+  admitCard?: true
 }
 
 export type FormFillupCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type FormFillupCountAggregateInputType = {
   classRoll?: true
   status?: true
   paymentStatus?: true
+  admitCard?: true
   _all?: true
 }
 
@@ -174,6 +180,7 @@ export type FormFillupGroupByOutputType = {
   classRoll: string
   status: $Enums.FromFillupStatus
   paymentStatus: $Enums.PaymentStatus
+  admitCard: string | null
   _count: FormFillupCountAggregateOutputType | null
   _min: FormFillupMinAggregateOutputType | null
   _max: FormFillupMaxAggregateOutputType | null
@@ -206,6 +213,7 @@ export type FormFillupWhereInput = {
   classRoll?: Prisma.StringFilter<"FormFillup"> | string
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
+  admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
@@ -221,6 +229,7 @@ export type FormFillupOrderByWithRelationInput = {
   classRoll?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  admitCard?: Prisma.SortOrderInput | Prisma.SortOrder
   payment?: Prisma.PaymentOrderByWithRelationInput
   student?: Prisma.StudentOrderByWithRelationInput
   class?: Prisma.ClassOrderByWithRelationInput
@@ -240,6 +249,7 @@ export type FormFillupWhereUniqueInput = Prisma.AtLeast<{
   classRoll?: Prisma.StringFilter<"FormFillup"> | string
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
+  admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
@@ -255,6 +265,7 @@ export type FormFillupOrderByWithAggregationInput = {
   classRoll?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  admitCard?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.FormFillupCountOrderByAggregateInput
   _max?: Prisma.FormFillupMaxOrderByAggregateInput
   _min?: Prisma.FormFillupMinOrderByAggregateInput
@@ -272,6 +283,7 @@ export type FormFillupScalarWhereWithAggregatesInput = {
   classRoll?: Prisma.StringWithAggregatesFilter<"FormFillup"> | string
   status?: Prisma.EnumFromFillupStatusWithAggregatesFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusWithAggregatesFilter<"FormFillup"> | $Enums.PaymentStatus
+  admitCard?: Prisma.StringNullableWithAggregatesFilter<"FormFillup"> | string | null
 }
 
 export type FormFillupCreateInput = {
@@ -280,6 +292,7 @@ export type FormFillupCreateInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
@@ -295,6 +308,7 @@ export type FormFillupUncheckedCreateInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -304,6 +318,7 @@ export type FormFillupUpdateInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -319,6 +334,7 @@ export type FormFillupUncheckedUpdateInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -331,6 +347,7 @@ export type FormFillupCreateManyInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
 }
 
 export type FormFillupUpdateManyMutationInput = {
@@ -339,6 +356,7 @@ export type FormFillupUpdateManyMutationInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FormFillupUncheckedUpdateManyInput = {
@@ -350,6 +368,7 @@ export type FormFillupUncheckedUpdateManyInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FormFillupListRelationFilter = {
@@ -376,6 +395,7 @@ export type FormFillupCountOrderByAggregateInput = {
   classRoll?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  admitCard?: Prisma.SortOrder
 }
 
 export type FormFillupMaxOrderByAggregateInput = {
@@ -387,6 +407,7 @@ export type FormFillupMaxOrderByAggregateInput = {
   classRoll?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  admitCard?: Prisma.SortOrder
 }
 
 export type FormFillupMinOrderByAggregateInput = {
@@ -398,6 +419,7 @@ export type FormFillupMinOrderByAggregateInput = {
   classRoll?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  admitCard?: Prisma.SortOrder
 }
 
 export type FormFillupNullableScalarRelationFilter = {
@@ -557,6 +579,7 @@ export type FormFillupCreateWithoutClassInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -570,6 +593,7 @@ export type FormFillupUncheckedCreateWithoutClassInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -611,6 +635,7 @@ export type FormFillupScalarWhereInput = {
   classRoll?: Prisma.StringFilter<"FormFillup"> | string
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
+  admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
 }
 
 export type FormFillupCreateWithoutExamInput = {
@@ -619,6 +644,7 @@ export type FormFillupCreateWithoutExamInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
@@ -632,6 +658,7 @@ export type FormFillupUncheckedCreateWithoutExamInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -667,6 +694,7 @@ export type FormFillupCreateWithoutPaymentInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -681,6 +709,7 @@ export type FormFillupUncheckedCreateWithoutPaymentInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
 }
 
 export type FormFillupCreateOrConnectWithoutPaymentInput = {
@@ -705,6 +734,7 @@ export type FormFillupUpdateWithoutPaymentInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -719,6 +749,7 @@ export type FormFillupUncheckedUpdateWithoutPaymentInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FormFillupCreateWithoutStudentInput = {
@@ -727,6 +758,7 @@ export type FormFillupCreateWithoutStudentInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -740,6 +772,7 @@ export type FormFillupUncheckedCreateWithoutStudentInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -777,6 +810,7 @@ export type FormFillupCreateManyClassInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
 }
 
 export type FormFillupUpdateWithoutClassInput = {
@@ -785,6 +819,7 @@ export type FormFillupUpdateWithoutClassInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -798,6 +833,7 @@ export type FormFillupUncheckedUpdateWithoutClassInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -809,6 +845,7 @@ export type FormFillupUncheckedUpdateManyWithoutClassInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FormFillupCreateManyExamInput = {
@@ -819,6 +856,7 @@ export type FormFillupCreateManyExamInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
 }
 
 export type FormFillupUpdateWithoutExamInput = {
@@ -827,6 +865,7 @@ export type FormFillupUpdateWithoutExamInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -840,6 +879,7 @@ export type FormFillupUncheckedUpdateWithoutExamInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -851,6 +891,7 @@ export type FormFillupUncheckedUpdateManyWithoutExamInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FormFillupCreateManyStudentInput = {
@@ -861,6 +902,7 @@ export type FormFillupCreateManyStudentInput = {
   classRoll: string
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
+  admitCard?: string | null
 }
 
 export type FormFillupUpdateWithoutStudentInput = {
@@ -869,6 +911,7 @@ export type FormFillupUpdateWithoutStudentInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -882,6 +925,7 @@ export type FormFillupUncheckedUpdateWithoutStudentInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -893,6 +937,7 @@ export type FormFillupUncheckedUpdateManyWithoutStudentInput = {
   classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -906,6 +951,7 @@ export type FormFillupSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   classRoll?: boolean
   status?: boolean
   paymentStatus?: boolean
+  admitCard?: boolean
   payment?: boolean | Prisma.FormFillup$paymentArgs<ExtArgs>
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
@@ -921,6 +967,7 @@ export type FormFillupSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   classRoll?: boolean
   status?: boolean
   paymentStatus?: boolean
+  admitCard?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
@@ -935,6 +982,7 @@ export type FormFillupSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   classRoll?: boolean
   status?: boolean
   paymentStatus?: boolean
+  admitCard?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
@@ -949,9 +997,10 @@ export type FormFillupSelectScalar = {
   classRoll?: boolean
   status?: boolean
   paymentStatus?: boolean
+  admitCard?: boolean
 }
 
-export type FormFillupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "examId" | "registrationNo" | "classRoll" | "status" | "paymentStatus", ExtArgs["result"]["formFillup"]>
+export type FormFillupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "examId" | "registrationNo" | "classRoll" | "status" | "paymentStatus" | "admitCard", ExtArgs["result"]["formFillup"]>
 export type FormFillupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payment?: boolean | Prisma.FormFillup$paymentArgs<ExtArgs>
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
@@ -986,6 +1035,7 @@ export type $FormFillupPayload<ExtArgs extends runtime.Types.Extensions.Internal
     classRoll: string
     status: $Enums.FromFillupStatus
     paymentStatus: $Enums.PaymentStatus
+    admitCard: string | null
   }, ExtArgs["result"]["formFillup"]>
   composites: {}
 }
@@ -1421,6 +1471,7 @@ export interface FormFillupFieldRefs {
   readonly classRoll: Prisma.FieldRef<"FormFillup", 'String'>
   readonly status: Prisma.FieldRef<"FormFillup", 'FromFillupStatus'>
   readonly paymentStatus: Prisma.FieldRef<"FormFillup", 'PaymentStatus'>
+  readonly admitCard: Prisma.FieldRef<"FormFillup", 'String'>
 }
     
 

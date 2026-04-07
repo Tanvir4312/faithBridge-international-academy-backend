@@ -40,7 +40,7 @@ export const uploadFileToCloudinary = async (
       .upload_stream(
         {
           resource_type: "auto",
-          pbilId: `school-management/${folder}/${uniqueName}`,
+          public_id: `school-management/${folder}/${uniqueName}`,
           folder: `school-management/${folder}`,
         },
         (error, result) => {

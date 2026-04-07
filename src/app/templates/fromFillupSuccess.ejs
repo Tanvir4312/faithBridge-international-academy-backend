@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Admission Application Submitted</title>
+  <title>Exam Form Fillup Successful</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -37,30 +37,24 @@
       margin: 20px 0;
     }
     .info-box p {
-      margin: 6px 0;
+      margin: 5px 0;
     }
     .button {
       display: block;
       width: fit-content;
       margin: 25px auto;
-      padding: 12px 22px;
-      background-color: #16a34a;
+      padding: 12px 20px;
+      background-color: #2563eb;
       color: #fff !important;
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
     }
-    .note {
-      font-size: 13px;
-      color: #888;
-      margin-top: 15px;
-      text-align: center;
-    }
     .footer {
       text-align: center;
       font-size: 13px;
       color: #999;
-      margin-top: 25px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -68,37 +62,36 @@
 <body>
   <div class="container">
     <div class="header">
-      <h2>🎓 Admission Application Submitted</h2>
+      <h2>🎓 Exam Form Fillup Successful</h2>
     </div>
 
     <div class="content">
       <p>Dear <strong><%= studentName %></strong>,</p>
 
       <p>
-        Your admission application has been successfully submitted. Please review your details below:
+        Your exam form fill-up has been successfully completed. Below are your details:
       </p>
 
       <div class="info-box">
-        <p><strong>Applicant Name:</strong> <%= studentName %></p>
+        <p><strong>Exam:</strong> <%= examName %> (<%= examYear %>)</p>
         <p><strong>Class:</strong> <%= className %></p>
-        <p><strong>Session:</strong> <%= session %></p>
-        <p><strong>Application ID:</strong> <%= applicationId %></p>
+        <p><strong>Roll:</strong> <%= classRoll %></p>
       </div>
 
       <p>
-        To complete your application, please proceed with the payment using the link below:
+        You can download your admit card by clicking the button below:
       </p>
 
-      <a href="<%= paymentUrl %>" class="button">
-        💳 Pay Admission Fee
+      <a href="<%= admitCardUrl %>" class="button">
+        📄 Download Admit Card
       </a>
 
-      <p class="note">
-        ⚠️ Your application will not be processed until the payment is completed.
+      <p>
+        Please keep your admit card safe and bring it during the examination.
       </p>
 
       <p>
-        If you have already completed the payment, please ignore this email.
+        Best of luck for your exam! ✨
       </p>
     </div>
 

@@ -7,7 +7,7 @@ const router = Router();
 
 router.post(
   "/create",
-  checkAuth(Role.STUDENT, Role.SUPER_ADMIN),
+  checkAuth(Role.STUDENT),
   FromFillupController.createFromFillup,
 );
 

@@ -9,6 +9,7 @@ import { stripe } from "../../config/stripe.config";
 import { envVars } from "../../config/env";
 import { Role } from "../../../generated/prisma/enums";
 import { generateRegistrationId } from "./application.constant";
+import { sendEmail } from "../../utils/email";
 
 const createApplication = async (
   payload: ICreateApplicationPayload,
@@ -87,6 +88,26 @@ const createApplication = async (
       // cancel_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-failed`,
       cancel_url: `${envVars.FRONTEND_URL}/dashboard/appointments`,
     });
+
+    try {
+      await sendEmail({
+        to: application.user.email as string,
+        subject: "You have received an admission application request from the school",
+        templateName: "application",
+        templateData: {
+          studentName: application?.nameEn,
+
+          className: application?.desiredClass,
+
+          session: application?.admissionYear,
+          applicationId: application?.applicationNo,
+          paymentUrl: session.url,
+          currentYear: new Date().getFullYear(),
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
 
     return {
       application,
