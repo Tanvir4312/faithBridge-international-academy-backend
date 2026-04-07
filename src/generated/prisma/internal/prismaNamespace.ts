@@ -2415,7 +2415,8 @@ export const FormFillupScalarFieldEnum = {
   examId: 'examId',
   registrationNo: 'registrationNo',
   classRoll: 'classRoll',
-  status: 'status'
+  status: 'status',
+  paymentStatus: 'paymentStatus'
 } as const
 
 export type FormFillupScalarFieldEnum = (typeof FormFillupScalarFieldEnum)[keyof typeof FormFillupScalarFieldEnum]
@@ -2507,6 +2508,7 @@ export const StudentScalarFieldEnum = {
   userId: 'userId',
   applicationId: 'applicationId',
   profileImage: 'profileImage',
+  classRoll: 'classRoll',
   nameBn: 'nameBn',
   nameEn: 'nameEn',
   fatherName: 'fatherName',
@@ -2788,6 +2790,20 @@ export type EnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'RequestStatus[]'
  */
 export type ListEnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FromFillupStatus'
+ */
+export type EnumFromFillupStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FromFillupStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FromFillupStatus[]'
+ */
+export type ListEnumFromFillupStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FromFillupStatus[]'>
     
 
 

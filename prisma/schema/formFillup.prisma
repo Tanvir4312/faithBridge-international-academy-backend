@@ -1,17 +1,19 @@
 model FormFillup {
-  id             String   @id @default(uuid())
+  id             String           @id @default(uuid())
   studentId      String
   classId        String
   examId         String
   registrationNo String
   classRoll      String
-  status         String   @default("pending")
+  status         FromFillupStatus @default(PENDING)
+  paymentStatus  PaymentStatus    @default(UNPAID)
 
-  payment        Payment?
-  student        Student  @relation(fields: [studentId], references: [id])
-  class          Class    @relation(fields: [classId], references: [id])
-  exam           Exam     @relation(fields: [examId], references: [id])
+  payment Payment?
+  student Student  @relation(fields: [studentId], references: [id])
+  class   Class    @relation(fields: [classId], references: [id])
+  exam    Exam     @relation(fields: [examId], references: [id])
 
+  @@unique([studentId, examId])
   @@index([studentId])
   @@index([classId])
   @@index([examId])

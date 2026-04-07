@@ -198,6 +198,7 @@ export type ExamOrderByWithRelationInput = {
 
 export type ExamWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name_year?: Prisma.ExamNameYearCompoundUniqueInput
   AND?: Prisma.ExamWhereInput | Prisma.ExamWhereInput[]
   OR?: Prisma.ExamWhereInput[]
   NOT?: Prisma.ExamWhereInput | Prisma.ExamWhereInput[]
@@ -207,7 +208,7 @@ export type ExamWhereUniqueInput = Prisma.AtLeast<{
   formFillupEnd?: Prisma.DateTimeFilter<"Exam"> | Date | string
   results?: Prisma.ResultListRelationFilter
   formFillups?: Prisma.FormFillupListRelationFilter
-}, "id">
+}, "id" | "name_year">
 
 export type ExamOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -293,6 +294,11 @@ export type ExamUncheckedUpdateManyInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ExamNameYearCompoundUniqueInput = {
+  name: string
+  year: string
 }
 
 export type ExamCountOrderByAggregateInput = {

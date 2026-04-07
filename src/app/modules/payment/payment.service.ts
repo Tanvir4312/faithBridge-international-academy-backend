@@ -18,43 +18,13 @@ const handleStripeWebhookEvent = async (event: Stripe.Event) => {
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
-      const applicationId = session.metadata?.applicationId;
-      const paymentId = session.metadata?.paymentId;
-  
 
-      if (!applicationId || !paymentId) {
-        console.error("Missing applicantId or paymentId in metadata");
-        return { message: "Missing applicantId or paymentId in metadata" };
-      }
+      const { applicationId, fromFillupId, paymentId } = session.metadata || {};
 
-      const application = await prisma.application.findUnique({
-        where: {
-          id: applicationId,
-        },
-      });
-
-      if (!application) {
-        console.error("Application not found");
-        return { message: "Application not found" };
-      }
-
-    //   Update both application and payment in a transaction
-        await prisma.$transaction(async (tx) => {
-          const updatedApplication = await tx.application.update({
-            where: {
-              id: applicationId,
-            },
-            data: {
-              paymentStatus:
-                session.payment_status === "paid"
-                  ? PaymentStatus.PAID
-                  : PaymentStatus.UNPAID,
-            },
-          });
-          const updatedPayment = await tx.payment.update({
-            where: {
-              id: paymentId,
-            },
+      await prisma.$transaction(async (tx) => {
+        if (paymentId) {
+          await tx.payment.update({
+            where: { id: paymentId },
             data: {
               stripeEventId: event.id,
               status:
@@ -64,33 +34,32 @@ const handleStripeWebhookEvent = async (event: Stripe.Event) => {
               paymentGatewayData: session as any,
             },
           });
-          return { updatedApplication, updatedPayment };
-        });
+        }
+        if (applicationId) {
+          await tx.application.update({
+            where: { id: applicationId },
+            data: {
+              paymentStatus:
+                session.payment_status === "paid"
+                  ? PaymentStatus.PAID
+                  : PaymentStatus.UNPAID,
+            },
+          });
+        }
 
-    //   await prisma.$transaction(async (tx) => {
-    //     const statusToUpdate =
-    //       session.payment_status === "paid"
-    //         ? PaymentStatus.PAID
-    //         : PaymentStatus.UNPAID;
+        if (fromFillupId) {
+          await tx.formFillup.update({
+            where: { id: fromFillupId },
+            data: {
+              paymentStatus:
+                session.payment_status === "paid"
+                  ? PaymentStatus.PAID
+                  : PaymentStatus.UNPAID,
+            },
+          });
+        }
+      });
 
-    //     await tx.application.update({
-    //       where: { id: applicationId },
-    //       data: { paymentStatus: statusToUpdate },
-    //     });
-
-    //     await tx.payment.update({
-    //       where: { id: paymentId },
-    //       data: {
-    //         stripeEventId: event.id,
-    //         status: statusToUpdate,
-    //         paymentGatewayData: session as any,
-    //       },
-    //     });
-    //   });
-
-      console.log(
-        `✅ Payment ${session.payment_status} for application ${applicationId}`,
-      );
       break;
     }
     case "checkout.session.expired": {

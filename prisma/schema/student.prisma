@@ -7,6 +7,7 @@ model Student {
   application    Application? @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 
   profileImage       String
+  classRoll          String?
   nameBn             String
   nameEn             String
   fatherName         String
@@ -34,6 +35,7 @@ model Student {
   classHistories   StudentClassHistory[]
   documentRequests DocumentRequest[]
 
+ 
   @@index([classId])
   @@index([registrationId])
   @@map("student")

@@ -266,7 +266,8 @@ export const FormFillupScalarFieldEnum = {
   examId: 'examId',
   registrationNo: 'registrationNo',
   classRoll: 'classRoll',
-  status: 'status'
+  status: 'status',
+  paymentStatus: 'paymentStatus'
 } as const
 
 export type FormFillupScalarFieldEnum = (typeof FormFillupScalarFieldEnum)[keyof typeof FormFillupScalarFieldEnum]
@@ -358,6 +359,7 @@ export const StudentScalarFieldEnum = {
   userId: 'userId',
   applicationId: 'applicationId',
   profileImage: 'profileImage',
+  classRoll: 'classRoll',
   nameBn: 'nameBn',
   nameEn: 'nameEn',
   fatherName: 'fatherName',

@@ -63,3 +63,9 @@ enum Gender {
   MALE
   FEMALE
 }
+
+enum FromFillupStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}

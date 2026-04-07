@@ -99,3 +99,12 @@ export const Gender = {
 } as const
 
 export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
+export const FromFillupStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type FromFillupStatus = (typeof FromFillupStatus)[keyof typeof FromFillupStatus]

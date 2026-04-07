@@ -11,6 +11,7 @@ const getAllStudent = async () => {
       class: {
         select: {
           name: true,
+          id: true,
           AcademicLevel: {
             select: {
               name: true,

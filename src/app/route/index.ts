@@ -8,6 +8,8 @@ import { ApplicationRoutes } from "../modules/application/application.route";
 import { StudentRoutes } from "../modules/student/student.route";
 import { TeacherSubjectRoutes } from "../modules/teacherSubject/teacherSubject.route";
 import { MediaRoutes } from "../modules/media/media.route";
+import { ExamRoutes } from "../modules/exam/exam.route";
+import { FromFillupRoutes } from "../modules/fromFillup/fromFillup.route";
 
 const router = Router();
 
@@ -20,5 +22,7 @@ router.use("/application", ApplicationRoutes);
 router.use("/student", StudentRoutes);
 router.use("/teacher-subject", TeacherSubjectRoutes);
 router.use("/media", MediaRoutes);
+router.use("/exams", ExamRoutes);
+router.use("/from-fillup", FromFillupRoutes);
 
 export const IndexRoutes = router;

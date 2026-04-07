@@ -9,7 +9,13 @@ router.post("/register", AuthController.registerApplicant);
 router.post("/login", AuthController.loginUser);
 router.get(
   "/me",
-  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  checkAuth(
+    Role.ADMIN,
+    Role.TEACHER,
+    Role.STUDENT,
+    Role.APPLICANT,
+    Role.SUPER_ADMIN,
+  ),
   AuthController.getMe,
 );
 
@@ -21,15 +27,17 @@ router.post(
 );
 router.post(
   "/logout",
-  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+  checkAuth(
+    Role.ADMIN,
+    Role.TEACHER,
+    Role.STUDENT,
+    Role.APPLICANT,
+    Role.SUPER_ADMIN,
+  ),
   AuthController.logoutUser,
 );
 
-router.post(
-  "/verify-email",
-  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
-  AuthController.verifyEmail,
-);
+router.post("/verify-email", AuthController.verifyEmail);
 
 router.post(
   "/forgot-password",
@@ -42,6 +50,5 @@ router.post("/reset-password", AuthController.resetPassword);
 router.get("/login/google", AuthController.googleLogin);
 router.get("/google/success", AuthController.googleLoginSuccess);
 router.get("/oauth/error", AuthController.handleOAuthError);
-
 
 export const AuthRoutes = router;

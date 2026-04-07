@@ -1,13 +1,15 @@
 model Exam {
-  id              String       @id @default(uuid())
+  id              String   @id @default(uuid())
   name            String
   year            String
   formFillupStart DateTime
   formFillupEnd   DateTime
 
-  results         Result[]
-  formFillups     FormFillup[]
+  results     Result[]
+  formFillups FormFillup[]
 
+  @@unique([name, year])
   @@index([year])
+  @@index([name])
   @@map("exam")
 }
