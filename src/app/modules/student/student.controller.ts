@@ -37,8 +37,26 @@ const studentDelete = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const studentUpdate = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const payload = {
+    ...req.body,
+    profileImage : req.file?.path
+  };
+
+  const user = req.user;
+  const result = await StudentService.studentUpdate(id as string, payload, user);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Student updated successfully",
+    success: true,
+    data: result,
+  });
+});
+
 export const StudentController = {
   getAllStudent,
   getStudentById,
   studentDelete,
+  studentUpdate,
 };

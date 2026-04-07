@@ -2,6 +2,11 @@ import { Router } from "express";
 import { StudentController } from "./student.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { Role } from "../../../generated/prisma/enums";
+import { multerUpload } from "../../config/multer.config";
+import { validateRequest } from "../../middlewares/validateRequest";
+import { updateStudentSchema } from "./student.validation";
+
+
 
 const router = Router();
 
@@ -15,6 +20,14 @@ router.get(
   "/:id",
   checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.TEACHER, Role.STUDENT),
   StudentController.getStudentById,
+);
+
+router.patch(
+  "/update/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.TEACHER),
+  multerUpload.single("profileImage"),
+  validateRequest(updateStudentSchema),
+  StudentController.studentUpdate,
 );
 
 router.delete(

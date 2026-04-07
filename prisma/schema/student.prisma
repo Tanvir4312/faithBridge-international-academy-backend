@@ -12,6 +12,7 @@ model Student {
   fatherName         String
   motherName         String
   guardianMobile     String
+  studentMobile      String?
   presentAddress     String
   permanentAddress   String
   bloodGroup         String?

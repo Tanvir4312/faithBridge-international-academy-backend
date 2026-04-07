@@ -2510,6 +2510,7 @@ export const StudentScalarFieldEnum = {
   fatherName: 'fatherName',
   motherName: 'motherName',
   guardianMobile: 'guardianMobile',
+  studentMobile: 'studentMobile',
   presentAddress: 'presentAddress',
   permanentAddress: 'permanentAddress',
   bloodGroup: 'bloodGroup',

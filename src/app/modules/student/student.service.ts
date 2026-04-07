@@ -2,6 +2,7 @@ import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
+import { IUpdateStudentPayload } from "./student.interface";
 
 const getAllStudent = async () => {
   const result = await prisma.student.findMany({
@@ -144,10 +145,56 @@ const studentDelete = async (id: string) => {
   return result;
 };
 
-//TODO STUDENT UPDATE AFTER CLOUDINARU SETUP
+const studentUpdate = async (
+  id: string,
+  payload: IUpdateStudentPayload,
+  user: IRequestUser,
+) => {
+  console.log(id)
+  const isStudentExist = await prisma.student.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!isStudentExist) {
+    throw new AppError(status.NOT_FOUND, "Student not found");
+  }
+
+  if (user.role === "STUDENT") {
+    if (user.userId !== isStudentExist.userId) {
+      throw new AppError(
+        status.UNAUTHORIZED,
+        "You are not authorized to access this student",
+      );
+    }
+  }
+
+  return await prisma.$transaction(async (tx) => {
+  const result =  await tx.student.update({
+      where: {
+        id,
+      },
+      data: {
+        ...payload,
+      },
+    });
+    await tx.user.update({
+      where: {
+        id: isStudentExist.userId,
+      },
+      data: {
+        name: payload.nameEn,
+        image : payload.profileImage
+      },
+    });
+    return result;
+  });
+};
 
 export const StudentService = {
   getAllStudent,
   getStudentById,
   studentDelete,
+  studentUpdate,
 };
