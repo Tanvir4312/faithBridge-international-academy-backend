@@ -32,4 +32,16 @@ router.post(
   MediaController.createMedia,
 );
 
+router.get(
+  "/",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  MediaController.getAllMedia,
+);
+
+router.delete(
+  "/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  MediaController.deleteMedia,
+);
+
 export const MediaRoutes = router;

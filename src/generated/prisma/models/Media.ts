@@ -32,6 +32,8 @@ export type MediaMinAggregateOutputType = {
   sectionName: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type MediaMaxAggregateOutputType = {
@@ -42,6 +44,8 @@ export type MediaMaxAggregateOutputType = {
   sectionName: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type MediaCountAggregateOutputType = {
@@ -52,6 +56,8 @@ export type MediaCountAggregateOutputType = {
   sectionName: number
   createdAt: number
   updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -64,6 +70,8 @@ export type MediaMinAggregateInputType = {
   sectionName?: true
   createdAt?: true
   updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type MediaMaxAggregateInputType = {
@@ -74,6 +82,8 @@ export type MediaMaxAggregateInputType = {
   sectionName?: true
   createdAt?: true
   updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type MediaCountAggregateInputType = {
@@ -84,6 +94,8 @@ export type MediaCountAggregateInputType = {
   sectionName?: true
   createdAt?: true
   updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -167,6 +179,8 @@ export type MediaGroupByOutputType = {
   sectionName: string
   createdAt: Date
   updatedAt: Date
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: MediaCountAggregateOutputType | null
   _min: MediaMinAggregateOutputType | null
   _max: MediaMaxAggregateOutputType | null
@@ -198,6 +212,8 @@ export type MediaWhereInput = {
   sectionName?: Prisma.StringFilter<"Media"> | string
   createdAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Media"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Media"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Media"> | Date | string | null
 }
 
 export type MediaOrderByWithRelationInput = {
@@ -208,6 +224,8 @@ export type MediaOrderByWithRelationInput = {
   sectionName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +239,8 @@ export type MediaWhereUniqueInput = Prisma.AtLeast<{
   sectionName?: Prisma.StringFilter<"Media"> | string
   createdAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Media"> | Date | string
+  isDeleted?: Prisma.BoolFilter<"Media"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Media"> | Date | string | null
 }, "id" | "key">
 
 export type MediaOrderByWithAggregationInput = {
@@ -231,6 +251,8 @@ export type MediaOrderByWithAggregationInput = {
   sectionName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MediaCountOrderByAggregateInput
   _max?: Prisma.MediaMaxOrderByAggregateInput
   _min?: Prisma.MediaMinOrderByAggregateInput
@@ -247,6 +269,8 @@ export type MediaScalarWhereWithAggregatesInput = {
   sectionName?: Prisma.StringWithAggregatesFilter<"Media"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Media"> | Date | string
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Media"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Media"> | Date | string | null
 }
 
 export type MediaCreateInput = {
@@ -257,6 +281,8 @@ export type MediaCreateInput = {
   sectionName: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type MediaUncheckedCreateInput = {
@@ -267,6 +293,8 @@ export type MediaUncheckedCreateInput = {
   sectionName: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type MediaUpdateInput = {
@@ -277,6 +305,8 @@ export type MediaUpdateInput = {
   sectionName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MediaUncheckedUpdateInput = {
@@ -287,6 +317,8 @@ export type MediaUncheckedUpdateInput = {
   sectionName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MediaCreateManyInput = {
@@ -297,6 +329,8 @@ export type MediaCreateManyInput = {
   sectionName: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type MediaUpdateManyMutationInput = {
@@ -307,6 +341,8 @@ export type MediaUpdateManyMutationInput = {
   sectionName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MediaUncheckedUpdateManyInput = {
@@ -317,6 +353,8 @@ export type MediaUncheckedUpdateManyInput = {
   sectionName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MediaCountOrderByAggregateInput = {
@@ -327,6 +365,8 @@ export type MediaCountOrderByAggregateInput = {
   sectionName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type MediaMaxOrderByAggregateInput = {
@@ -337,6 +377,8 @@ export type MediaMaxOrderByAggregateInput = {
   sectionName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type MediaMinOrderByAggregateInput = {
@@ -347,6 +389,8 @@ export type MediaMinOrderByAggregateInput = {
   sectionName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 
@@ -359,6 +403,8 @@ export type MediaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sectionName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["media"]>
 
 export type MediaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -369,6 +415,8 @@ export type MediaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   sectionName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["media"]>
 
 export type MediaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -379,6 +427,8 @@ export type MediaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   sectionName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["media"]>
 
 export type MediaSelectScalar = {
@@ -389,9 +439,11 @@ export type MediaSelectScalar = {
   sectionName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type MediaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "url" | "description" | "sectionName" | "createdAt" | "updatedAt", ExtArgs["result"]["media"]>
+export type MediaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "url" | "description" | "sectionName" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["media"]>
 
 export type $MediaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Media"
@@ -404,6 +456,8 @@ export type $MediaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     sectionName: string
     createdAt: Date
     updatedAt: Date
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["media"]>
   composites: {}
 }
@@ -834,6 +888,8 @@ export interface MediaFieldRefs {
   readonly sectionName: Prisma.FieldRef<"Media", 'String'>
   readonly createdAt: Prisma.FieldRef<"Media", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Media", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Media", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Media", 'DateTime'>
 }
     
 
