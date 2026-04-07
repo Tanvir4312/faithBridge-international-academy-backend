@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import nodemailer from "nodemailer";
 import { envVars } from "../config/env";
 import { SendEmailOption } from "../interfaces/sendEmail.interface";
 import path from "path";
 import ejs from "ejs";
+import AppError from "../errorHelpers/AppError";
+import status from "http-status";
 const transporter = nodemailer.createTransport({
   host: envVars.EMAIL_SENDER.SMTP_HOST,
   secure: true,
@@ -26,7 +29,7 @@ export const sendEmail = async ({
       `src/app/templates/${templateName}.ejs`,
     );
     const html = await ejs.renderFile(templatePath, templateData);
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: envVars.EMAIL_SENDER.SMTP_FROM,
       to: to,
       subject: subject,
@@ -37,7 +40,9 @@ export const sendEmail = async ({
         contentType: attachment.contentType,
       })),
     });
-  } catch (e) {
-    console.log(e);
+    console.log(`Email sent to ${to} : ${info.messageId}`);
+  } catch (error: any) {
+    console.log("Email Sending Error", error.message);
+    throw new AppError(status.INTERNAL_SERVER_ERROR, "Failed to send email");
   }
 };
