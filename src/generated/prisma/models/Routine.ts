@@ -31,6 +31,10 @@ export type RoutineMinAggregateOutputType = {
   teacherId: string | null
   subjectId: string | null
   timeSlotId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type RoutineMaxAggregateOutputType = {
@@ -40,6 +44,10 @@ export type RoutineMaxAggregateOutputType = {
   teacherId: string | null
   subjectId: string | null
   timeSlotId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type RoutineCountAggregateOutputType = {
@@ -49,6 +57,10 @@ export type RoutineCountAggregateOutputType = {
   teacherId: number
   subjectId: number
   timeSlotId: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -60,6 +72,10 @@ export type RoutineMinAggregateInputType = {
   teacherId?: true
   subjectId?: true
   timeSlotId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type RoutineMaxAggregateInputType = {
@@ -69,6 +85,10 @@ export type RoutineMaxAggregateInputType = {
   teacherId?: true
   subjectId?: true
   timeSlotId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type RoutineCountAggregateInputType = {
@@ -78,6 +98,10 @@ export type RoutineCountAggregateInputType = {
   teacherId?: true
   subjectId?: true
   timeSlotId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -160,6 +184,10 @@ export type RoutineGroupByOutputType = {
   teacherId: string
   subjectId: string
   timeSlotId: string
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: RoutineCountAggregateOutputType | null
   _min: RoutineMinAggregateOutputType | null
   _max: RoutineMaxAggregateOutputType | null
@@ -190,6 +218,10 @@ export type RoutineWhereInput = {
   teacherId?: Prisma.StringFilter<"Routine"> | string
   subjectId?: Prisma.StringFilter<"Routine"> | string
   timeSlotId?: Prisma.StringFilter<"Routine"> | string
+  createdAt?: Prisma.DateTimeFilter<"Routine"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Routine"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
   teacher?: Prisma.XOR<Prisma.TeacherScalarRelationFilter, Prisma.TeacherWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
@@ -203,6 +235,10 @@ export type RoutineOrderByWithRelationInput = {
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   timeSlotId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   class?: Prisma.ClassOrderByWithRelationInput
   teacher?: Prisma.TeacherOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
@@ -221,6 +257,10 @@ export type RoutineWhereUniqueInput = Prisma.AtLeast<{
   teacherId?: Prisma.StringFilter<"Routine"> | string
   subjectId?: Prisma.StringFilter<"Routine"> | string
   timeSlotId?: Prisma.StringFilter<"Routine"> | string
+  createdAt?: Prisma.DateTimeFilter<"Routine"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Routine"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
   teacher?: Prisma.XOR<Prisma.TeacherScalarRelationFilter, Prisma.TeacherWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
@@ -234,6 +274,10 @@ export type RoutineOrderByWithAggregationInput = {
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   timeSlotId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RoutineCountOrderByAggregateInput
   _max?: Prisma.RoutineMaxOrderByAggregateInput
   _min?: Prisma.RoutineMinOrderByAggregateInput
@@ -249,11 +293,19 @@ export type RoutineScalarWhereWithAggregatesInput = {
   teacherId?: Prisma.StringWithAggregatesFilter<"Routine"> | string
   subjectId?: Prisma.StringWithAggregatesFilter<"Routine"> | string
   timeSlotId?: Prisma.StringWithAggregatesFilter<"Routine"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Routine"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Routine"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Routine"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Routine"> | Date | string | null
 }
 
 export type RoutineCreateInput = {
   id?: string
   day: $Enums.Day
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutRoutinesInput
   teacher: Prisma.TeacherCreateNestedOneWithoutRoutinesInput
   subject: Prisma.SubjectCreateNestedOneWithoutRoutinesInput
@@ -267,11 +319,19 @@ export type RoutineUncheckedCreateInput = {
   teacherId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutRoutinesNestedInput
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutRoutinesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRoutinesNestedInput
@@ -285,6 +345,10 @@ export type RoutineUncheckedUpdateInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineCreateManyInput = {
@@ -294,11 +358,19 @@ export type RoutineCreateManyInput = {
   teacherId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineUncheckedUpdateManyInput = {
@@ -308,6 +380,10 @@ export type RoutineUncheckedUpdateManyInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineListRelationFilter = {
@@ -339,6 +415,10 @@ export type RoutineCountOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   timeSlotId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type RoutineMaxOrderByAggregateInput = {
@@ -348,6 +428,10 @@ export type RoutineMaxOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   timeSlotId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type RoutineMinOrderByAggregateInput = {
@@ -357,6 +441,10 @@ export type RoutineMinOrderByAggregateInput = {
   teacherId?: Prisma.SortOrder
   subjectId?: Prisma.SortOrder
   timeSlotId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type RoutineCreateNestedManyWithoutClassInput = {
@@ -534,6 +622,10 @@ export type RoutineUncheckedUpdateManyWithoutTimeSlotNestedInput = {
 export type RoutineCreateWithoutClassInput = {
   id?: string
   day: $Enums.Day
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   teacher: Prisma.TeacherCreateNestedOneWithoutRoutinesInput
   subject: Prisma.SubjectCreateNestedOneWithoutRoutinesInput
   timeSlot: Prisma.TimeSlotCreateNestedOneWithoutRoutinesInput
@@ -545,6 +637,10 @@ export type RoutineUncheckedCreateWithoutClassInput = {
   teacherId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineCreateOrConnectWithoutClassInput = {
@@ -583,11 +679,19 @@ export type RoutineScalarWhereInput = {
   teacherId?: Prisma.StringFilter<"Routine"> | string
   subjectId?: Prisma.StringFilter<"Routine"> | string
   timeSlotId?: Prisma.StringFilter<"Routine"> | string
+  createdAt?: Prisma.DateTimeFilter<"Routine"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Routine"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Routine"> | Date | string | null
 }
 
 export type RoutineCreateWithoutSubjectInput = {
   id?: string
   day: $Enums.Day
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutRoutinesInput
   teacher: Prisma.TeacherCreateNestedOneWithoutRoutinesInput
   timeSlot: Prisma.TimeSlotCreateNestedOneWithoutRoutinesInput
@@ -599,6 +703,10 @@ export type RoutineUncheckedCreateWithoutSubjectInput = {
   classId: string
   teacherId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineCreateOrConnectWithoutSubjectInput = {
@@ -630,6 +738,10 @@ export type RoutineUpdateManyWithWhereWithoutSubjectInput = {
 export type RoutineCreateWithoutTeacherInput = {
   id?: string
   day: $Enums.Day
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutRoutinesInput
   subject: Prisma.SubjectCreateNestedOneWithoutRoutinesInput
   timeSlot: Prisma.TimeSlotCreateNestedOneWithoutRoutinesInput
@@ -641,6 +753,10 @@ export type RoutineUncheckedCreateWithoutTeacherInput = {
   classId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineCreateOrConnectWithoutTeacherInput = {
@@ -672,6 +788,10 @@ export type RoutineUpdateManyWithWhereWithoutTeacherInput = {
 export type RoutineCreateWithoutTimeSlotInput = {
   id?: string
   day: $Enums.Day
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutRoutinesInput
   teacher: Prisma.TeacherCreateNestedOneWithoutRoutinesInput
   subject: Prisma.SubjectCreateNestedOneWithoutRoutinesInput
@@ -683,6 +803,10 @@ export type RoutineUncheckedCreateWithoutTimeSlotInput = {
   classId: string
   teacherId: string
   subjectId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineCreateOrConnectWithoutTimeSlotInput = {
@@ -717,11 +841,19 @@ export type RoutineCreateManyClassInput = {
   teacherId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutRoutinesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRoutinesNestedInput
   timeSlot?: Prisma.TimeSlotUpdateOneRequiredWithoutRoutinesNestedInput
@@ -733,6 +865,10 @@ export type RoutineUncheckedUpdateWithoutClassInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineUncheckedUpdateManyWithoutClassInput = {
@@ -741,6 +877,10 @@ export type RoutineUncheckedUpdateManyWithoutClassInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineCreateManySubjectInput = {
@@ -749,11 +889,19 @@ export type RoutineCreateManySubjectInput = {
   classId: string
   teacherId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutRoutinesNestedInput
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutRoutinesNestedInput
   timeSlot?: Prisma.TimeSlotUpdateOneRequiredWithoutRoutinesNestedInput
@@ -765,6 +913,10 @@ export type RoutineUncheckedUpdateWithoutSubjectInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineUncheckedUpdateManyWithoutSubjectInput = {
@@ -773,6 +925,10 @@ export type RoutineUncheckedUpdateManyWithoutSubjectInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineCreateManyTeacherInput = {
@@ -781,11 +937,19 @@ export type RoutineCreateManyTeacherInput = {
   classId: string
   subjectId: string
   timeSlotId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateWithoutTeacherInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutRoutinesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRoutinesNestedInput
   timeSlot?: Prisma.TimeSlotUpdateOneRequiredWithoutRoutinesNestedInput
@@ -797,6 +961,10 @@ export type RoutineUncheckedUpdateWithoutTeacherInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineUncheckedUpdateManyWithoutTeacherInput = {
@@ -805,6 +973,10 @@ export type RoutineUncheckedUpdateManyWithoutTeacherInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   timeSlotId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineCreateManyTimeSlotInput = {
@@ -813,11 +985,19 @@ export type RoutineCreateManyTimeSlotInput = {
   classId: string
   teacherId: string
   subjectId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type RoutineUpdateWithoutTimeSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   day?: Prisma.EnumDayFieldUpdateOperationsInput | $Enums.Day
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutRoutinesNestedInput
   teacher?: Prisma.TeacherUpdateOneRequiredWithoutRoutinesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutRoutinesNestedInput
@@ -829,6 +1009,10 @@ export type RoutineUncheckedUpdateWithoutTimeSlotInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RoutineUncheckedUpdateManyWithoutTimeSlotInput = {
@@ -837,6 +1021,10 @@ export type RoutineUncheckedUpdateManyWithoutTimeSlotInput = {
   classId?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -848,6 +1036,10 @@ export type RoutineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   teacherId?: boolean
   subjectId?: boolean
   timeSlotId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -861,6 +1053,10 @@ export type RoutineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   teacherId?: boolean
   subjectId?: boolean
   timeSlotId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -874,6 +1070,10 @@ export type RoutineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   teacherId?: boolean
   subjectId?: boolean
   timeSlotId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -887,9 +1087,13 @@ export type RoutineSelectScalar = {
   teacherId?: boolean
   subjectId?: boolean
   timeSlotId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type RoutineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "day" | "classId" | "teacherId" | "subjectId" | "timeSlotId", ExtArgs["result"]["routine"]>
+export type RoutineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "day" | "classId" | "teacherId" | "subjectId" | "timeSlotId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["routine"]>
 export type RoutineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   teacher?: boolean | Prisma.TeacherDefaultArgs<ExtArgs>
@@ -924,6 +1128,10 @@ export type $RoutinePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     teacherId: string
     subjectId: string
     timeSlotId: string
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["routine"]>
   composites: {}
 }
@@ -1357,6 +1565,10 @@ export interface RoutineFieldRefs {
   readonly teacherId: Prisma.FieldRef<"Routine", 'String'>
   readonly subjectId: Prisma.FieldRef<"Routine", 'String'>
   readonly timeSlotId: Prisma.FieldRef<"Routine", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Routine", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Routine", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Routine", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Routine", 'DateTime'>
 }
     
 

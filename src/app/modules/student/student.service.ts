@@ -3,9 +3,69 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
 import { IUpdateStudentPayload } from "./student.interface";
+import { StudentWhereInput } from "../../../generated/prisma/models";
 
-const getAllStudent = async () => {
+const getAllStudent = async (search: string) => {
+  const andCondition: StudentWhereInput[] = [];
+  if (search) {
+    andCondition.push({
+      OR: [
+        {
+          user: {
+            name: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          user: {
+            email: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          registrationId: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          class: {
+            name: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          nameBn: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          nameEn: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          birthCertificateNo: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+      ],
+    });
+  }
   const result = await prisma.student.findMany({
+    where:
+      andCondition.length > 0
+        ? { AND: [...andCondition] }
+        : { isDeleted: false },
     include: {
       user: true,
       class: {
@@ -21,6 +81,7 @@ const getAllStudent = async () => {
       },
     },
   });
+
   return result;
 };
 
@@ -151,7 +212,7 @@ const studentUpdate = async (
   payload: IUpdateStudentPayload,
   user: IRequestUser,
 ) => {
-  console.log(id)
+  console.log(id);
   const isStudentExist = await prisma.student.findUnique({
     where: {
       id,
@@ -172,7 +233,7 @@ const studentUpdate = async (
   }
 
   return await prisma.$transaction(async (tx) => {
-  const result =  await tx.student.update({
+    const result = await tx.student.update({
       where: {
         id,
       },
@@ -186,7 +247,7 @@ const studentUpdate = async (
       },
       data: {
         name: payload.nameEn,
-        image : payload.profileImage
+        image: payload.profileImage,
       },
     });
     return result;

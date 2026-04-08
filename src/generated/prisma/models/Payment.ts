@@ -46,6 +46,10 @@ export type PaymentMinAggregateOutputType = {
   stripeEventId: string | null
   paidAt: Date | null
   invoiceUrl: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   applicationId: string | null
   formFillupId: string | null
   documentRequestId: string | null
@@ -63,6 +67,10 @@ export type PaymentMaxAggregateOutputType = {
   stripeEventId: string | null
   paidAt: Date | null
   invoiceUrl: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   applicationId: string | null
   formFillupId: string | null
   documentRequestId: string | null
@@ -81,6 +89,10 @@ export type PaymentCountAggregateOutputType = {
   paidAt: number
   invoiceUrl: number
   paymentGatewayData: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   applicationId: number
   formFillupId: number
   documentRequestId: number
@@ -108,6 +120,10 @@ export type PaymentMinAggregateInputType = {
   stripeEventId?: true
   paidAt?: true
   invoiceUrl?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   applicationId?: true
   formFillupId?: true
   documentRequestId?: true
@@ -125,6 +141,10 @@ export type PaymentMaxAggregateInputType = {
   stripeEventId?: true
   paidAt?: true
   invoiceUrl?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   applicationId?: true
   formFillupId?: true
   documentRequestId?: true
@@ -143,6 +163,10 @@ export type PaymentCountAggregateInputType = {
   paidAt?: true
   invoiceUrl?: true
   paymentGatewayData?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   applicationId?: true
   formFillupId?: true
   documentRequestId?: true
@@ -248,6 +272,10 @@ export type PaymentGroupByOutputType = {
   paidAt: Date | null
   invoiceUrl: string | null
   paymentGatewayData: runtime.JsonValue | null
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   applicationId: string | null
   formFillupId: string | null
   documentRequestId: string | null
@@ -289,6 +317,10 @@ export type PaymentWhereInput = {
   paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   invoiceUrl?: Prisma.StringNullableFilter<"Payment"> | string | null
   paymentGatewayData?: Prisma.JsonNullableFilter<"Payment">
+  createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Payment"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   applicationId?: Prisma.StringNullableFilter<"Payment"> | string | null
   formFillupId?: Prisma.StringNullableFilter<"Payment"> | string | null
   documentRequestId?: Prisma.StringNullableFilter<"Payment"> | string | null
@@ -311,6 +343,10 @@ export type PaymentOrderByWithRelationInput = {
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   invoiceUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentGatewayData?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   applicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   formFillupId?: Prisma.SortOrderInput | Prisma.SortOrder
   documentRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -339,6 +375,10 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   invoiceUrl?: Prisma.StringNullableFilter<"Payment"> | string | null
   paymentGatewayData?: Prisma.JsonNullableFilter<"Payment">
+  createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Payment"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
   application?: Prisma.XOR<Prisma.ApplicationNullableScalarRelationFilter, Prisma.ApplicationWhereInput> | null
   formFillup?: Prisma.XOR<Prisma.FormFillupNullableScalarRelationFilter, Prisma.FormFillupWhereInput> | null
@@ -358,6 +398,10 @@ export type PaymentOrderByWithAggregationInput = {
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   invoiceUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentGatewayData?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   applicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   formFillupId?: Prisma.SortOrderInput | Prisma.SortOrder
   documentRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -384,6 +428,10 @@ export type PaymentScalarWhereWithAggregatesInput = {
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
   invoiceUrl?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   paymentGatewayData?: Prisma.JsonNullableWithAggregatesFilter<"Payment">
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Payment"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Payment"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
   applicationId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   formFillupId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   documentRequestId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
@@ -401,6 +449,10 @@ export type PaymentCreateInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   documentRequestId?: string | null
   student?: Prisma.StudentCreateNestedOneWithoutPaymentsInput
   application?: Prisma.ApplicationCreateNestedOneWithoutPaymentInput
@@ -421,6 +473,10 @@ export type PaymentUncheckedCreateInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   formFillupId?: string | null
   documentRequestId?: string | null
@@ -439,6 +495,10 @@ export type PaymentUpdateInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneWithoutPaymentsNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutPaymentNestedInput
@@ -459,6 +519,10 @@ export type PaymentUncheckedUpdateInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -478,6 +542,10 @@ export type PaymentCreateManyInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   formFillupId?: string | null
   documentRequestId?: string | null
@@ -495,6 +563,10 @@ export type PaymentUpdateManyMutationInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -511,6 +583,10 @@ export type PaymentUncheckedUpdateManyInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -534,6 +610,10 @@ export type PaymentCountOrderByAggregateInput = {
   paidAt?: Prisma.SortOrder
   invoiceUrl?: Prisma.SortOrder
   paymentGatewayData?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   applicationId?: Prisma.SortOrder
   formFillupId?: Prisma.SortOrder
   documentRequestId?: Prisma.SortOrder
@@ -555,6 +635,10 @@ export type PaymentMaxOrderByAggregateInput = {
   stripeEventId?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   invoiceUrl?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   applicationId?: Prisma.SortOrder
   formFillupId?: Prisma.SortOrder
   documentRequestId?: Prisma.SortOrder
@@ -572,6 +656,10 @@ export type PaymentMinOrderByAggregateInput = {
   stripeEventId?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   invoiceUrl?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   applicationId?: Prisma.SortOrder
   formFillupId?: Prisma.SortOrder
   documentRequestId?: Prisma.SortOrder
@@ -725,6 +813,10 @@ export type PaymentCreateWithoutApplicationInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   documentRequestId?: string | null
   student?: Prisma.StudentCreateNestedOneWithoutPaymentsInput
   formFillup?: Prisma.FormFillupCreateNestedOneWithoutPaymentInput
@@ -744,6 +836,10 @@ export type PaymentUncheckedCreateWithoutApplicationInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   formFillupId?: string | null
   documentRequestId?: string | null
   documentRequest?: Prisma.DocumentRequestUncheckedCreateNestedOneWithoutPaymentInput
@@ -777,6 +873,10 @@ export type PaymentUpdateWithoutApplicationInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneWithoutPaymentsNestedInput
   formFillup?: Prisma.FormFillupUpdateOneWithoutPaymentNestedInput
@@ -796,6 +896,10 @@ export type PaymentUncheckedUpdateWithoutApplicationInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequest?: Prisma.DocumentRequestUncheckedUpdateOneWithoutPaymentNestedInput
@@ -813,6 +917,10 @@ export type PaymentCreateWithoutDocumentRequestInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   documentRequestId?: string | null
   student?: Prisma.StudentCreateNestedOneWithoutPaymentsInput
   application?: Prisma.ApplicationCreateNestedOneWithoutPaymentInput
@@ -832,6 +940,10 @@ export type PaymentUncheckedCreateWithoutDocumentRequestInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   formFillupId?: string | null
   documentRequestId?: string | null
@@ -865,6 +977,10 @@ export type PaymentUpdateWithoutDocumentRequestInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneWithoutPaymentsNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutPaymentNestedInput
@@ -884,6 +1000,10 @@ export type PaymentUncheckedUpdateWithoutDocumentRequestInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -901,6 +1021,10 @@ export type PaymentCreateWithoutFormFillupInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   documentRequestId?: string | null
   student?: Prisma.StudentCreateNestedOneWithoutPaymentsInput
   application?: Prisma.ApplicationCreateNestedOneWithoutPaymentInput
@@ -920,6 +1044,10 @@ export type PaymentUncheckedCreateWithoutFormFillupInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   documentRequestId?: string | null
   documentRequest?: Prisma.DocumentRequestUncheckedCreateNestedOneWithoutPaymentInput
@@ -953,6 +1081,10 @@ export type PaymentUpdateWithoutFormFillupInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentUpdateOneWithoutPaymentsNestedInput
   application?: Prisma.ApplicationUpdateOneWithoutPaymentNestedInput
@@ -972,6 +1104,10 @@ export type PaymentUncheckedUpdateWithoutFormFillupInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequest?: Prisma.DocumentRequestUncheckedUpdateOneWithoutPaymentNestedInput
@@ -989,6 +1125,10 @@ export type PaymentCreateWithoutStudentInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   documentRequestId?: string | null
   application?: Prisma.ApplicationCreateNestedOneWithoutPaymentInput
   formFillup?: Prisma.FormFillupCreateNestedOneWithoutPaymentInput
@@ -1007,6 +1147,10 @@ export type PaymentUncheckedCreateWithoutStudentInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   formFillupId?: string | null
   documentRequestId?: string | null
@@ -1055,6 +1199,10 @@ export type PaymentScalarWhereInput = {
   paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   invoiceUrl?: Prisma.StringNullableFilter<"Payment"> | string | null
   paymentGatewayData?: Prisma.JsonNullableFilter<"Payment">
+  createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Payment"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   applicationId?: Prisma.StringNullableFilter<"Payment"> | string | null
   formFillupId?: Prisma.StringNullableFilter<"Payment"> | string | null
   documentRequestId?: Prisma.StringNullableFilter<"Payment"> | string | null
@@ -1072,6 +1220,10 @@ export type PaymentCreateManyStudentInput = {
   paidAt?: Date | string | null
   invoiceUrl?: string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   applicationId?: string | null
   formFillupId?: string | null
   documentRequestId?: string | null
@@ -1089,6 +1241,10 @@ export type PaymentUpdateWithoutStudentInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application?: Prisma.ApplicationUpdateOneWithoutPaymentNestedInput
   formFillup?: Prisma.FormFillupUpdateOneWithoutPaymentNestedInput
@@ -1107,6 +1263,10 @@ export type PaymentUncheckedUpdateWithoutStudentInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1125,6 +1285,10 @@ export type PaymentUncheckedUpdateManyWithoutStudentInput = {
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoiceUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   formFillupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   documentRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1145,6 +1309,10 @@ export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   paidAt?: boolean
   invoiceUrl?: boolean
   paymentGatewayData?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   applicationId?: boolean
   formFillupId?: boolean
   documentRequestId?: boolean
@@ -1167,6 +1335,10 @@ export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   paidAt?: boolean
   invoiceUrl?: boolean
   paymentGatewayData?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   applicationId?: boolean
   formFillupId?: boolean
   documentRequestId?: boolean
@@ -1188,6 +1360,10 @@ export type PaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   paidAt?: boolean
   invoiceUrl?: boolean
   paymentGatewayData?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   applicationId?: boolean
   formFillupId?: boolean
   documentRequestId?: boolean
@@ -1209,12 +1385,16 @@ export type PaymentSelectScalar = {
   paidAt?: boolean
   invoiceUrl?: boolean
   paymentGatewayData?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   applicationId?: boolean
   formFillupId?: boolean
   documentRequestId?: boolean
 }
 
-export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "amount" | "currency" | "paymentFor" | "studentId" | "status" | "method" | "transactionId" | "stripeEventId" | "paidAt" | "invoiceUrl" | "paymentGatewayData" | "applicationId" | "formFillupId" | "documentRequestId", ExtArgs["result"]["payment"]>
+export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "amount" | "currency" | "paymentFor" | "studentId" | "status" | "method" | "transactionId" | "stripeEventId" | "paidAt" | "invoiceUrl" | "paymentGatewayData" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "applicationId" | "formFillupId" | "documentRequestId", ExtArgs["result"]["payment"]>
 export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.Payment$studentArgs<ExtArgs>
   application?: boolean | Prisma.Payment$applicationArgs<ExtArgs>
@@ -1253,6 +1433,10 @@ export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     paidAt: Date | null
     invoiceUrl: string | null
     paymentGatewayData: runtime.JsonValue | null
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
     applicationId: string | null
     formFillupId: string | null
     documentRequestId: string | null
@@ -1695,6 +1879,10 @@ export interface PaymentFieldRefs {
   readonly paidAt: Prisma.FieldRef<"Payment", 'DateTime'>
   readonly invoiceUrl: Prisma.FieldRef<"Payment", 'String'>
   readonly paymentGatewayData: Prisma.FieldRef<"Payment", 'Json'>
+  readonly createdAt: Prisma.FieldRef<"Payment", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Payment", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Payment", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Payment", 'DateTime'>
   readonly applicationId: Prisma.FieldRef<"Payment", 'String'>
   readonly formFillupId: Prisma.FieldRef<"Payment", 'String'>
   readonly documentRequestId: Prisma.FieldRef<"Payment", 'String'>

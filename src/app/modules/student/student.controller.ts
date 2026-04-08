@@ -4,8 +4,10 @@ import { sendResponse } from "../../shared/sendResponse";
 import { StudentService } from "./student.service";
 import { Request, Response } from "express";
 
+
 const getAllStudent = catchAsync(async (req: Request, res: Response) => {
-  const result = await StudentService.getAllStudent();
+  const query = req.query.search;
+  const result = await StudentService.getAllStudent(query as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Student fetched successfully",

@@ -2246,7 +2246,11 @@ export const AcademicLevelScalarFieldEnum = {
   id: 'id',
   name: 'name',
   image: 'image',
-  description: 'description'
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type AcademicLevelScalarFieldEnum = (typeof AcademicLevelScalarFieldEnum)[keyof typeof AcademicLevelScalarFieldEnum]
@@ -2370,6 +2374,10 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   AcademicLevelId: 'AcademicLevelId'
 } as const
 
@@ -2379,7 +2387,11 @@ export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof Cl
 export const ClassSubjectScalarFieldEnum = {
   id: 'id',
   classId: 'classId',
-  subjectId: 'subjectId'
+  subjectId: 'subjectId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ClassSubjectScalarFieldEnum = (typeof ClassSubjectScalarFieldEnum)[keyof typeof ClassSubjectScalarFieldEnum]
@@ -2391,6 +2403,10 @@ export const DocumentRequestScalarFieldEnum = {
   type: 'type',
   status: 'status',
   applyDate: 'applyDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   paymentId: 'paymentId'
 } as const
 
@@ -2402,7 +2418,11 @@ export const ExamScalarFieldEnum = {
   name: 'name',
   year: 'year',
   formFillupStart: 'formFillupStart',
-  formFillupEnd: 'formFillupEnd'
+  formFillupEnd: 'formFillupEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
@@ -2417,7 +2437,11 @@ export const FormFillupScalarFieldEnum = {
   classRoll: 'classRoll',
   status: 'status',
   paymentStatus: 'paymentStatus',
-  admitCard: 'admitCard'
+  admitCard: 'admitCard',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type FormFillupScalarFieldEnum = (typeof FormFillupScalarFieldEnum)[keyof typeof FormFillupScalarFieldEnum]
@@ -2443,7 +2467,10 @@ export const NoticeScalarFieldEnum = {
   title: 'title',
   type: 'type',
   authorId: 'authorId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
@@ -2452,7 +2479,11 @@ export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof 
 export const NoticeClassScalarFieldEnum = {
   id: 'id',
   noticeId: 'noticeId',
-  classId: 'classId'
+  classId: 'classId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type NoticeClassScalarFieldEnum = (typeof NoticeClassScalarFieldEnum)[keyof typeof NoticeClassScalarFieldEnum]
@@ -2471,6 +2502,10 @@ export const PaymentScalarFieldEnum = {
   paidAt: 'paidAt',
   invoiceUrl: 'invoiceUrl',
   paymentGatewayData: 'paymentGatewayData',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   applicationId: 'applicationId',
   formFillupId: 'formFillupId',
   documentRequestId: 'documentRequestId'
@@ -2485,7 +2520,11 @@ export const ResultScalarFieldEnum = {
   subjectId: 'subjectId',
   examId: 'examId',
   marks: 'marks',
-  grade: 'grade'
+  grade: 'grade',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ResultScalarFieldEnum = (typeof ResultScalarFieldEnum)[keyof typeof ResultScalarFieldEnum]
@@ -2497,7 +2536,11 @@ export const RoutineScalarFieldEnum = {
   classId: 'classId',
   teacherId: 'teacherId',
   subjectId: 'subjectId',
-  timeSlotId: 'timeSlotId'
+  timeSlotId: 'timeSlotId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type RoutineScalarFieldEnum = (typeof RoutineScalarFieldEnum)[keyof typeof RoutineScalarFieldEnum]
@@ -2538,6 +2581,8 @@ export const StudentClassHistoryScalarFieldEnum = {
   studentId: 'studentId',
   classId: 'classId',
   year: 'year',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt'
 } as const
@@ -2594,7 +2639,11 @@ export type TeacherSubjectScalarFieldEnum = (typeof TeacherSubjectScalarFieldEnu
 export const TimeSlotScalarFieldEnum = {
   id: 'id',
   startTime: 'startTime',
-  endTime: 'endTime'
+  endTime: 'endTime',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
 } as const
 
 export type TimeSlotScalarFieldEnum = (typeof TimeSlotScalarFieldEnum)[keyof typeof TimeSlotScalarFieldEnum]
@@ -2662,13 +2711,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2679,6 +2721,13 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

@@ -12,6 +12,7 @@ import { envVars } from "../../config/env";
 import { generateAdmitCardPDF } from "./fromFillup.utils";
 import { uploadFileToCloudinary } from "../../config/cloudinary.config";
 import { sendEmail } from "../../utils/email";
+
 const createFromFillup = async (payload: ICreateFromFillupPayload) => {
   const alreadyFromFillup = await prisma.formFillup.findUnique({
     where: {
@@ -107,7 +108,6 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
 
       success_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-success`,
 
-    
       cancel_url: `${envVars.FRONTEND_URL}/dashboard/from-fillup`,
     });
 
@@ -128,6 +128,8 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
 
 const getAllFromFillup = async () => {
   const result = await prisma.formFillup.findMany();
+
+ 
   return result;
 };
 

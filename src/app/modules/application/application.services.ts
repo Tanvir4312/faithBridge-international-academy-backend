@@ -8,8 +8,9 @@ import { v7 as uuidv7 } from "uuid";
 import { stripe } from "../../config/stripe.config";
 import { envVars } from "../../config/env";
 import { Role } from "../../../generated/prisma/enums";
-import { generateRegistrationId } from "./application.constant";
+
 import { sendEmail } from "../../utils/email";
+import { generateRegistrationId } from "./application.generateRegistrationId";
 
 const createApplication = async (
   payload: ICreateApplicationPayload,
@@ -272,9 +273,8 @@ const applicationUpdateByAdmin = async (id: string) => {
           name: isApplicationExist.desiredClass,
           AcademicLevelId: academic_level.id,
         },
-      })
+      });
 
-   
       const lastStudent = await tx.student.findFirst({
         where: {
           classId: classData.id,

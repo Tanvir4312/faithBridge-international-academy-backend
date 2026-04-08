@@ -4,6 +4,7 @@ import { FromFillupService } from "./fromFillup.service";
 import { sendResponse } from "../../shared/sendResponse";
 import status from "http-status";
 
+
 const createFromFillup = catchAsync(async (req: Request, res: Response) => {
     const result = await FromFillupService.createFromFillup(req.body);
     sendResponse(res, {
@@ -15,6 +16,7 @@ const createFromFillup = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllFromFillup = catchAsync(async (req: Request, res: Response) => {
+
     const result = await FromFillupService.getAllFromFillup();
     sendResponse(res, {
         httpStatusCode: status.OK,

@@ -3,6 +3,8 @@ model StudentClassHistory {
   studentId String
   classId   String
   year      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
   isDeleted Boolean   @default(false)
   deletedAt DateTime?
 

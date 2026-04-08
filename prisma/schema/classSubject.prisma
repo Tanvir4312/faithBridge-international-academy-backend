@@ -1,9 +1,13 @@
 model ClassSubject {
-  id        String  @id @default(uuid())
+  id        String    @id @default(uuid())
   classId   String
   subjectId String
-  class     Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
-  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+  class     Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
+  subject   Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 
   @@unique([classId, subjectId])
   @@index([classId])

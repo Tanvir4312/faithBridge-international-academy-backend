@@ -8,6 +8,10 @@ model FormFillup {
   status         FromFillupStatus @default(PENDING)
   paymentStatus  PaymentStatus    @default(UNPAID)
   admitCard      String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime?     @updatedAt
+  isDeleted       Boolean       @default(false)
+  deletedAt       DateTime?
 
   payment Payment?
   student Student  @relation(fields: [studentId], references: [id])

@@ -506,7 +506,7 @@ export type StudentCreateInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateInput = {
@@ -538,7 +538,7 @@ export type StudentUncheckedCreateInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUpdateInput = {
@@ -570,7 +570,7 @@ export type StudentUpdateInput = {
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
@@ -602,7 +602,7 @@ export type StudentUncheckedUpdateInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateManyInput = {
@@ -990,7 +990,7 @@ export type StudentCreateWithoutApplicationInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutApplicationInput = {
@@ -1021,7 +1021,7 @@ export type StudentUncheckedCreateWithoutApplicationInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutApplicationInput = {
@@ -1068,7 +1068,7 @@ export type StudentUpdateWithoutApplicationInput = {
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutApplicationInput = {
@@ -1099,7 +1099,7 @@ export type StudentUncheckedUpdateWithoutApplicationInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateWithoutUserInput = {
@@ -1130,7 +1130,7 @@ export type StudentCreateWithoutUserInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutUserInput = {
@@ -1161,7 +1161,7 @@ export type StudentUncheckedCreateWithoutUserInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutUserInput = {
@@ -1208,7 +1208,7 @@ export type StudentUpdateWithoutUserInput = {
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutUserInput = {
@@ -1239,7 +1239,7 @@ export type StudentUncheckedUpdateWithoutUserInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateWithoutClassInput = {
@@ -1270,7 +1270,7 @@ export type StudentCreateWithoutClassInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutClassInput = {
@@ -1301,7 +1301,7 @@ export type StudentUncheckedCreateWithoutClassInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutClassInput = {
@@ -1528,7 +1528,7 @@ export type StudentCreateWithoutFormFillupsInput = {
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutFormFillupsInput = {
@@ -1559,7 +1559,7 @@ export type StudentUncheckedCreateWithoutFormFillupsInput = {
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutFormFillupsInput = {
@@ -1606,7 +1606,7 @@ export type StudentUpdateWithoutFormFillupsInput = {
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutFormFillupsInput = {
@@ -1637,7 +1637,7 @@ export type StudentUncheckedUpdateWithoutFormFillupsInput = {
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateWithoutPaymentsInput = {
@@ -1668,7 +1668,7 @@ export type StudentCreateWithoutPaymentsInput = {
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutPaymentsInput = {
@@ -1699,7 +1699,7 @@ export type StudentUncheckedCreateWithoutPaymentsInput = {
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutPaymentsInput = {
@@ -1746,7 +1746,7 @@ export type StudentUpdateWithoutPaymentsInput = {
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutPaymentsInput = {
@@ -1777,7 +1777,7 @@ export type StudentUncheckedUpdateWithoutPaymentsInput = {
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateWithoutResultsInput = {
@@ -1808,7 +1808,7 @@ export type StudentCreateWithoutResultsInput = {
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutResultsInput = {
@@ -1839,7 +1839,7 @@ export type StudentUncheckedCreateWithoutResultsInput = {
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
   classHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutResultsInput = {
@@ -1886,7 +1886,7 @@ export type StudentUpdateWithoutResultsInput = {
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutResultsInput = {
@@ -1917,7 +1917,7 @@ export type StudentUncheckedUpdateWithoutResultsInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateWithoutClassHistoriesInput = {
@@ -1948,7 +1948,7 @@ export type StudentCreateWithoutClassHistoriesInput = {
   results?: Prisma.ResultCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutClassHistoriesInput = {
@@ -1979,7 +1979,7 @@ export type StudentUncheckedCreateWithoutClassHistoriesInput = {
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutStudentInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStudentInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutStudentInput
-  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentInput
+  documentRequests?: Prisma.DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutClassHistoriesInput = {
@@ -2026,7 +2026,7 @@ export type StudentUpdateWithoutClassHistoriesInput = {
   results?: Prisma.ResultUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutClassHistoriesInput = {
@@ -2057,7 +2057,7 @@ export type StudentUncheckedUpdateWithoutClassHistoriesInput = {
   results?: Prisma.ResultUncheckedUpdateManyWithoutStudentNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateManyClassInput = {
@@ -2114,7 +2114,7 @@ export type StudentUpdateWithoutClassInput = {
   payments?: Prisma.PaymentUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutClassInput = {
@@ -2145,7 +2145,7 @@ export type StudentUncheckedUpdateWithoutClassInput = {
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStudentNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutStudentNestedInput
   classHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutStudentNestedInput
-  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput
+  documentRequests?: Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateManyWithoutClassInput = {

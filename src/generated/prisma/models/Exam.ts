@@ -30,6 +30,10 @@ export type ExamMinAggregateOutputType = {
   year: string | null
   formFillupStart: Date | null
   formFillupEnd: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type ExamMaxAggregateOutputType = {
@@ -38,6 +42,10 @@ export type ExamMaxAggregateOutputType = {
   year: string | null
   formFillupStart: Date | null
   formFillupEnd: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type ExamCountAggregateOutputType = {
@@ -46,6 +54,10 @@ export type ExamCountAggregateOutputType = {
   year: number
   formFillupStart: number
   formFillupEnd: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -56,6 +68,10 @@ export type ExamMinAggregateInputType = {
   year?: true
   formFillupStart?: true
   formFillupEnd?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type ExamMaxAggregateInputType = {
@@ -64,6 +80,10 @@ export type ExamMaxAggregateInputType = {
   year?: true
   formFillupStart?: true
   formFillupEnd?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type ExamCountAggregateInputType = {
@@ -72,6 +92,10 @@ export type ExamCountAggregateInputType = {
   year?: true
   formFillupStart?: true
   formFillupEnd?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -153,6 +177,10 @@ export type ExamGroupByOutputType = {
   year: string
   formFillupStart: Date
   formFillupEnd: Date
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: ExamCountAggregateOutputType | null
   _min: ExamMinAggregateOutputType | null
   _max: ExamMaxAggregateOutputType | null
@@ -182,6 +210,10 @@ export type ExamWhereInput = {
   year?: Prisma.StringFilter<"Exam"> | string
   formFillupStart?: Prisma.DateTimeFilter<"Exam"> | Date | string
   formFillupEnd?: Prisma.DateTimeFilter<"Exam"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Exam"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Exam"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Exam"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Exam"> | Date | string | null
   results?: Prisma.ResultListRelationFilter
   formFillups?: Prisma.FormFillupListRelationFilter
 }
@@ -192,6 +224,10 @@ export type ExamOrderByWithRelationInput = {
   year?: Prisma.SortOrder
   formFillupStart?: Prisma.SortOrder
   formFillupEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   results?: Prisma.ResultOrderByRelationAggregateInput
   formFillups?: Prisma.FormFillupOrderByRelationAggregateInput
 }
@@ -206,6 +242,10 @@ export type ExamWhereUniqueInput = Prisma.AtLeast<{
   year?: Prisma.StringFilter<"Exam"> | string
   formFillupStart?: Prisma.DateTimeFilter<"Exam"> | Date | string
   formFillupEnd?: Prisma.DateTimeFilter<"Exam"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Exam"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Exam"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Exam"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Exam"> | Date | string | null
   results?: Prisma.ResultListRelationFilter
   formFillups?: Prisma.FormFillupListRelationFilter
 }, "id" | "name_year">
@@ -216,6 +256,10 @@ export type ExamOrderByWithAggregationInput = {
   year?: Prisma.SortOrder
   formFillupStart?: Prisma.SortOrder
   formFillupEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ExamCountOrderByAggregateInput
   _max?: Prisma.ExamMaxOrderByAggregateInput
   _min?: Prisma.ExamMinOrderByAggregateInput
@@ -230,6 +274,10 @@ export type ExamScalarWhereWithAggregatesInput = {
   year?: Prisma.StringWithAggregatesFilter<"Exam"> | string
   formFillupStart?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
   formFillupEnd?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Exam"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Exam"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Exam"> | Date | string | null
 }
 
 export type ExamCreateInput = {
@@ -238,6 +286,10 @@ export type ExamCreateInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   results?: Prisma.ResultCreateNestedManyWithoutExamInput
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutExamInput
 }
@@ -248,6 +300,10 @@ export type ExamUncheckedCreateInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutExamInput
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutExamInput
 }
@@ -258,6 +314,10 @@ export type ExamUpdateInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   results?: Prisma.ResultUpdateManyWithoutExamNestedInput
   formFillups?: Prisma.FormFillupUpdateManyWithoutExamNestedInput
 }
@@ -268,6 +328,10 @@ export type ExamUncheckedUpdateInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   results?: Prisma.ResultUncheckedUpdateManyWithoutExamNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutExamNestedInput
 }
@@ -278,6 +342,10 @@ export type ExamCreateManyInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type ExamUpdateManyMutationInput = {
@@ -286,6 +354,10 @@ export type ExamUpdateManyMutationInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ExamUncheckedUpdateManyInput = {
@@ -294,6 +366,10 @@ export type ExamUncheckedUpdateManyInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ExamNameYearCompoundUniqueInput = {
@@ -307,6 +383,10 @@ export type ExamCountOrderByAggregateInput = {
   year?: Prisma.SortOrder
   formFillupStart?: Prisma.SortOrder
   formFillupEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ExamMaxOrderByAggregateInput = {
@@ -315,6 +395,10 @@ export type ExamMaxOrderByAggregateInput = {
   year?: Prisma.SortOrder
   formFillupStart?: Prisma.SortOrder
   formFillupEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ExamMinOrderByAggregateInput = {
@@ -323,6 +407,10 @@ export type ExamMinOrderByAggregateInput = {
   year?: Prisma.SortOrder
   formFillupStart?: Prisma.SortOrder
   formFillupEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ExamScalarRelationFilter = {
@@ -364,6 +452,10 @@ export type ExamCreateWithoutFormFillupsInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   results?: Prisma.ResultCreateNestedManyWithoutExamInput
 }
 
@@ -373,6 +465,10 @@ export type ExamUncheckedCreateWithoutFormFillupsInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutExamInput
 }
 
@@ -398,6 +494,10 @@ export type ExamUpdateWithoutFormFillupsInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   results?: Prisma.ResultUpdateManyWithoutExamNestedInput
 }
 
@@ -407,6 +507,10 @@ export type ExamUncheckedUpdateWithoutFormFillupsInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   results?: Prisma.ResultUncheckedUpdateManyWithoutExamNestedInput
 }
 
@@ -416,6 +520,10 @@ export type ExamCreateWithoutResultsInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   formFillups?: Prisma.FormFillupCreateNestedManyWithoutExamInput
 }
 
@@ -425,6 +533,10 @@ export type ExamUncheckedCreateWithoutResultsInput = {
   year: string
   formFillupStart: Date | string
   formFillupEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutExamInput
 }
 
@@ -450,6 +562,10 @@ export type ExamUpdateWithoutResultsInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   formFillups?: Prisma.FormFillupUpdateManyWithoutExamNestedInput
 }
 
@@ -459,6 +575,10 @@ export type ExamUncheckedUpdateWithoutResultsInput = {
   year?: Prisma.StringFieldUpdateOperationsInput | string
   formFillupStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formFillupEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutExamNestedInput
 }
 
@@ -508,6 +628,10 @@ export type ExamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   year?: boolean
   formFillupStart?: boolean
   formFillupEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   results?: boolean | Prisma.Exam$resultsArgs<ExtArgs>
   formFillups?: boolean | Prisma.Exam$formFillupsArgs<ExtArgs>
   _count?: boolean | Prisma.ExamCountOutputTypeDefaultArgs<ExtArgs>
@@ -519,6 +643,10 @@ export type ExamSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   year?: boolean
   formFillupStart?: boolean
   formFillupEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["exam"]>
 
 export type ExamSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -527,6 +655,10 @@ export type ExamSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   year?: boolean
   formFillupStart?: boolean
   formFillupEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["exam"]>
 
 export type ExamSelectScalar = {
@@ -535,9 +667,13 @@ export type ExamSelectScalar = {
   year?: boolean
   formFillupStart?: boolean
   formFillupEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year" | "formFillupStart" | "formFillupEnd", ExtArgs["result"]["exam"]>
+export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year" | "formFillupStart" | "formFillupEnd" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["exam"]>
 export type ExamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   results?: boolean | Prisma.Exam$resultsArgs<ExtArgs>
   formFillups?: boolean | Prisma.Exam$formFillupsArgs<ExtArgs>
@@ -558,6 +694,10 @@ export type $ExamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     year: string
     formFillupStart: Date
     formFillupEnd: Date
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["exam"]>
   composites: {}
 }
@@ -988,6 +1128,10 @@ export interface ExamFieldRefs {
   readonly year: Prisma.FieldRef<"Exam", 'String'>
   readonly formFillupStart: Prisma.FieldRef<"Exam", 'DateTime'>
   readonly formFillupEnd: Prisma.FieldRef<"Exam", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"Exam", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Exam", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Exam", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Exam", 'DateTime'>
 }
     
 

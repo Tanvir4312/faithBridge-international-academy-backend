@@ -30,6 +30,10 @@ export type DocumentRequestMinAggregateOutputType = {
   type: $Enums.PaymentFor | null
   status: $Enums.RequestStatus | null
   applyDate: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   paymentId: string | null
 }
 
@@ -39,6 +43,10 @@ export type DocumentRequestMaxAggregateOutputType = {
   type: $Enums.PaymentFor | null
   status: $Enums.RequestStatus | null
   applyDate: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
   paymentId: string | null
 }
 
@@ -48,6 +56,10 @@ export type DocumentRequestCountAggregateOutputType = {
   type: number
   status: number
   applyDate: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   paymentId: number
   _all: number
 }
@@ -59,6 +71,10 @@ export type DocumentRequestMinAggregateInputType = {
   type?: true
   status?: true
   applyDate?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   paymentId?: true
 }
 
@@ -68,6 +84,10 @@ export type DocumentRequestMaxAggregateInputType = {
   type?: true
   status?: true
   applyDate?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   paymentId?: true
 }
 
@@ -77,6 +97,10 @@ export type DocumentRequestCountAggregateInputType = {
   type?: true
   status?: true
   applyDate?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   paymentId?: true
   _all?: true
 }
@@ -159,6 +183,10 @@ export type DocumentRequestGroupByOutputType = {
   type: $Enums.PaymentFor
   status: $Enums.RequestStatus
   applyDate: Date
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   paymentId: string | null
   _count: DocumentRequestCountAggregateOutputType | null
   _min: DocumentRequestMinAggregateOutputType | null
@@ -189,8 +217,12 @@ export type DocumentRequestWhereInput = {
   type?: Prisma.EnumPaymentForFilter<"DocumentRequest"> | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFilter<"DocumentRequest"> | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"DocumentRequest"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
   paymentId?: Prisma.StringNullableFilter<"DocumentRequest"> | string | null
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  students?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }
 
@@ -200,8 +232,12 @@ export type DocumentRequestOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
   applyDate?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  student?: Prisma.StudentOrderByWithRelationInput
+  students?: Prisma.StudentOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
 }
 
@@ -215,7 +251,11 @@ export type DocumentRequestWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumPaymentForFilter<"DocumentRequest"> | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFilter<"DocumentRequest"> | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
+  createdAt?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"DocumentRequest"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
+  students?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }, "id" | "paymentId">
 
@@ -225,6 +265,10 @@ export type DocumentRequestOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
   applyDate?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DocumentRequestCountOrderByAggregateInput
   _max?: Prisma.DocumentRequestMaxOrderByAggregateInput
@@ -240,6 +284,10 @@ export type DocumentRequestScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumPaymentForWithAggregatesFilter<"DocumentRequest"> | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusWithAggregatesFilter<"DocumentRequest"> | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeWithAggregatesFilter<"DocumentRequest"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"DocumentRequest"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DocumentRequest"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"DocumentRequest"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DocumentRequest"> | Date | string | null
   paymentId?: Prisma.StringNullableWithAggregatesFilter<"DocumentRequest"> | string | null
 }
 
@@ -248,7 +296,11 @@ export type DocumentRequestCreateInput = {
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutDocumentRequestsInput
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  students: Prisma.StudentCreateNestedOneWithoutDocumentRequestsInput
   payment?: Prisma.PaymentCreateNestedOneWithoutDocumentRequestInput
 }
 
@@ -258,6 +310,10 @@ export type DocumentRequestUncheckedCreateInput = {
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   paymentId?: string | null
 }
 
@@ -266,7 +322,11 @@ export type DocumentRequestUpdateInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutDocumentRequestsNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  students?: Prisma.StudentUpdateOneRequiredWithoutDocumentRequestsNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutDocumentRequestNestedInput
 }
 
@@ -276,6 +336,10 @@ export type DocumentRequestUncheckedUpdateInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -285,6 +349,10 @@ export type DocumentRequestCreateManyInput = {
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   paymentId?: string | null
 }
 
@@ -293,6 +361,10 @@ export type DocumentRequestUpdateManyMutationInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DocumentRequestUncheckedUpdateManyInput = {
@@ -301,6 +373,10 @@ export type DocumentRequestUncheckedUpdateManyInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -310,6 +386,10 @@ export type DocumentRequestCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
   applyDate?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   paymentId?: Prisma.SortOrder
 }
 
@@ -319,6 +399,10 @@ export type DocumentRequestMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
   applyDate?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   paymentId?: Prisma.SortOrder
 }
 
@@ -328,6 +412,10 @@ export type DocumentRequestMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
   applyDate?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   paymentId?: Prisma.SortOrder
 }
 
@@ -386,45 +474,45 @@ export type DocumentRequestUncheckedUpdateOneWithoutPaymentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentRequestUpdateToOneWithWhereWithoutPaymentInput, Prisma.DocumentRequestUpdateWithoutPaymentInput>, Prisma.DocumentRequestUncheckedUpdateWithoutPaymentInput>
 }
 
-export type DocumentRequestCreateNestedManyWithoutStudentInput = {
-  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput> | Prisma.DocumentRequestCreateWithoutStudentInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentInput[]
-  createMany?: Prisma.DocumentRequestCreateManyStudentInputEnvelope
+export type DocumentRequestCreateNestedManyWithoutStudentsInput = {
+  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput> | Prisma.DocumentRequestCreateWithoutStudentsInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput[]
+  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput[]
+  createMany?: Prisma.DocumentRequestCreateManyStudentsInputEnvelope
   connect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
 }
 
-export type DocumentRequestUncheckedCreateNestedManyWithoutStudentInput = {
-  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput> | Prisma.DocumentRequestCreateWithoutStudentInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentInput[]
-  createMany?: Prisma.DocumentRequestCreateManyStudentInputEnvelope
+export type DocumentRequestUncheckedCreateNestedManyWithoutStudentsInput = {
+  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput> | Prisma.DocumentRequestCreateWithoutStudentsInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput[]
+  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput[]
+  createMany?: Prisma.DocumentRequestCreateManyStudentsInputEnvelope
   connect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
 }
 
-export type DocumentRequestUpdateManyWithoutStudentNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput> | Prisma.DocumentRequestCreateWithoutStudentInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentInput[]
-  upsert?: Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentInput | Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentInput[]
-  createMany?: Prisma.DocumentRequestCreateManyStudentInputEnvelope
+export type DocumentRequestUpdateManyWithoutStudentsNestedInput = {
+  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput> | Prisma.DocumentRequestCreateWithoutStudentsInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput[]
+  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput[]
+  upsert?: Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentsInput | Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentsInput[]
+  createMany?: Prisma.DocumentRequestCreateManyStudentsInputEnvelope
   set?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   disconnect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   delete?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   connect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
-  update?: Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentInput | Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentInput[]
-  updateMany?: Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentInput | Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentInput[]
+  update?: Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentsInput | Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentsInput[]
+  updateMany?: Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentsInput | Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentsInput[]
   deleteMany?: Prisma.DocumentRequestScalarWhereInput | Prisma.DocumentRequestScalarWhereInput[]
 }
 
-export type DocumentRequestUncheckedUpdateManyWithoutStudentNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput> | Prisma.DocumentRequestCreateWithoutStudentInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentInput[]
-  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentInput[]
-  upsert?: Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentInput | Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentInput[]
-  createMany?: Prisma.DocumentRequestCreateManyStudentInputEnvelope
+export type DocumentRequestUncheckedUpdateManyWithoutStudentsNestedInput = {
+  create?: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput> | Prisma.DocumentRequestCreateWithoutStudentsInput[] | Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput[]
+  connectOrCreate?: Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput | Prisma.DocumentRequestCreateOrConnectWithoutStudentsInput[]
+  upsert?: Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentsInput | Prisma.DocumentRequestUpsertWithWhereUniqueWithoutStudentsInput[]
+  createMany?: Prisma.DocumentRequestCreateManyStudentsInputEnvelope
   set?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   disconnect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   delete?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
   connect?: Prisma.DocumentRequestWhereUniqueInput | Prisma.DocumentRequestWhereUniqueInput[]
-  update?: Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentInput | Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentInput[]
-  updateMany?: Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentInput | Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentInput[]
+  update?: Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentsInput | Prisma.DocumentRequestUpdateWithWhereUniqueWithoutStudentsInput[]
+  updateMany?: Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentsInput | Prisma.DocumentRequestUpdateManyWithWhereWithoutStudentsInput[]
   deleteMany?: Prisma.DocumentRequestScalarWhereInput | Prisma.DocumentRequestScalarWhereInput[]
 }
 
@@ -433,7 +521,11 @@ export type DocumentRequestCreateWithoutPaymentInput = {
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
-  student: Prisma.StudentCreateNestedOneWithoutDocumentRequestsInput
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  students: Prisma.StudentCreateNestedOneWithoutDocumentRequestsInput
 }
 
 export type DocumentRequestUncheckedCreateWithoutPaymentInput = {
@@ -442,6 +534,10 @@ export type DocumentRequestUncheckedCreateWithoutPaymentInput = {
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type DocumentRequestCreateOrConnectWithoutPaymentInput = {
@@ -465,7 +561,11 @@ export type DocumentRequestUpdateWithoutPaymentInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentUpdateOneRequiredWithoutDocumentRequestsNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  students?: Prisma.StudentUpdateOneRequiredWithoutDocumentRequestsNestedInput
 }
 
 export type DocumentRequestUncheckedUpdateWithoutPaymentInput = {
@@ -474,48 +574,60 @@ export type DocumentRequestUncheckedUpdateWithoutPaymentInput = {
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type DocumentRequestCreateWithoutStudentInput = {
+export type DocumentRequestCreateWithoutStudentsInput = {
   id?: string
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutDocumentRequestInput
 }
 
-export type DocumentRequestUncheckedCreateWithoutStudentInput = {
+export type DocumentRequestUncheckedCreateWithoutStudentsInput = {
   id?: string
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   paymentId?: string | null
 }
 
-export type DocumentRequestCreateOrConnectWithoutStudentInput = {
+export type DocumentRequestCreateOrConnectWithoutStudentsInput = {
   where: Prisma.DocumentRequestWhereUniqueInput
-  create: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput>
+  create: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput>
 }
 
-export type DocumentRequestCreateManyStudentInputEnvelope = {
-  data: Prisma.DocumentRequestCreateManyStudentInput | Prisma.DocumentRequestCreateManyStudentInput[]
+export type DocumentRequestCreateManyStudentsInputEnvelope = {
+  data: Prisma.DocumentRequestCreateManyStudentsInput | Prisma.DocumentRequestCreateManyStudentsInput[]
   skipDuplicates?: boolean
 }
 
-export type DocumentRequestUpsertWithWhereUniqueWithoutStudentInput = {
+export type DocumentRequestUpsertWithWhereUniqueWithoutStudentsInput = {
   where: Prisma.DocumentRequestWhereUniqueInput
-  update: Prisma.XOR<Prisma.DocumentRequestUpdateWithoutStudentInput, Prisma.DocumentRequestUncheckedUpdateWithoutStudentInput>
-  create: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentInput>
+  update: Prisma.XOR<Prisma.DocumentRequestUpdateWithoutStudentsInput, Prisma.DocumentRequestUncheckedUpdateWithoutStudentsInput>
+  create: Prisma.XOR<Prisma.DocumentRequestCreateWithoutStudentsInput, Prisma.DocumentRequestUncheckedCreateWithoutStudentsInput>
 }
 
-export type DocumentRequestUpdateWithWhereUniqueWithoutStudentInput = {
+export type DocumentRequestUpdateWithWhereUniqueWithoutStudentsInput = {
   where: Prisma.DocumentRequestWhereUniqueInput
-  data: Prisma.XOR<Prisma.DocumentRequestUpdateWithoutStudentInput, Prisma.DocumentRequestUncheckedUpdateWithoutStudentInput>
+  data: Prisma.XOR<Prisma.DocumentRequestUpdateWithoutStudentsInput, Prisma.DocumentRequestUncheckedUpdateWithoutStudentsInput>
 }
 
-export type DocumentRequestUpdateManyWithWhereWithoutStudentInput = {
+export type DocumentRequestUpdateManyWithWhereWithoutStudentsInput = {
   where: Prisma.DocumentRequestScalarWhereInput
-  data: Prisma.XOR<Prisma.DocumentRequestUpdateManyMutationInput, Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentInput>
+  data: Prisma.XOR<Prisma.DocumentRequestUpdateManyMutationInput, Prisma.DocumentRequestUncheckedUpdateManyWithoutStudentsInput>
 }
 
 export type DocumentRequestScalarWhereInput = {
@@ -527,38 +639,58 @@ export type DocumentRequestScalarWhereInput = {
   type?: Prisma.EnumPaymentForFilter<"DocumentRequest"> | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFilter<"DocumentRequest"> | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"DocumentRequest"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"DocumentRequest"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"DocumentRequest"> | Date | string | null
   paymentId?: Prisma.StringNullableFilter<"DocumentRequest"> | string | null
 }
 
-export type DocumentRequestCreateManyStudentInput = {
+export type DocumentRequestCreateManyStudentsInput = {
   id?: string
   type: $Enums.PaymentFor
   status?: $Enums.RequestStatus
   applyDate?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   paymentId?: string | null
 }
 
-export type DocumentRequestUpdateWithoutStudentInput = {
+export type DocumentRequestUpdateWithoutStudentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUpdateOneWithoutDocumentRequestNestedInput
 }
 
-export type DocumentRequestUncheckedUpdateWithoutStudentInput = {
+export type DocumentRequestUncheckedUpdateWithoutStudentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type DocumentRequestUncheckedUpdateManyWithoutStudentInput = {
+export type DocumentRequestUncheckedUpdateManyWithoutStudentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPaymentForFieldUpdateOperationsInput | $Enums.PaymentFor
   status?: Prisma.EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
   applyDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -570,8 +702,12 @@ export type DocumentRequestSelect<ExtArgs extends runtime.Types.Extensions.Inter
   type?: boolean
   status?: boolean
   applyDate?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   paymentId?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["documentRequest"]>
 
@@ -581,8 +717,12 @@ export type DocumentRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   type?: boolean
   status?: boolean
   applyDate?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   paymentId?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["documentRequest"]>
 
@@ -592,8 +732,12 @@ export type DocumentRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   type?: boolean
   status?: boolean
   applyDate?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   paymentId?: boolean
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["documentRequest"]>
 
@@ -603,27 +747,31 @@ export type DocumentRequestSelectScalar = {
   type?: boolean
   status?: boolean
   applyDate?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   paymentId?: boolean
 }
 
-export type DocumentRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "type" | "status" | "applyDate" | "paymentId", ExtArgs["result"]["documentRequest"]>
+export type DocumentRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "type" | "status" | "applyDate" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "paymentId", ExtArgs["result"]["documentRequest"]>
 export type DocumentRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }
 export type DocumentRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }
 export type DocumentRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
+  students?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.DocumentRequest$paymentArgs<ExtArgs>
 }
 
 export type $DocumentRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DocumentRequest"
   objects: {
-    student: Prisma.$StudentPayload<ExtArgs>
+    students: Prisma.$StudentPayload<ExtArgs>
     payment: Prisma.$PaymentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -632,6 +780,10 @@ export type $DocumentRequestPayload<ExtArgs extends runtime.Types.Extensions.Int
     type: $Enums.PaymentFor
     status: $Enums.RequestStatus
     applyDate: Date
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
     paymentId: string | null
   }, ExtArgs["result"]["documentRequest"]>
   composites: {}
@@ -1027,7 +1179,7 @@ readonly fields: DocumentRequestFieldRefs;
  */
 export interface Prisma__DocumentRequestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  students<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   payment<T extends Prisma.DocumentRequest$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DocumentRequest$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1063,6 +1215,10 @@ export interface DocumentRequestFieldRefs {
   readonly type: Prisma.FieldRef<"DocumentRequest", 'PaymentFor'>
   readonly status: Prisma.FieldRef<"DocumentRequest", 'RequestStatus'>
   readonly applyDate: Prisma.FieldRef<"DocumentRequest", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"DocumentRequest", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"DocumentRequest", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"DocumentRequest", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"DocumentRequest", 'DateTime'>
   readonly paymentId: Prisma.FieldRef<"DocumentRequest", 'String'>
 }
     

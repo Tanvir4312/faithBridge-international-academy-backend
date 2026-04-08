@@ -2,6 +2,10 @@ model TimeSlot {
   id        String    @id @default(uuid())
   startTime String
   endTime   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
   routines  Routine[]
 
   @@map("timeSlot")

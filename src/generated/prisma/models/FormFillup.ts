@@ -34,6 +34,10 @@ export type FormFillupMinAggregateOutputType = {
   status: $Enums.FromFillupStatus | null
   paymentStatus: $Enums.PaymentStatus | null
   admitCard: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type FormFillupMaxAggregateOutputType = {
@@ -46,6 +50,10 @@ export type FormFillupMaxAggregateOutputType = {
   status: $Enums.FromFillupStatus | null
   paymentStatus: $Enums.PaymentStatus | null
   admitCard: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type FormFillupCountAggregateOutputType = {
@@ -58,6 +66,10 @@ export type FormFillupCountAggregateOutputType = {
   status: number
   paymentStatus: number
   admitCard: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -72,6 +84,10 @@ export type FormFillupMinAggregateInputType = {
   status?: true
   paymentStatus?: true
   admitCard?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type FormFillupMaxAggregateInputType = {
@@ -84,6 +100,10 @@ export type FormFillupMaxAggregateInputType = {
   status?: true
   paymentStatus?: true
   admitCard?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type FormFillupCountAggregateInputType = {
@@ -96,6 +116,10 @@ export type FormFillupCountAggregateInputType = {
   status?: true
   paymentStatus?: true
   admitCard?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -181,6 +205,10 @@ export type FormFillupGroupByOutputType = {
   status: $Enums.FromFillupStatus
   paymentStatus: $Enums.PaymentStatus
   admitCard: string | null
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: FormFillupCountAggregateOutputType | null
   _min: FormFillupMinAggregateOutputType | null
   _max: FormFillupMaxAggregateOutputType | null
@@ -214,6 +242,10 @@ export type FormFillupWhereInput = {
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
   admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"FormFillup"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"FormFillup"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
@@ -230,6 +262,10 @@ export type FormFillupOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
   admitCard?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   payment?: Prisma.PaymentOrderByWithRelationInput
   student?: Prisma.StudentOrderByWithRelationInput
   class?: Prisma.ClassOrderByWithRelationInput
@@ -250,6 +286,10 @@ export type FormFillupWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
   admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"FormFillup"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"FormFillup"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
@@ -266,6 +306,10 @@ export type FormFillupOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
   admitCard?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.FormFillupCountOrderByAggregateInput
   _max?: Prisma.FormFillupMaxOrderByAggregateInput
   _min?: Prisma.FormFillupMinOrderByAggregateInput
@@ -284,6 +328,10 @@ export type FormFillupScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumFromFillupStatusWithAggregatesFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusWithAggregatesFilter<"FormFillup"> | $Enums.PaymentStatus
   admitCard?: Prisma.StringNullableWithAggregatesFilter<"FormFillup"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"FormFillup"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"FormFillup"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"FormFillup"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"FormFillup"> | Date | string | null
 }
 
 export type FormFillupCreateInput = {
@@ -293,6 +341,10 @@ export type FormFillupCreateInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
@@ -309,6 +361,10 @@ export type FormFillupUncheckedCreateInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -319,6 +375,10 @@ export type FormFillupUpdateInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -335,6 +395,10 @@ export type FormFillupUncheckedUpdateInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -348,6 +412,10 @@ export type FormFillupCreateManyInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type FormFillupUpdateManyMutationInput = {
@@ -357,6 +425,10 @@ export type FormFillupUpdateManyMutationInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FormFillupUncheckedUpdateManyInput = {
@@ -369,6 +441,10 @@ export type FormFillupUncheckedUpdateManyInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FormFillupListRelationFilter = {
@@ -396,6 +472,10 @@ export type FormFillupCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
   admitCard?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type FormFillupMaxOrderByAggregateInput = {
@@ -408,6 +488,10 @@ export type FormFillupMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
   admitCard?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type FormFillupMinOrderByAggregateInput = {
@@ -420,6 +504,10 @@ export type FormFillupMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
   admitCard?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type FormFillupNullableScalarRelationFilter = {
@@ -580,6 +668,10 @@ export type FormFillupCreateWithoutClassInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -594,6 +686,10 @@ export type FormFillupUncheckedCreateWithoutClassInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -636,6 +732,10 @@ export type FormFillupScalarWhereInput = {
   status?: Prisma.EnumFromFillupStatusFilter<"FormFillup"> | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"FormFillup"> | $Enums.PaymentStatus
   admitCard?: Prisma.StringNullableFilter<"FormFillup"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"FormFillup"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"FormFillup"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"FormFillup"> | Date | string | null
 }
 
 export type FormFillupCreateWithoutExamInput = {
@@ -645,6 +745,10 @@ export type FormFillupCreateWithoutExamInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
@@ -659,6 +763,10 @@ export type FormFillupUncheckedCreateWithoutExamInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -695,6 +803,10 @@ export type FormFillupCreateWithoutPaymentInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   student: Prisma.StudentCreateNestedOneWithoutFormFillupsInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -710,6 +822,10 @@ export type FormFillupUncheckedCreateWithoutPaymentInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type FormFillupCreateOrConnectWithoutPaymentInput = {
@@ -735,6 +851,10 @@ export type FormFillupUpdateWithoutPaymentInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -750,6 +870,10 @@ export type FormFillupUncheckedUpdateWithoutPaymentInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FormFillupCreateWithoutStudentInput = {
@@ -759,6 +883,10 @@ export type FormFillupCreateWithoutStudentInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentCreateNestedOneWithoutFormFillupInput
   class: Prisma.ClassCreateNestedOneWithoutFormFillupsInput
   exam: Prisma.ExamCreateNestedOneWithoutFormFillupsInput
@@ -773,6 +901,10 @@ export type FormFillupUncheckedCreateWithoutStudentInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutFormFillupInput
 }
 
@@ -811,6 +943,10 @@ export type FormFillupCreateManyClassInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type FormFillupUpdateWithoutClassInput = {
@@ -820,6 +956,10 @@ export type FormFillupUpdateWithoutClassInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -834,6 +974,10 @@ export type FormFillupUncheckedUpdateWithoutClassInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -846,6 +990,10 @@ export type FormFillupUncheckedUpdateManyWithoutClassInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FormFillupCreateManyExamInput = {
@@ -857,6 +1005,10 @@ export type FormFillupCreateManyExamInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type FormFillupUpdateWithoutExamInput = {
@@ -866,6 +1018,10 @@ export type FormFillupUpdateWithoutExamInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   student?: Prisma.StudentUpdateOneRequiredWithoutFormFillupsNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -880,6 +1036,10 @@ export type FormFillupUncheckedUpdateWithoutExamInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -892,6 +1052,10 @@ export type FormFillupUncheckedUpdateManyWithoutExamInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FormFillupCreateManyStudentInput = {
@@ -903,6 +1067,10 @@ export type FormFillupCreateManyStudentInput = {
   status?: $Enums.FromFillupStatus
   paymentStatus?: $Enums.PaymentStatus
   admitCard?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type FormFillupUpdateWithoutStudentInput = {
@@ -912,6 +1080,10 @@ export type FormFillupUpdateWithoutStudentInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUpdateOneWithoutFormFillupNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutFormFillupsNestedInput
   exam?: Prisma.ExamUpdateOneRequiredWithoutFormFillupsNestedInput
@@ -926,6 +1098,10 @@ export type FormFillupUncheckedUpdateWithoutStudentInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutFormFillupNestedInput
 }
 
@@ -938,6 +1114,10 @@ export type FormFillupUncheckedUpdateManyWithoutStudentInput = {
   status?: Prisma.EnumFromFillupStatusFieldUpdateOperationsInput | $Enums.FromFillupStatus
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   admitCard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -952,6 +1132,10 @@ export type FormFillupSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   status?: boolean
   paymentStatus?: boolean
   admitCard?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   payment?: boolean | Prisma.FormFillup$paymentArgs<ExtArgs>
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
@@ -968,6 +1152,10 @@ export type FormFillupSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   paymentStatus?: boolean
   admitCard?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
@@ -983,6 +1171,10 @@ export type FormFillupSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   paymentStatus?: boolean
   admitCard?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
   exam?: boolean | Prisma.ExamDefaultArgs<ExtArgs>
@@ -998,9 +1190,13 @@ export type FormFillupSelectScalar = {
   status?: boolean
   paymentStatus?: boolean
   admitCard?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type FormFillupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "examId" | "registrationNo" | "classRoll" | "status" | "paymentStatus" | "admitCard", ExtArgs["result"]["formFillup"]>
+export type FormFillupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "classId" | "examId" | "registrationNo" | "classRoll" | "status" | "paymentStatus" | "admitCard" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["formFillup"]>
 export type FormFillupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payment?: boolean | Prisma.FormFillup$paymentArgs<ExtArgs>
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
@@ -1036,6 +1232,10 @@ export type $FormFillupPayload<ExtArgs extends runtime.Types.Extensions.Internal
     status: $Enums.FromFillupStatus
     paymentStatus: $Enums.PaymentStatus
     admitCard: string | null
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["formFillup"]>
   composites: {}
 }
@@ -1472,6 +1672,10 @@ export interface FormFillupFieldRefs {
   readonly status: Prisma.FieldRef<"FormFillup", 'FromFillupStatus'>
   readonly paymentStatus: Prisma.FieldRef<"FormFillup", 'PaymentStatus'>
   readonly admitCard: Prisma.FieldRef<"FormFillup", 'String'>
+  readonly createdAt: Prisma.FieldRef<"FormFillup", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"FormFillup", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"FormFillup", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"FormFillup", 'DateTime'>
 }
     
 

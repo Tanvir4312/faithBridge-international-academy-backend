@@ -1,9 +1,13 @@
 model Exam {
-  id              String   @id @default(uuid())
+  id              String    @id @default(uuid())
   name            String
   year            String
   formFillupStart DateTime
   formFillupEnd   DateTime
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime? @updatedAt
+  isDeleted       Boolean   @default(false)
+  deletedAt       DateTime?
 
   results     Result[]
   formFillups FormFillup[]

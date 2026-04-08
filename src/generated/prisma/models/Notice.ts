@@ -30,6 +30,9 @@ export type NoticeMinAggregateOutputType = {
   type: $Enums.NoticeType | null
   authorId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type NoticeMaxAggregateOutputType = {
@@ -38,6 +41,9 @@ export type NoticeMaxAggregateOutputType = {
   type: $Enums.NoticeType | null
   authorId: string | null
   createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type NoticeCountAggregateOutputType = {
@@ -46,6 +52,9 @@ export type NoticeCountAggregateOutputType = {
   type: number
   authorId: number
   createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -56,6 +65,9 @@ export type NoticeMinAggregateInputType = {
   type?: true
   authorId?: true
   createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type NoticeMaxAggregateInputType = {
@@ -64,6 +76,9 @@ export type NoticeMaxAggregateInputType = {
   type?: true
   authorId?: true
   createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type NoticeCountAggregateInputType = {
@@ -72,6 +87,9 @@ export type NoticeCountAggregateInputType = {
   type?: true
   authorId?: true
   createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -153,6 +171,9 @@ export type NoticeGroupByOutputType = {
   type: $Enums.NoticeType
   authorId: string
   createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: NoticeCountAggregateOutputType | null
   _min: NoticeMinAggregateOutputType | null
   _max: NoticeMaxAggregateOutputType | null
@@ -182,6 +203,9 @@ export type NoticeWhereInput = {
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Notice"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   noticeClasses?: Prisma.NoticeClassListRelationFilter
 }
@@ -192,6 +216,9 @@ export type NoticeOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   noticeClasses?: Prisma.NoticeClassOrderByRelationAggregateInput
 }
@@ -205,6 +232,9 @@ export type NoticeWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Notice"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   noticeClasses?: Prisma.NoticeClassListRelationFilter
 }, "id">
@@ -215,6 +245,9 @@ export type NoticeOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.NoticeCountOrderByAggregateInput
   _max?: Prisma.NoticeMaxOrderByAggregateInput
   _min?: Prisma.NoticeMinOrderByAggregateInput
@@ -229,6 +262,9 @@ export type NoticeScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumNoticeTypeWithAggregatesFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringWithAggregatesFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Notice"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Notice"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Notice"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Notice"> | Date | string | null
 }
 
 export type NoticeCreateInput = {
@@ -236,6 +272,9 @@ export type NoticeCreateInput = {
   title: string
   type?: $Enums.NoticeType
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   author: Prisma.UserCreateNestedOneWithoutNoticesInput
   noticeClasses?: Prisma.NoticeClassCreateNestedManyWithoutNoticeInput
 }
@@ -246,6 +285,9 @@ export type NoticeUncheckedCreateInput = {
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   noticeClasses?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutNoticeInput
 }
 
@@ -254,6 +296,9 @@ export type NoticeUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutNoticesNestedInput
   noticeClasses?: Prisma.NoticeClassUpdateManyWithoutNoticeNestedInput
 }
@@ -264,6 +309,9 @@ export type NoticeUncheckedUpdateInput = {
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   noticeClasses?: Prisma.NoticeClassUncheckedUpdateManyWithoutNoticeNestedInput
 }
 
@@ -273,6 +321,9 @@ export type NoticeCreateManyInput = {
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeUpdateManyMutationInput = {
@@ -280,6 +331,9 @@ export type NoticeUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeUncheckedUpdateManyInput = {
@@ -288,6 +342,9 @@ export type NoticeUncheckedUpdateManyInput = {
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeListRelationFilter = {
@@ -306,6 +363,9 @@ export type NoticeCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeMaxOrderByAggregateInput = {
@@ -314,6 +374,9 @@ export type NoticeMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeMinOrderByAggregateInput = {
@@ -322,6 +385,9 @@ export type NoticeMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeScalarRelationFilter = {
@@ -394,6 +460,9 @@ export type NoticeCreateWithoutAuthorInput = {
   title: string
   type?: $Enums.NoticeType
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   noticeClasses?: Prisma.NoticeClassCreateNestedManyWithoutNoticeInput
 }
 
@@ -402,6 +471,9 @@ export type NoticeUncheckedCreateWithoutAuthorInput = {
   title: string
   type?: $Enums.NoticeType
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   noticeClasses?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutNoticeInput
 }
 
@@ -440,6 +512,9 @@ export type NoticeScalarWhereInput = {
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"Notice"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Notice"> | Date | string | null
 }
 
 export type NoticeCreateWithoutNoticeClassesInput = {
@@ -447,6 +522,9 @@ export type NoticeCreateWithoutNoticeClassesInput = {
   title: string
   type?: $Enums.NoticeType
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   author: Prisma.UserCreateNestedOneWithoutNoticesInput
 }
 
@@ -456,6 +534,9 @@ export type NoticeUncheckedCreateWithoutNoticeClassesInput = {
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeCreateOrConnectWithoutNoticeClassesInput = {
@@ -479,6 +560,9 @@ export type NoticeUpdateWithoutNoticeClassesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   author?: Prisma.UserUpdateOneRequiredWithoutNoticesNestedInput
 }
 
@@ -488,6 +572,9 @@ export type NoticeUncheckedUpdateWithoutNoticeClassesInput = {
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeCreateManyAuthorInput = {
@@ -495,6 +582,9 @@ export type NoticeCreateManyAuthorInput = {
   title: string
   type?: $Enums.NoticeType
   createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeUpdateWithoutAuthorInput = {
@@ -502,6 +592,9 @@ export type NoticeUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   noticeClasses?: Prisma.NoticeClassUpdateManyWithoutNoticeNestedInput
 }
 
@@ -510,6 +603,9 @@ export type NoticeUncheckedUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   noticeClasses?: Prisma.NoticeClassUncheckedUpdateManyWithoutNoticeNestedInput
 }
 
@@ -518,6 +614,9 @@ export type NoticeUncheckedUpdateManyWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -557,6 +656,9 @@ export type NoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   noticeClasses?: boolean | Prisma.Notice$noticeClassesArgs<ExtArgs>
   _count?: boolean | Prisma.NoticeCountOutputTypeDefaultArgs<ExtArgs>
@@ -568,6 +670,9 @@ export type NoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notice"]>
 
@@ -577,6 +682,9 @@ export type NoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notice"]>
 
@@ -586,9 +694,12 @@ export type NoticeSelectScalar = {
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "authorId" | "createdAt", ExtArgs["result"]["notice"]>
+export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "authorId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["notice"]>
 export type NoticeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   noticeClasses?: boolean | Prisma.Notice$noticeClassesArgs<ExtArgs>
@@ -613,6 +724,9 @@ export type $NoticePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     type: $Enums.NoticeType
     authorId: string
     createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["notice"]>
   composites: {}
 }
@@ -1043,6 +1157,9 @@ export interface NoticeFieldRefs {
   readonly type: Prisma.FieldRef<"Notice", 'NoticeType'>
   readonly authorId: Prisma.FieldRef<"Notice", 'String'>
   readonly createdAt: Prisma.FieldRef<"Notice", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Notice", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"Notice", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"Notice", 'DateTime'>
 }
     
 

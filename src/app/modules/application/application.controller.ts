@@ -5,6 +5,7 @@ import { sendResponse } from "../../shared/sendResponse";
 import status from "http-status";
 import { ApplicationService } from "./application.services";
 
+
 const createApplication = catchAsync(async (req: Request, res: Response) => {
   const payload = {
     ...req.body,
@@ -21,6 +22,7 @@ const createApplication = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllApplication = catchAsync(async (req: Request, res: Response) => {
+
   const result = await ApplicationService.getAllApplication();
   sendResponse(res, {
     httpStatusCode: status.OK,

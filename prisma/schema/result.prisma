@@ -1,14 +1,18 @@
 model Result {
-  id        String  @id @default(uuid())
+  id        String    @id @default(uuid())
   studentId String
   subjectId String
   examId    String
   marks     Float
   grade     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
 
-  student   Student @relation(fields: [studentId], references: [id])
-  subject   Subject @relation(fields: [subjectId], references: [id])
-  exam      Exam    @relation(fields: [examId], references: [id])
+  student Student @relation(fields: [studentId], references: [id])
+  subject Subject @relation(fields: [subjectId], references: [id])
+  exam    Exam    @relation(fields: [examId], references: [id])
 
   @@unique([studentId, subjectId, examId])
   @@index([studentId])

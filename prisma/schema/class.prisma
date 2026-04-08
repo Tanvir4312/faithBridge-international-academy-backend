@@ -1,6 +1,10 @@
 model Class {
   id              String        @id @default(uuid())
   name            String        @unique
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime?     @updatedAt
+  isDeleted       Boolean       @default(false)
+  deletedAt       DateTime?
   AcademicLevelId String
   AcademicLevel   AcademicLevel @relation(fields: [AcademicLevelId], references: [id], onDelete: Cascade)
 

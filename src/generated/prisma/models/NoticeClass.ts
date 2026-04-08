@@ -28,18 +28,30 @@ export type NoticeClassMinAggregateOutputType = {
   id: string | null
   noticeId: string | null
   classId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type NoticeClassMaxAggregateOutputType = {
   id: string | null
   noticeId: string | null
   classId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type NoticeClassCountAggregateOutputType = {
   id: number
   noticeId: number
   classId: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -48,18 +60,30 @@ export type NoticeClassMinAggregateInputType = {
   id?: true
   noticeId?: true
   classId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type NoticeClassMaxAggregateInputType = {
   id?: true
   noticeId?: true
   classId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type NoticeClassCountAggregateInputType = {
   id?: true
   noticeId?: true
   classId?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -139,6 +163,10 @@ export type NoticeClassGroupByOutputType = {
   id: string
   noticeId: string
   classId: string
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: NoticeClassCountAggregateOutputType | null
   _min: NoticeClassMinAggregateOutputType | null
   _max: NoticeClassMaxAggregateOutputType | null
@@ -166,6 +194,10 @@ export type NoticeClassWhereInput = {
   id?: Prisma.StringFilter<"NoticeClass"> | string
   noticeId?: Prisma.StringFilter<"NoticeClass"> | string
   classId?: Prisma.StringFilter<"NoticeClass"> | string
+  createdAt?: Prisma.DateTimeFilter<"NoticeClass"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"NoticeClass"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
   notice?: Prisma.XOR<Prisma.NoticeScalarRelationFilter, Prisma.NoticeWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }
@@ -174,6 +206,10 @@ export type NoticeClassOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   notice?: Prisma.NoticeOrderByWithRelationInput
   class?: Prisma.ClassOrderByWithRelationInput
 }
@@ -186,6 +222,10 @@ export type NoticeClassWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NoticeClassWhereInput | Prisma.NoticeClassWhereInput[]
   noticeId?: Prisma.StringFilter<"NoticeClass"> | string
   classId?: Prisma.StringFilter<"NoticeClass"> | string
+  createdAt?: Prisma.DateTimeFilter<"NoticeClass"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"NoticeClass"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
   notice?: Prisma.XOR<Prisma.NoticeScalarRelationFilter, Prisma.NoticeWhereInput>
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
 }, "id" | "noticeId_classId">
@@ -194,6 +234,10 @@ export type NoticeClassOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.NoticeClassCountOrderByAggregateInput
   _max?: Prisma.NoticeClassMaxOrderByAggregateInput
   _min?: Prisma.NoticeClassMinOrderByAggregateInput
@@ -206,10 +250,18 @@ export type NoticeClassScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"NoticeClass"> | string
   noticeId?: Prisma.StringWithAggregatesFilter<"NoticeClass"> | string
   classId?: Prisma.StringWithAggregatesFilter<"NoticeClass"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"NoticeClass"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NoticeClass"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"NoticeClass"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NoticeClass"> | Date | string | null
 }
 
 export type NoticeClassCreateInput = {
   id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   notice: Prisma.NoticeCreateNestedOneWithoutNoticeClassesInput
   class: Prisma.ClassCreateNestedOneWithoutNoticesInput
 }
@@ -218,10 +270,18 @@ export type NoticeClassUncheckedCreateInput = {
   id?: string
   noticeId: string
   classId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notice?: Prisma.NoticeUpdateOneRequiredWithoutNoticeClassesNestedInput
   class?: Prisma.ClassUpdateOneRequiredWithoutNoticesNestedInput
 }
@@ -230,22 +290,38 @@ export type NoticeClassUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   noticeId?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassCreateManyInput = {
   id?: string
   noticeId: string
   classId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   noticeId?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassListRelationFilter = {
@@ -267,18 +343,30 @@ export type NoticeClassCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeClassMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeClassMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   noticeId?: Prisma.SortOrder
   classId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type NoticeClassCreateNestedManyWithoutClassInput = {
@@ -367,12 +455,20 @@ export type NoticeClassUncheckedUpdateManyWithoutNoticeNestedInput = {
 
 export type NoticeClassCreateWithoutClassInput = {
   id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   notice: Prisma.NoticeCreateNestedOneWithoutNoticeClassesInput
 }
 
 export type NoticeClassUncheckedCreateWithoutClassInput = {
   id?: string
   noticeId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassCreateOrConnectWithoutClassInput = {
@@ -408,16 +504,28 @@ export type NoticeClassScalarWhereInput = {
   id?: Prisma.StringFilter<"NoticeClass"> | string
   noticeId?: Prisma.StringFilter<"NoticeClass"> | string
   classId?: Prisma.StringFilter<"NoticeClass"> | string
+  createdAt?: Prisma.DateTimeFilter<"NoticeClass"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"NoticeClass"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"NoticeClass"> | Date | string | null
 }
 
 export type NoticeClassCreateWithoutNoticeInput = {
   id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   class: Prisma.ClassCreateNestedOneWithoutNoticesInput
 }
 
 export type NoticeClassUncheckedCreateWithoutNoticeInput = {
   id?: string
   classId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassCreateOrConnectWithoutNoticeInput = {
@@ -449,41 +557,73 @@ export type NoticeClassUpdateManyWithWhereWithoutNoticeInput = {
 export type NoticeClassCreateManyClassInput = {
   id?: string
   noticeId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notice?: Prisma.NoticeUpdateOneRequiredWithoutNoticeClassesNestedInput
 }
 
 export type NoticeClassUncheckedUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   noticeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassUncheckedUpdateManyWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   noticeId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassCreateManyNoticeInput = {
   id?: string
   classId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type NoticeClassUpdateWithoutNoticeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneRequiredWithoutNoticesNestedInput
 }
 
 export type NoticeClassUncheckedUpdateWithoutNoticeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NoticeClassUncheckedUpdateManyWithoutNoticeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   classId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -492,6 +632,10 @@ export type NoticeClassSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   noticeId?: boolean
   classId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   notice?: boolean | Prisma.NoticeDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["noticeClass"]>
@@ -500,6 +644,10 @@ export type NoticeClassSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   noticeId?: boolean
   classId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   notice?: boolean | Prisma.NoticeDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["noticeClass"]>
@@ -508,6 +656,10 @@ export type NoticeClassSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   noticeId?: boolean
   classId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   notice?: boolean | Prisma.NoticeDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["noticeClass"]>
@@ -516,9 +668,13 @@ export type NoticeClassSelectScalar = {
   id?: boolean
   noticeId?: boolean
   classId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type NoticeClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "noticeId" | "classId", ExtArgs["result"]["noticeClass"]>
+export type NoticeClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "noticeId" | "classId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["noticeClass"]>
 export type NoticeClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notice?: boolean | Prisma.NoticeDefaultArgs<ExtArgs>
   class?: boolean | Prisma.ClassDefaultArgs<ExtArgs>
@@ -542,6 +698,10 @@ export type $NoticeClassPayload<ExtArgs extends runtime.Types.Extensions.Interna
     id: string
     noticeId: string
     classId: string
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["noticeClass"]>
   composites: {}
 }
@@ -970,6 +1130,10 @@ export interface NoticeClassFieldRefs {
   readonly id: Prisma.FieldRef<"NoticeClass", 'String'>
   readonly noticeId: Prisma.FieldRef<"NoticeClass", 'String'>
   readonly classId: Prisma.FieldRef<"NoticeClass", 'String'>
+  readonly createdAt: Prisma.FieldRef<"NoticeClass", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"NoticeClass", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"NoticeClass", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"NoticeClass", 'DateTime'>
 }
     
 

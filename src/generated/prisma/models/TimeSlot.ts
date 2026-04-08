@@ -28,18 +28,30 @@ export type TimeSlotMinAggregateOutputType = {
   id: string | null
   startTime: string | null
   endTime: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type TimeSlotMaxAggregateOutputType = {
   id: string | null
   startTime: string | null
   endTime: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  isDeleted: boolean | null
+  deletedAt: Date | null
 }
 
 export type TimeSlotCountAggregateOutputType = {
   id: number
   startTime: number
   endTime: number
+  createdAt: number
+  updatedAt: number
+  isDeleted: number
+  deletedAt: number
   _all: number
 }
 
@@ -48,18 +60,30 @@ export type TimeSlotMinAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type TimeSlotMaxAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
 }
 
 export type TimeSlotCountAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  createdAt?: true
+  updatedAt?: true
+  isDeleted?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -139,6 +163,10 @@ export type TimeSlotGroupByOutputType = {
   id: string
   startTime: string
   endTime: string
+  createdAt: Date
+  updatedAt: Date | null
+  isDeleted: boolean
+  deletedAt: Date | null
   _count: TimeSlotCountAggregateOutputType | null
   _min: TimeSlotMinAggregateOutputType | null
   _max: TimeSlotMaxAggregateOutputType | null
@@ -166,6 +194,10 @@ export type TimeSlotWhereInput = {
   id?: Prisma.StringFilter<"TimeSlot"> | string
   startTime?: Prisma.StringFilter<"TimeSlot"> | string
   endTime?: Prisma.StringFilter<"TimeSlot"> | string
+  createdAt?: Prisma.DateTimeFilter<"TimeSlot"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"TimeSlot"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"TimeSlot"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"TimeSlot"> | Date | string | null
   routines?: Prisma.RoutineListRelationFilter
 }
 
@@ -173,6 +205,10 @@ export type TimeSlotOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   routines?: Prisma.RoutineOrderByRelationAggregateInput
 }
 
@@ -183,6 +219,10 @@ export type TimeSlotWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TimeSlotWhereInput | Prisma.TimeSlotWhereInput[]
   startTime?: Prisma.StringFilter<"TimeSlot"> | string
   endTime?: Prisma.StringFilter<"TimeSlot"> | string
+  createdAt?: Prisma.DateTimeFilter<"TimeSlot"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"TimeSlot"> | Date | string | null
+  isDeleted?: Prisma.BoolFilter<"TimeSlot"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"TimeSlot"> | Date | string | null
   routines?: Prisma.RoutineListRelationFilter
 }, "id">
 
@@ -190,6 +230,10 @@ export type TimeSlotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TimeSlotCountOrderByAggregateInput
   _max?: Prisma.TimeSlotMaxOrderByAggregateInput
   _min?: Prisma.TimeSlotMinOrderByAggregateInput
@@ -202,12 +246,20 @@ export type TimeSlotScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"TimeSlot"> | string
   startTime?: Prisma.StringWithAggregatesFilter<"TimeSlot"> | string
   endTime?: Prisma.StringWithAggregatesFilter<"TimeSlot"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"TimeSlot"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TimeSlot"> | Date | string | null
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"TimeSlot"> | boolean
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TimeSlot"> | Date | string | null
 }
 
 export type TimeSlotCreateInput = {
   id?: string
   startTime: string
   endTime: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   routines?: Prisma.RoutineCreateNestedManyWithoutTimeSlotInput
 }
 
@@ -215,6 +267,10 @@ export type TimeSlotUncheckedCreateInput = {
   id?: string
   startTime: string
   endTime: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutTimeSlotInput
 }
 
@@ -222,6 +278,10 @@ export type TimeSlotUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   routines?: Prisma.RoutineUpdateManyWithoutTimeSlotNestedInput
 }
 
@@ -229,6 +289,10 @@ export type TimeSlotUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutTimeSlotNestedInput
 }
 
@@ -236,18 +300,30 @@ export type TimeSlotCreateManyInput = {
   id?: string
   startTime: string
   endTime: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type TimeSlotUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TimeSlotUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TimeSlotScalarRelationFilter = {
@@ -259,18 +335,30 @@ export type TimeSlotCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type TimeSlotMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type TimeSlotMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type TimeSlotCreateNestedOneWithoutRoutinesInput = {
@@ -291,12 +379,20 @@ export type TimeSlotCreateWithoutRoutinesInput = {
   id?: string
   startTime: string
   endTime: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type TimeSlotUncheckedCreateWithoutRoutinesInput = {
   id?: string
   startTime: string
   endTime: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
 }
 
 export type TimeSlotCreateOrConnectWithoutRoutinesInput = {
@@ -319,12 +415,20 @@ export type TimeSlotUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TimeSlotUncheckedUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -362,6 +466,10 @@ export type TimeSlotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
   routines?: boolean | Prisma.TimeSlot$routinesArgs<ExtArgs>
   _count?: boolean | Prisma.TimeSlotCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["timeSlot"]>
@@ -370,21 +478,33 @@ export type TimeSlotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["timeSlot"]>
 
 export type TimeSlotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }, ExtArgs["result"]["timeSlot"]>
 
 export type TimeSlotSelectScalar = {
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  isDeleted?: boolean
+  deletedAt?: boolean
 }
 
-export type TimeSlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startTime" | "endTime", ExtArgs["result"]["timeSlot"]>
+export type TimeSlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startTime" | "endTime" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["timeSlot"]>
 export type TimeSlotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   routines?: boolean | Prisma.TimeSlot$routinesArgs<ExtArgs>
   _count?: boolean | Prisma.TimeSlotCountOutputTypeDefaultArgs<ExtArgs>
@@ -401,6 +521,10 @@ export type $TimeSlotPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     startTime: string
     endTime: string
+    createdAt: Date
+    updatedAt: Date | null
+    isDeleted: boolean
+    deletedAt: Date | null
   }, ExtArgs["result"]["timeSlot"]>
   composites: {}
 }
@@ -828,6 +952,10 @@ export interface TimeSlotFieldRefs {
   readonly id: Prisma.FieldRef<"TimeSlot", 'String'>
   readonly startTime: Prisma.FieldRef<"TimeSlot", 'String'>
   readonly endTime: Prisma.FieldRef<"TimeSlot", 'String'>
+  readonly createdAt: Prisma.FieldRef<"TimeSlot", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"TimeSlot", 'DateTime'>
+  readonly isDeleted: Prisma.FieldRef<"TimeSlot", 'Boolean'>
+  readonly deletedAt: Prisma.FieldRef<"TimeSlot", 'DateTime'>
 }
     
 
