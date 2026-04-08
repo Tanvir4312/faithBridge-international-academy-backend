@@ -267,7 +267,7 @@ export type StudentGroupByOutputType = {
   userId: string
   applicationId: string | null
   profileImage: string
-  classRoll: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -315,7 +315,7 @@ export type StudentWhereInput = {
   userId?: Prisma.StringFilter<"Student"> | string
   applicationId?: Prisma.StringNullableFilter<"Student"> | string | null
   profileImage?: Prisma.StringFilter<"Student"> | string
-  classRoll?: Prisma.StringNullableFilter<"Student"> | string | null
+  classRoll?: Prisma.StringFilter<"Student"> | string
   nameBn?: Prisma.StringFilter<"Student"> | string
   nameEn?: Prisma.StringFilter<"Student"> | string
   fatherName?: Prisma.StringFilter<"Student"> | string
@@ -350,7 +350,7 @@ export type StudentOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   applicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   profileImage?: Prisma.SortOrder
-  classRoll?: Prisma.SortOrderInput | Prisma.SortOrder
+  classRoll?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -389,7 +389,7 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StudentWhereInput[]
   NOT?: Prisma.StudentWhereInput | Prisma.StudentWhereInput[]
   profileImage?: Prisma.StringFilter<"Student"> | string
-  classRoll?: Prisma.StringNullableFilter<"Student"> | string | null
+  classRoll?: Prisma.StringFilter<"Student"> | string
   nameBn?: Prisma.StringFilter<"Student"> | string
   nameEn?: Prisma.StringFilter<"Student"> | string
   fatherName?: Prisma.StringFilter<"Student"> | string
@@ -423,7 +423,7 @@ export type StudentOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   applicationId?: Prisma.SortOrderInput | Prisma.SortOrder
   profileImage?: Prisma.SortOrder
-  classRoll?: Prisma.SortOrderInput | Prisma.SortOrder
+  classRoll?: Prisma.SortOrder
   nameBn?: Prisma.SortOrder
   nameEn?: Prisma.SortOrder
   fatherName?: Prisma.SortOrder
@@ -456,7 +456,7 @@ export type StudentScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"Student"> | string
   applicationId?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
   profileImage?: Prisma.StringWithAggregatesFilter<"Student"> | string
-  classRoll?: Prisma.StringNullableWithAggregatesFilter<"Student"> | string | null
+  classRoll?: Prisma.StringWithAggregatesFilter<"Student"> | string
   nameBn?: Prisma.StringWithAggregatesFilter<"Student"> | string
   nameEn?: Prisma.StringWithAggregatesFilter<"Student"> | string
   fatherName?: Prisma.StringWithAggregatesFilter<"Student"> | string
@@ -481,7 +481,7 @@ export type StudentCreateInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -515,7 +515,7 @@ export type StudentUncheckedCreateInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -545,7 +545,7 @@ export type StudentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -579,7 +579,7 @@ export type StudentUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -611,7 +611,7 @@ export type StudentCreateManyInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -636,7 +636,7 @@ export type StudentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -662,7 +662,7 @@ export type StudentUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -966,7 +966,7 @@ export type StudentCreateWithoutApplicationInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -998,7 +998,7 @@ export type StudentUncheckedCreateWithoutApplicationInput = {
   registrationId: string
   userId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1044,7 +1044,7 @@ export type StudentUpdateWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1076,7 +1076,7 @@ export type StudentUncheckedUpdateWithoutApplicationInput = {
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1106,7 +1106,7 @@ export type StudentCreateWithoutUserInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1138,7 +1138,7 @@ export type StudentUncheckedCreateWithoutUserInput = {
   registrationId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1184,7 +1184,7 @@ export type StudentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1216,7 +1216,7 @@ export type StudentUncheckedUpdateWithoutUserInput = {
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1246,7 +1246,7 @@ export type StudentCreateWithoutClassInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1279,7 +1279,7 @@ export type StudentUncheckedCreateWithoutClassInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1339,7 +1339,7 @@ export type StudentScalarWhereInput = {
   userId?: Prisma.StringFilter<"Student"> | string
   applicationId?: Prisma.StringNullableFilter<"Student"> | string | null
   profileImage?: Prisma.StringFilter<"Student"> | string
-  classRoll?: Prisma.StringNullableFilter<"Student"> | string | null
+  classRoll?: Prisma.StringFilter<"Student"> | string
   nameBn?: Prisma.StringFilter<"Student"> | string
   nameEn?: Prisma.StringFilter<"Student"> | string
   fatherName?: Prisma.StringFilter<"Student"> | string
@@ -1364,7 +1364,7 @@ export type StudentCreateWithoutDocumentRequestsInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1397,7 +1397,7 @@ export type StudentUncheckedCreateWithoutDocumentRequestsInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1442,7 +1442,7 @@ export type StudentUpdateWithoutDocumentRequestsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1475,7 +1475,7 @@ export type StudentUncheckedUpdateWithoutDocumentRequestsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1504,7 +1504,7 @@ export type StudentCreateWithoutFormFillupsInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1537,7 +1537,7 @@ export type StudentUncheckedCreateWithoutFormFillupsInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1582,7 +1582,7 @@ export type StudentUpdateWithoutFormFillupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1615,7 +1615,7 @@ export type StudentUncheckedUpdateWithoutFormFillupsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1644,7 +1644,7 @@ export type StudentCreateWithoutPaymentsInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1677,7 +1677,7 @@ export type StudentUncheckedCreateWithoutPaymentsInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1722,7 +1722,7 @@ export type StudentUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1755,7 +1755,7 @@ export type StudentUncheckedUpdateWithoutPaymentsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1784,7 +1784,7 @@ export type StudentCreateWithoutResultsInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1817,7 +1817,7 @@ export type StudentUncheckedCreateWithoutResultsInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1862,7 +1862,7 @@ export type StudentUpdateWithoutResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1895,7 +1895,7 @@ export type StudentUncheckedUpdateWithoutResultsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1924,7 +1924,7 @@ export type StudentCreateWithoutClassHistoriesInput = {
   id?: string
   registrationId: string
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -1957,7 +1957,7 @@ export type StudentUncheckedCreateWithoutClassHistoriesInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -2002,7 +2002,7 @@ export type StudentUpdateWithoutClassHistoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2035,7 +2035,7 @@ export type StudentUncheckedUpdateWithoutClassHistoriesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2066,7 +2066,7 @@ export type StudentCreateManyClassInput = {
   userId: string
   applicationId?: string | null
   profileImage: string
-  classRoll?: string | null
+  classRoll: string
   nameBn: string
   nameEn: string
   fatherName: string
@@ -2090,7 +2090,7 @@ export type StudentUpdateWithoutClassInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registrationId?: Prisma.StringFieldUpdateOperationsInput | string
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2123,7 +2123,7 @@ export type StudentUncheckedUpdateWithoutClassInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2154,7 +2154,7 @@ export type StudentUncheckedUpdateManyWithoutClassInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   applicationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profileImage?: Prisma.StringFieldUpdateOperationsInput | string
-  classRoll?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classRoll?: Prisma.StringFieldUpdateOperationsInput | string
   nameBn?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.StringFieldUpdateOperationsInput | string
   fatherName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2405,7 +2405,7 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     userId: string
     applicationId: string | null
     profileImage: string
-    classRoll: string | null
+    classRoll: string
     nameBn: string
     nameEn: string
     fatherName: string

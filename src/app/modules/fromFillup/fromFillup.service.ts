@@ -111,6 +111,8 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
       cancel_url: `${envVars.FRONTEND_URL}/dashboard/from-fillup`,
     });
 
+    //TODO CREATE PAYMENT INVOICE PDF AND SENDING PAYMENT INVOICE EMAIL
+
     return {
       fromFillupData,
       paymentData,

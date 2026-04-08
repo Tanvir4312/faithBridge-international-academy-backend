@@ -5,7 +5,6 @@ import { ICreateMediaPayload, IMediaFiles } from "./media.interface";
 import { deleteFileFromCloudinary } from "../../config/cloudinary.config";
 
 const createMedia = async (payload: ICreateMediaPayload) => {
-    throw new Error("Function not implemented.");
   const { sectionName, description, mediaFiles } = payload;
   const result = await prisma.$transaction(async (tx) => {
     await tx.media.createMany({

@@ -89,10 +89,13 @@ const createApplication = async (
       cancel_url: `${envVars.FRONTEND_URL}/dashboard/appointments`,
     });
 
+    //TODO CREATE PAYMENT INVOICE PDF AND SENDING PAYMENT INVOICE EMAIL
+
     try {
       await sendEmail({
         to: application.user.email as string,
-        subject: "You have received an admission application request from the school",
+        subject:
+          "You have received an admission application request from the school",
         templateName: "application",
         templateData: {
           studentName: application?.nameEn,
@@ -260,12 +263,31 @@ const applicationUpdateByAdmin = async (id: string) => {
         },
       });
 
-      const classData = await tx.class.create({
-        data: {
+      const classData = await tx.class.upsert({
+        where: {
+          name: isApplicationExist.desiredClass,
+        },
+        update: {},
+        create: {
           name: isApplicationExist.desiredClass,
           AcademicLevelId: academic_level.id,
         },
+      })
+
+   
+      const lastStudent = await tx.student.findFirst({
+        where: {
+          classId: classData.id,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
       });
+
+      const nextRoll =
+        lastStudent && lastStudent.classRoll
+          ? Number(lastStudent.classRoll) + 1
+          : 1;
 
       const regId = await generateRegistrationId(tx);
 
@@ -286,7 +308,7 @@ const applicationUpdateByAdmin = async (id: string) => {
           gender: isApplicationExist.gender,
           religion: isApplicationExist.religion,
           birthCertificateNo: isApplicationExist.birthCertificateNo,
-
+          classRoll: nextRoll.toString(),
           classId: classData.id,
           registrationId: regId,
         },
@@ -312,11 +334,35 @@ const applicationUpdateByAdmin = async (id: string) => {
             year: new Date().getFullYear().toString(),
           },
         });
-
-        //TODO EMAIL SEND AFTER STUDENT CREATE
       }
       return student;
     });
+    //TODO EMAIL SEND AFTER STUDENT CREATE
+    try {
+      const student = await prisma.student.findUnique({
+        where: {
+          id: result.id,
+        },
+        include: {
+          class: true,
+        },
+      });
+      await sendEmail({
+        to: isApplicationExist.user.email,
+        subject: "🎉 Congratulations! Your Admission is Confirmed",
+        templateName: "admission-success",
+        templateData: {
+          studentName: student?.nameEn,
+          registrationId: student?.registrationId,
+          classRoll: student?.classRoll,
+          className: student?.class.name,
+          session: new Date().getFullYear().toString(),
+          currentYear: new Date().getFullYear(),
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
     return result;
   } catch (error: any) {
     console.log(error);
