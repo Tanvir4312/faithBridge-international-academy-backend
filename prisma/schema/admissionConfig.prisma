@@ -1,0 +1,9 @@
+model AdmissionConfig {
+  id                 String    @id @default(uuid(7))
+  startDate          DateTime?
+  endDate            DateTime?
+  isActive           Boolean   @default(false)
+  year               String?  
+
+  @@map("admissionConfig")
+}

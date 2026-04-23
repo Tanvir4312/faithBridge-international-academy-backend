@@ -27,6 +27,7 @@ export type AggregateNotice = {
 export type NoticeMinAggregateOutputType = {
   id: string | null
   title: string | null
+  details: string | null
   type: $Enums.NoticeType | null
   authorId: string | null
   createdAt: Date | null
@@ -38,6 +39,7 @@ export type NoticeMinAggregateOutputType = {
 export type NoticeMaxAggregateOutputType = {
   id: string | null
   title: string | null
+  details: string | null
   type: $Enums.NoticeType | null
   authorId: string | null
   createdAt: Date | null
@@ -49,6 +51,7 @@ export type NoticeMaxAggregateOutputType = {
 export type NoticeCountAggregateOutputType = {
   id: number
   title: number
+  details: number
   type: number
   authorId: number
   createdAt: number
@@ -62,6 +65,7 @@ export type NoticeCountAggregateOutputType = {
 export type NoticeMinAggregateInputType = {
   id?: true
   title?: true
+  details?: true
   type?: true
   authorId?: true
   createdAt?: true
@@ -73,6 +77,7 @@ export type NoticeMinAggregateInputType = {
 export type NoticeMaxAggregateInputType = {
   id?: true
   title?: true
+  details?: true
   type?: true
   authorId?: true
   createdAt?: true
@@ -84,6 +89,7 @@ export type NoticeMaxAggregateInputType = {
 export type NoticeCountAggregateInputType = {
   id?: true
   title?: true
+  details?: true
   type?: true
   authorId?: true
   createdAt?: true
@@ -168,6 +174,7 @@ export type NoticeGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type NoticeGroupByOutputType = {
   id: string
   title: string
+  details: string | null
   type: $Enums.NoticeType
   authorId: string
   createdAt: Date
@@ -200,6 +207,7 @@ export type NoticeWhereInput = {
   NOT?: Prisma.NoticeWhereInput | Prisma.NoticeWhereInput[]
   id?: Prisma.StringFilter<"Notice"> | string
   title?: Prisma.StringFilter<"Notice"> | string
+  details?: Prisma.StringNullableFilter<"Notice"> | string | null
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
@@ -213,6 +221,7 @@ export type NoticeWhereInput = {
 export type NoticeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  details?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -229,6 +238,7 @@ export type NoticeWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.NoticeWhereInput[]
   NOT?: Prisma.NoticeWhereInput | Prisma.NoticeWhereInput[]
   title?: Prisma.StringFilter<"Notice"> | string
+  details?: Prisma.StringNullableFilter<"Notice"> | string | null
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
@@ -242,6 +252,7 @@ export type NoticeWhereUniqueInput = Prisma.AtLeast<{
 export type NoticeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  details?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -259,6 +270,7 @@ export type NoticeScalarWhereWithAggregatesInput = {
   NOT?: Prisma.NoticeScalarWhereWithAggregatesInput | Prisma.NoticeScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Notice"> | string
   title?: Prisma.StringWithAggregatesFilter<"Notice"> | string
+  details?: Prisma.StringNullableWithAggregatesFilter<"Notice"> | string | null
   type?: Prisma.EnumNoticeTypeWithAggregatesFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringWithAggregatesFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Notice"> | Date | string
@@ -270,6 +282,7 @@ export type NoticeScalarWhereWithAggregatesInput = {
 export type NoticeCreateInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -282,6 +295,7 @@ export type NoticeCreateInput = {
 export type NoticeUncheckedCreateInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
@@ -294,6 +308,7 @@ export type NoticeUncheckedCreateInput = {
 export type NoticeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -306,6 +321,7 @@ export type NoticeUpdateInput = {
 export type NoticeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -318,6 +334,7 @@ export type NoticeUncheckedUpdateInput = {
 export type NoticeCreateManyInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
@@ -329,6 +346,7 @@ export type NoticeCreateManyInput = {
 export type NoticeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -339,6 +357,7 @@ export type NoticeUpdateManyMutationInput = {
 export type NoticeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -360,6 +379,7 @@ export type NoticeOrderByRelationAggregateInput = {
 export type NoticeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  details?: Prisma.SortOrder
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -371,6 +391,7 @@ export type NoticeCountOrderByAggregateInput = {
 export type NoticeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  details?: Prisma.SortOrder
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -382,6 +403,7 @@ export type NoticeMaxOrderByAggregateInput = {
 export type NoticeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  details?: Prisma.SortOrder
   type?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -458,6 +480,7 @@ export type NoticeUpdateOneRequiredWithoutNoticeClassesNestedInput = {
 export type NoticeCreateWithoutAuthorInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -469,6 +492,7 @@ export type NoticeCreateWithoutAuthorInput = {
 export type NoticeUncheckedCreateWithoutAuthorInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -509,6 +533,7 @@ export type NoticeScalarWhereInput = {
   NOT?: Prisma.NoticeScalarWhereInput | Prisma.NoticeScalarWhereInput[]
   id?: Prisma.StringFilter<"Notice"> | string
   title?: Prisma.StringFilter<"Notice"> | string
+  details?: Prisma.StringNullableFilter<"Notice"> | string | null
   type?: Prisma.EnumNoticeTypeFilter<"Notice"> | $Enums.NoticeType
   authorId?: Prisma.StringFilter<"Notice"> | string
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
@@ -520,6 +545,7 @@ export type NoticeScalarWhereInput = {
 export type NoticeCreateWithoutNoticeClassesInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -531,6 +557,7 @@ export type NoticeCreateWithoutNoticeClassesInput = {
 export type NoticeUncheckedCreateWithoutNoticeClassesInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   authorId: string
   createdAt?: Date | string
@@ -558,6 +585,7 @@ export type NoticeUpdateToOneWithWhereWithoutNoticeClassesInput = {
 export type NoticeUpdateWithoutNoticeClassesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -569,6 +597,7 @@ export type NoticeUpdateWithoutNoticeClassesInput = {
 export type NoticeUncheckedUpdateWithoutNoticeClassesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -580,6 +609,7 @@ export type NoticeUncheckedUpdateWithoutNoticeClassesInput = {
 export type NoticeCreateManyAuthorInput = {
   id?: string
   title: string
+  details?: string | null
   type?: $Enums.NoticeType
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -590,6 +620,7 @@ export type NoticeCreateManyAuthorInput = {
 export type NoticeUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -601,6 +632,7 @@ export type NoticeUpdateWithoutAuthorInput = {
 export type NoticeUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -612,6 +644,7 @@ export type NoticeUncheckedUpdateWithoutAuthorInput = {
 export type NoticeUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumNoticeTypeFieldUpdateOperationsInput | $Enums.NoticeType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -653,6 +686,7 @@ export type NoticeCountOutputTypeCountNoticeClassesArgs<ExtArgs extends runtime.
 export type NoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  details?: boolean
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -667,6 +701,7 @@ export type NoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type NoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  details?: boolean
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -679,6 +714,7 @@ export type NoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type NoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  details?: boolean
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -691,6 +727,7 @@ export type NoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type NoticeSelectScalar = {
   id?: boolean
   title?: boolean
+  details?: boolean
   type?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -699,7 +736,7 @@ export type NoticeSelectScalar = {
   deletedAt?: boolean
 }
 
-export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "authorId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["notice"]>
+export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "details" | "type" | "authorId" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["notice"]>
 export type NoticeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   noticeClasses?: boolean | Prisma.Notice$noticeClassesArgs<ExtArgs>
@@ -721,6 +758,7 @@ export type $NoticePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
+    details: string | null
     type: $Enums.NoticeType
     authorId: string
     createdAt: Date
@@ -1154,6 +1192,7 @@ export interface Prisma__NoticeClient<T, Null = never, ExtArgs extends runtime.T
 export interface NoticeFieldRefs {
   readonly id: Prisma.FieldRef<"Notice", 'String'>
   readonly title: Prisma.FieldRef<"Notice", 'String'>
+  readonly details: Prisma.FieldRef<"Notice", 'String'>
   readonly type: Prisma.FieldRef<"Notice", 'NoticeType'>
   readonly authorId: Prisma.FieldRef<"Notice", 'String'>
   readonly createdAt: Prisma.FieldRef<"Notice", 'DateTime'>

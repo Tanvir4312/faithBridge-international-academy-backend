@@ -4,6 +4,7 @@ import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { updateAdminZodSchema } from "./admin.validation";
 import { Role } from "../../../generated/prisma/enums";
+import { multerUpload } from "../../config/multer.config";
 
 const router = Router();
 
@@ -21,21 +22,22 @@ router.get(
 
 router.put(
   "/:id",
-  checkAuth(Role.SUPER_ADMIN),
+  checkAuth(Role.SUPER_ADMIN, Role.ADMIN),
+  multerUpload.single("profilePhoto"),
   validateRequest(updateAdminZodSchema),
   AdminController.updateAdmin,
 );
 
 router.delete("/:id", checkAuth(Role.SUPER_ADMIN), AdminController.deleteAdmin);
 
-router.post(
-  "/change-user-status",
-  checkAuth(Role.SUPER_ADMIN),
+router.put(
+  "/change-user-status/:id",
+  checkAuth(Role.SUPER_ADMIN, Role.ADMIN),
   AdminController.changeUserStatus,
 );
 
-router.post(
-  "/change-user-role",
+router.put(
+  "/change-user-role/:id",
   checkAuth(Role.SUPER_ADMIN),
   AdminController.changeUserRole,
 );

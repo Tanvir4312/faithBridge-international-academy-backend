@@ -3,11 +3,24 @@ import { catchAsync } from "../../shared/cathAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import { StudentService } from "./student.service";
 import { Request, Response } from "express";
+import { getPaginationOptions } from "../../helper/paginationHelper";
 
 
 const getAllStudent = catchAsync(async (req: Request, res: Response) => {
-  const query = req.query.search;
-  const result = await StudentService.getAllStudent(query as string);
+
+  const { searchTerm } = req.query
+  const { sortOrder } = req.query
+  const { sortBy } = req.query
+  const { page, limit, skip } = getPaginationOptions(req.query)
+  const result = await StudentService.getAllStudent
+    (
+      searchTerm as string,
+      page,
+      limit,
+      skip,
+      sortBy as string,
+      sortOrder as string
+    );
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Student fetched successfully",
@@ -40,10 +53,11 @@ const studentDelete = catchAsync(async (req: Request, res: Response) => {
 });
 
 const studentUpdate = catchAsync(async (req: Request, res: Response) => {
+
   const id = req.params.id;
   const payload = {
     ...req.body,
-    profileImage : req.file?.path
+    profileImage: req.file?.path
   };
 
   const user = req.user;

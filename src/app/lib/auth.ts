@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
 import { Role, UserStatus } from "../../generated/prisma/enums";
-import { bearer, emailOTP } from "better-auth/plugins";
+import { bearer, emailOTP, oAuthProxy } from "better-auth/plugins";
 import { sendEmail } from "../utils/email";
 import { envVars } from "../config/env";
 
@@ -15,10 +15,10 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
+    // requireEmailVerification: true,
   },
   emailVerification: {
-    sendOnSignUp: true,
+    sendOnSignUp: false,
     sendOnSignIn: true,
     autoSignInAfterVerification: true,
   },
@@ -54,6 +54,7 @@ export const auth = betterAuth({
   },
 
   plugins: [
+    oAuthProxy(),
     bearer(),
     emailOTP({
       overrideDefaultEmailVerification: true,
@@ -99,22 +100,23 @@ export const auth = betterAuth({
       otpLength: 6,
     }),
   ],
-    socialProviders: {
-    google: {
-      clientId: envVars.GOOGLE_CLIEN_ID as string,
-      clientSecret: envVars.GOOGLE_CLIEN_SECRET as string,
-      mapProfileToUser: () => {
-        return {
-          role: Role.APPLICANT,
-          status: UserStatus.ACTIVE,
-          emailVerified: true,
-          needPasswordChange: false,
-          isDeleted: false,
-          deletedAt: null,
-        };
-      },
-    },
-  },
+  // socialProviders: {
+  //   google: {
+  //     clientId: envVars.GOOGLE_CLIENT_ID as string,
+  //     clientSecret: envVars.GOOGLE_CLIENT_SECRET as string,
+  //     redirectURI: envVars.GOOGLE_CALLBACK_URL,
+  //     mapProfileToUser: () => {
+  //       return {
+  //         role: Role.APPLICANT,
+  //         status: UserStatus.ACTIVE,
+  //         emailVerified: true,
+  //         needPasswordChange: false,
+  //         isDeleted: false,
+  //         deletedAt: null,
+  //       };
+  //     },
+  //   },
+  // },
 
   session: {
     expiresIn: 60 * 60 * 60 * 24,
@@ -128,6 +130,7 @@ export const auth = betterAuth({
 
 
 
+
   redirecURLs: {
     signIn: `${envVars.BETTER_AUTH_URL}/api/v1/auth/google/success`,
   },
@@ -136,25 +139,39 @@ export const auth = betterAuth({
     process.env.BETTER_AUTH_URL || "http://localhost:5000",
     envVars.FRONTEND_URL,
   ],
+
   advanced: {
-    useSecureCookies: false,
+    // useSecureCookies: false,
+    // cookiePrefix: "better-auth",
+    // useSecureCookies: process.env.NODE_ENV === "production",
+    // crossSubDomainCookies: {
+    //   enabled: false,
+    // },
+    // disableCSRFCheck: true, // Allow requests without Origin header (Postman, mobile apps, etc.)
+
     cookies: {
+      session_token: {
+        name: "better-auth.session_token",
+        attributes: {
+          sameSite: "none",
+          secure: true,
+          httpOnly: true,
+          partitioned: true,
+          path: "/",
+        },
+      },
+
       state: {
+        name: "better-auth.state",
         attributes: {
           sameSite: "none",
           secure: true,
           httpOnly: true,
+          partitioned: true,
           path: "/",
         },
       },
-      sessionToken: {
-        attributes: {
-          sameSite: "none",
-          secure: true,
-          httpOnly: true,
-          path: "/",
-        },
-      },
+
     },
   },
 });

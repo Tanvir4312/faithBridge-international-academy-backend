@@ -3,9 +3,19 @@ import { catchAsync } from "../../shared/cathAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import { AdminService } from "./admin.service";
 import { Request, Response } from "express";
+import { getPaginationOptions } from "../../helper/paginationHelper";
 
 const getAllAdmin = catchAsync(async (req: Request, res: Response) => {
-  const result = await AdminService.getAllAdmin();
+  const { page, limit, skip } = getPaginationOptions(req.query);
+  const { sortOrder } = req.query;
+  const { sortBy } = req.query;
+  const result = await AdminService.getAllAdmin(
+    page,
+    limit,
+    skip,
+    sortBy as string,
+    sortOrder as "desc" | "asc"
+  );
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Admin fetched successfully",
@@ -27,9 +37,14 @@ const getAdminById = catchAsync(async (req: Request, res: Response) => {
 
 const updateAdmin = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const payload = req.body;
+  const userId = req.user?.userId;
+  const payload = {
+    ...req.body,
+    profilePhoto: req.file?.path,
 
-  const result = await AdminService.updateAdmin(id as string, payload);
+  };
+
+  const result = await AdminService.updateAdmin(id as string, payload, userId as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Admin updated successfully",
@@ -53,7 +68,8 @@ const deleteAdmin = catchAsync(async (req: Request, res: Response) => {
 const changeUserStatus = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const user = req.user;
-  const result = await AdminService.changeUserStatus(user, payload);
+  const id = req.params.id;
+  const result = await AdminService.changeUserStatus(user, payload, id as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "User status updated successfully",
@@ -65,7 +81,8 @@ const changeUserStatus = catchAsync(async (req: Request, res: Response) => {
 const changeUserRole = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const user = req.user;
-  const result = await AdminService.changeUserRole(user, payload);
+  const id = req.params.id;
+  const result = await AdminService.changeUserRole(user, payload, id as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "User role updated successfully",

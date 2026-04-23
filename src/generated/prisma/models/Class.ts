@@ -199,6 +199,7 @@ export type ClassWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Class"> | Date | string | null
   AcademicLevelId?: Prisma.StringFilter<"Class"> | string
   AcademicLevel?: Prisma.XOR<Prisma.AcademicLevelScalarRelationFilter, Prisma.AcademicLevelWhereInput>
+  classTeacher?: Prisma.XOR<Prisma.ClassTeacherNullableScalarRelationFilter, Prisma.ClassTeacherWhereInput> | null
   students?: Prisma.StudentListRelationFilter
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   routines?: Prisma.RoutineListRelationFilter
@@ -216,6 +217,7 @@ export type ClassOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   AcademicLevelId?: Prisma.SortOrder
   AcademicLevel?: Prisma.AcademicLevelOrderByWithRelationInput
+  classTeacher?: Prisma.ClassTeacherOrderByWithRelationInput
   students?: Prisma.StudentOrderByRelationAggregateInput
   classSubjects?: Prisma.ClassSubjectOrderByRelationAggregateInput
   routines?: Prisma.RoutineOrderByRelationAggregateInput
@@ -236,6 +238,7 @@ export type ClassWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Class"> | Date | string | null
   AcademicLevelId?: Prisma.StringFilter<"Class"> | string
   AcademicLevel?: Prisma.XOR<Prisma.AcademicLevelScalarRelationFilter, Prisma.AcademicLevelWhereInput>
+  classTeacher?: Prisma.XOR<Prisma.ClassTeacherNullableScalarRelationFilter, Prisma.ClassTeacherWhereInput> | null
   students?: Prisma.StudentListRelationFilter
   classSubjects?: Prisma.ClassSubjectListRelationFilter
   routines?: Prisma.RoutineListRelationFilter
@@ -278,6 +281,7 @@ export type ClassCreateInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -294,6 +298,7 @@ export type ClassUncheckedCreateInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -310,6 +315,7 @@ export type ClassUpdateInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -326,6 +332,7 @@ export type ClassUncheckedUpdateInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -464,6 +471,20 @@ export type ClassUpdateOneRequiredWithoutClassSubjectsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutClassSubjectsInput, Prisma.ClassUpdateWithoutClassSubjectsInput>, Prisma.ClassUncheckedUpdateWithoutClassSubjectsInput>
 }
 
+export type ClassCreateNestedOneWithoutClassTeacherInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput
+  connect?: Prisma.ClassWhereUniqueInput
+}
+
+export type ClassUpdateOneRequiredWithoutClassTeacherNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutClassTeacherInput
+  upsert?: Prisma.ClassUpsertWithoutClassTeacherInput
+  connect?: Prisma.ClassWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutClassTeacherInput, Prisma.ClassUpdateWithoutClassTeacherInput>, Prisma.ClassUncheckedUpdateWithoutClassTeacherInput>
+}
+
 export type ClassCreateNestedOneWithoutFormFillupsInput = {
   create?: Prisma.XOR<Prisma.ClassCreateWithoutFormFillupsInput, Prisma.ClassUncheckedCreateWithoutFormFillupsInput>
   connectOrCreate?: Prisma.ClassCreateOrConnectWithoutFormFillupsInput
@@ -541,6 +562,7 @@ export type ClassCreateWithoutAcademicLevelInput = {
   updatedAt?: Date | string | null
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -556,6 +578,7 @@ export type ClassUncheckedCreateWithoutAcademicLevelInput = {
   updatedAt?: Date | string | null
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -611,6 +634,7 @@ export type ClassCreateWithoutClassSubjectsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -626,6 +650,7 @@ export type ClassUncheckedCreateWithoutClassSubjectsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -657,6 +682,7 @@ export type ClassUpdateWithoutClassSubjectsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -672,7 +698,88 @@ export type ClassUncheckedUpdateWithoutClassSubjectsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
+  notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
+  formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutClassNestedInput
+  studentHistories?: Prisma.StudentClassHistoryUncheckedUpdateManyWithoutClassNestedInput
+}
+
+export type ClassCreateWithoutClassTeacherInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  students?: Prisma.StudentCreateNestedManyWithoutClassInput
+  classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
+  notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
+  formFillups?: Prisma.FormFillupCreateNestedManyWithoutClassInput
+  studentHistories?: Prisma.StudentClassHistoryCreateNestedManyWithoutClassInput
+}
+
+export type ClassUncheckedCreateWithoutClassTeacherInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  AcademicLevelId: string
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
+  classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
+  notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
+  formFillups?: Prisma.FormFillupUncheckedCreateNestedManyWithoutClassInput
+  studentHistories?: Prisma.StudentClassHistoryUncheckedCreateNestedManyWithoutClassInput
+}
+
+export type ClassCreateOrConnectWithoutClassTeacherInput = {
+  where: Prisma.ClassWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>
+}
+
+export type ClassUpsertWithoutClassTeacherInput = {
+  update: Prisma.XOR<Prisma.ClassUpdateWithoutClassTeacherInput, Prisma.ClassUncheckedUpdateWithoutClassTeacherInput>
+  create: Prisma.XOR<Prisma.ClassCreateWithoutClassTeacherInput, Prisma.ClassUncheckedCreateWithoutClassTeacherInput>
+  where?: Prisma.ClassWhereInput
+}
+
+export type ClassUpdateToOneWithWhereWithoutClassTeacherInput = {
+  where?: Prisma.ClassWhereInput
+  data: Prisma.XOR<Prisma.ClassUpdateWithoutClassTeacherInput, Prisma.ClassUncheckedUpdateWithoutClassTeacherInput>
+}
+
+export type ClassUpdateWithoutClassTeacherInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  students?: Prisma.StudentUpdateManyWithoutClassNestedInput
+  classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
+  notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
+  formFillups?: Prisma.FormFillupUpdateManyWithoutClassNestedInput
+  studentHistories?: Prisma.StudentClassHistoryUpdateManyWithoutClassNestedInput
+}
+
+export type ClassUncheckedUpdateWithoutClassTeacherInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
+  classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
   formFillups?: Prisma.FormFillupUncheckedUpdateManyWithoutClassNestedInput
@@ -687,6 +794,7 @@ export type ClassCreateWithoutFormFillupsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -702,6 +810,7 @@ export type ClassUncheckedCreateWithoutFormFillupsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -733,6 +842,7 @@ export type ClassUpdateWithoutFormFillupsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -748,6 +858,7 @@ export type ClassUncheckedUpdateWithoutFormFillupsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -763,6 +874,7 @@ export type ClassCreateWithoutNoticesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -778,6 +890,7 @@ export type ClassUncheckedCreateWithoutNoticesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -809,6 +922,7 @@ export type ClassUpdateWithoutNoticesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -824,6 +938,7 @@ export type ClassUncheckedUpdateWithoutNoticesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -839,6 +954,7 @@ export type ClassCreateWithoutRoutinesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -854,6 +970,7 @@ export type ClassUncheckedCreateWithoutRoutinesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -885,6 +1002,7 @@ export type ClassUpdateWithoutRoutinesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -900,6 +1018,7 @@ export type ClassUncheckedUpdateWithoutRoutinesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
@@ -915,6 +1034,7 @@ export type ClassCreateWithoutStudentsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassCreateNestedManyWithoutClassInput
@@ -930,6 +1050,7 @@ export type ClassUncheckedCreateWithoutStudentsInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
   notices?: Prisma.NoticeClassUncheckedCreateNestedManyWithoutClassInput
@@ -961,6 +1082,7 @@ export type ClassUpdateWithoutStudentsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUpdateManyWithoutClassNestedInput
@@ -976,6 +1098,7 @@ export type ClassUncheckedUpdateWithoutStudentsInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
   notices?: Prisma.NoticeClassUncheckedUpdateManyWithoutClassNestedInput
@@ -991,6 +1114,7 @@ export type ClassCreateWithoutStudentHistoriesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevel: Prisma.AcademicLevelCreateNestedOneWithoutClassesInput
+  classTeacher?: Prisma.ClassTeacherCreateNestedOneWithoutClassInput
   students?: Prisma.StudentCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineCreateNestedManyWithoutClassInput
@@ -1006,6 +1130,7 @@ export type ClassUncheckedCreateWithoutStudentHistoriesInput = {
   isDeleted?: boolean
   deletedAt?: Date | string | null
   AcademicLevelId: string
+  classTeacher?: Prisma.ClassTeacherUncheckedCreateNestedOneWithoutClassInput
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutClassInput
   classSubjects?: Prisma.ClassSubjectUncheckedCreateNestedManyWithoutClassInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutClassInput
@@ -1037,6 +1162,7 @@ export type ClassUpdateWithoutStudentHistoriesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevel?: Prisma.AcademicLevelUpdateOneRequiredWithoutClassesNestedInput
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -1052,6 +1178,7 @@ export type ClassUncheckedUpdateWithoutStudentHistoriesInput = {
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   AcademicLevelId?: Prisma.StringFieldUpdateOperationsInput | string
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -1075,6 +1202,7 @@ export type ClassUpdateWithoutAcademicLevelInput = {
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classTeacher?: Prisma.ClassTeacherUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutClassNestedInput
@@ -1090,6 +1218,7 @@ export type ClassUncheckedUpdateWithoutAcademicLevelInput = {
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  classTeacher?: Prisma.ClassTeacherUncheckedUpdateOneWithoutClassNestedInput
   students?: Prisma.StudentUncheckedUpdateManyWithoutClassNestedInput
   classSubjects?: Prisma.ClassSubjectUncheckedUpdateManyWithoutClassNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutClassNestedInput
@@ -1192,6 +1321,7 @@ export type ClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   deletedAt?: boolean
   AcademicLevelId?: boolean
   AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
+  classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>
   students?: boolean | Prisma.Class$studentsArgs<ExtArgs>
   classSubjects?: boolean | Prisma.Class$classSubjectsArgs<ExtArgs>
   routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>
@@ -1236,6 +1366,7 @@ export type ClassSelectScalar = {
 export type ClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "AcademicLevelId", ExtArgs["result"]["class"]>
 export type ClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   AcademicLevel?: boolean | Prisma.AcademicLevelDefaultArgs<ExtArgs>
+  classTeacher?: boolean | Prisma.Class$classTeacherArgs<ExtArgs>
   students?: boolean | Prisma.Class$studentsArgs<ExtArgs>
   classSubjects?: boolean | Prisma.Class$classSubjectsArgs<ExtArgs>
   routines?: boolean | Prisma.Class$routinesArgs<ExtArgs>
@@ -1255,6 +1386,7 @@ export type $ClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Class"
   objects: {
     AcademicLevel: Prisma.$AcademicLevelPayload<ExtArgs>
+    classTeacher: Prisma.$ClassTeacherPayload<ExtArgs> | null
     students: Prisma.$StudentPayload<ExtArgs>[]
     classSubjects: Prisma.$ClassSubjectPayload<ExtArgs>[]
     routines: Prisma.$RoutinePayload<ExtArgs>[]
@@ -1665,6 +1797,7 @@ readonly fields: ClassFieldRefs;
 export interface Prisma__ClassClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   AcademicLevel<T extends Prisma.AcademicLevelDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AcademicLevelDefaultArgs<ExtArgs>>): Prisma.Prisma__AcademicLevelClient<runtime.Types.Result.GetResult<Prisma.$AcademicLevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  classTeacher<T extends Prisma.Class$classTeacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$classTeacherArgs<ExtArgs>>): Prisma.Prisma__ClassTeacherClient<runtime.Types.Result.GetResult<Prisma.$ClassTeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   students<T extends Prisma.Class$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   classSubjects<T extends Prisma.Class$classSubjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$classSubjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   routines<T extends Prisma.Class$routinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2105,6 +2238,25 @@ export type ClassDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Classes to delete.
    */
   limit?: number
+}
+
+/**
+ * Class.classTeacher
+ */
+export type Class$classTeacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClassTeacher
+   */
+  select?: Prisma.ClassTeacherSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClassTeacher
+   */
+  omit?: Prisma.ClassTeacherOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassTeacherInclude<ExtArgs> | null
+  where?: Prisma.ClassTeacherWhereInput
 }
 
 /**

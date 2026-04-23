@@ -41,7 +41,7 @@ router.post("/verify-email", AuthController.verifyEmail);
 
 router.post(
   "/forgot-password",
-  checkAuth(Role.ADMIN, Role.TEACHER, Role.STUDENT, Role.APPLICANT),
+
   AuthController.forgotPassword,
 );
 

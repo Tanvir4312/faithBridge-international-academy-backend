@@ -4,6 +4,7 @@ model Exam {
   year            String
   formFillupStart DateTime
   formFillupEnd   DateTime
+  examDate        DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime? @updatedAt
   isDeleted       Boolean   @default(false)

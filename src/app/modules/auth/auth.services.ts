@@ -29,6 +29,15 @@ const registerApplicant = async (payload: IRegisterData) => {
   if (!data.user) {
     throw new AppError(status.BAD_REQUEST, "Failed to register user");
   }
+
+  await prisma.user.update({
+    where: {
+      id: data.user.id,
+    },
+    data: {
+      emailVerified: true,
+    },
+  });
   const accessToken = tokenUtils.getAccessToken({
     userId: data.user.id,
     role: data.user.role,
@@ -61,9 +70,12 @@ const loginUser = async (payload: ILoginData) => {
       password: payload.password,
     },
   });
-  if (data.user.status === UserStatus.SUSPENDED) {
-    throw new AppError(status.BAD_REQUEST, "User is suspended");
+  if (data.user.status !== UserStatus.ACTIVE) {
+    throw new AppError(status.BAD_REQUEST, "User is inactive or suspended");
+
   }
+
+
 
   const accessToken = tokenUtils.getAccessToken({
     userId: data.user.id,
@@ -96,9 +108,16 @@ const getMe = async (user: IRequestUser) => {
     where: {
       id: user.userId,
     },
+
     include: {
+      admin: true,
       teacher: true,
-      student: true,
+      student: {
+        include: {
+          class: true,
+        }
+      },
+
       application: true,
     },
   });

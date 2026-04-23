@@ -3,7 +3,11 @@ import Stripe from "stripe";
 import { prisma } from "../../lib/prisma";
 import { PaymentStatus } from "../../../generated/prisma/enums";
 
+import status from "http-status";
+import AppError from "../../errorHelpers/AppError";
+
 const handleStripeWebhookEvent = async (event: Stripe.Event) => {
+  // console.log("event====>", event);
   const existingPayment = await prisma.payment.findFirst({
     where: {
       stripeEventId: event.id,
@@ -18,7 +22,7 @@ const handleStripeWebhookEvent = async (event: Stripe.Event) => {
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
-
+      // console.log("session==>", session.payment_status)
       const { applicationId, fromFillupId, paymentId } = session.metadata || {};
 
       await prisma.$transaction(async (tx) => {
@@ -84,4 +88,115 @@ const handleStripeWebhookEvent = async (event: Stripe.Event) => {
   return { message: `Webhook Event ${event.id} processed successfully` };
 };
 
-export const PaymentService = { handleStripeWebhookEvent };
+const getAllPayment = async () => {
+  const result = await prisma.payment.findMany({
+    select: {
+      paymentFor: true,
+      amount: true,
+      status: true,
+
+      createdAt: true,
+      updatedAt: true,
+
+      student: {
+        select: {
+          class: {
+            select: {
+              name: true
+            }
+          },
+          classRoll: true,
+          nameEn: true,
+          registrationId: true
+        }
+      }
+    },
+
+  });
+  return result;
+};
+
+const getPaymentByStudentId = async (studentId: string) => {
+  const isStudent = await prisma.student.findUnique({
+    where: {
+      id: studentId,
+    },
+  });
+  if (!isStudent) {
+    throw new AppError(status.NOT_FOUND, "Student not found");
+  }
+  if (isStudent?.id !== studentId) {
+    throw new AppError(status.FORBIDDEN, "You are not authorized to access this payment");
+  }
+  const result = await prisma.payment.findMany({
+    where: {
+      studentId,
+    },
+    select: {
+      id: true,
+      paymentFor: true,
+      amount: true,
+      status: true,
+      transactionId: true,
+      createdAt: true,
+      updatedAt: true,
+      student: {
+        select: {
+          class: {
+            select: {
+              name: true
+            }
+          },
+          classRoll: true,
+          nameEn: true,
+          registrationId: true
+        }
+      }
+    }
+  });
+  return result;
+};
+
+const getPaymentByApplicantId = async (applicantId: string) => {
+  const isApplicant = await prisma.application.findUnique({
+    where: {
+      id: applicantId,
+    },
+  });
+  if (!isApplicant) {
+    throw new AppError(status.NOT_FOUND, "Student not found");
+  }
+  if (isApplicant?.id !== applicantId) {
+    throw new AppError(status.FORBIDDEN, "You are not authorized to access this payment");
+  }
+  const result = await prisma.payment.findMany({
+    where: {
+      applicationId: applicantId,
+    },
+    select: {
+      id: true,
+      paymentFor: true,
+      amount: true,
+      status: true,
+      transactionId: true,
+      createdAt: true,
+      updatedAt: true,
+      application: {
+        select: {
+          nameEn: true,
+          fatherName: true,
+          desiredClass: true,
+          applicationNo: true
+        }
+      }
+    }
+  });
+  return result;
+};
+
+export const PaymentService = {
+  handleStripeWebhookEvent,
+  getAllPayment,
+  getPaymentByStudentId,
+  getPaymentByApplicantId,
+};

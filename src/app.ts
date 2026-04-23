@@ -30,6 +30,14 @@ app.post(
   PaymentController.handleStripeWebhookEvent,
 );
 
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL as string,
+
+//     credentials: true,
+//   }),
+// );
+
 app.use(
   cors({
     origin: [
@@ -73,8 +81,8 @@ cron.schedule("*/25 * * * *", async () => {
 app.use("/api/v1", IndexRoutes);
 
 // Global error handler
-app.use(globalErrorHandler);
 app.use(notFound);
+app.use(globalErrorHandler);
 
 // Basic route
 app.get("/", (req: Request, res: Response) => {

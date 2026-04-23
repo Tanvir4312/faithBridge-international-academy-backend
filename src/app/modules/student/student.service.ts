@@ -5,15 +5,22 @@ import { IRequestUser } from "../../interfaces/requestUser.inteface";
 import { IUpdateStudentPayload } from "./student.interface";
 import { StudentWhereInput } from "../../../generated/prisma/models";
 
-const getAllStudent = async (search: string) => {
+const getAllStudent = async (
+  searchTerm: string,
+  page: number,
+  limit: number,
+  skip: number,
+  srtoBy = "createdAt",
+  sortOrder = "desc"
+) => {
   const andCondition: StudentWhereInput[] = [];
-  if (search) {
+  if (searchTerm) {
     andCondition.push({
       OR: [
         {
           user: {
             name: {
-              contains: search,
+              contains: searchTerm,
               mode: "insensitive",
             },
           },
@@ -21,40 +28,40 @@ const getAllStudent = async (search: string) => {
         {
           user: {
             email: {
-              contains: search,
+              contains: searchTerm,
               mode: "insensitive",
             },
           },
         },
         {
           registrationId: {
-            contains: search,
+            contains: searchTerm,
             mode: "insensitive",
           },
         },
         {
           class: {
             name: {
-              contains: search,
+              contains: searchTerm,
               mode: "insensitive",
             },
           },
         },
         {
           nameBn: {
-            contains: search,
+            contains: searchTerm,
             mode: "insensitive",
           },
         },
         {
           nameEn: {
-            contains: search,
+            contains: searchTerm,
             mode: "insensitive",
           },
         },
         {
           birthCertificateNo: {
-            contains: search,
+            contains: searchTerm,
             mode: "insensitive",
           },
         },
@@ -62,9 +69,14 @@ const getAllStudent = async (search: string) => {
     });
   }
   const result = await prisma.student.findMany({
+    take: limit,
+    skip,
+    orderBy: {
+      [srtoBy]: sortOrder === "asc" ? "asc" : "desc",
+    },
     where:
       andCondition.length > 0
-        ? { AND: [...andCondition] }
+        ? { AND: andCondition }
         : { isDeleted: false },
     include: {
       user: true,
@@ -81,8 +93,18 @@ const getAllStudent = async (search: string) => {
       },
     },
   });
+  const totalStudent = await prisma.student.count();
+  return {
+    data: result,
 
-  return result;
+    meta: {
+
+      limit,
+      current_Page: page,
+      total_page: Math.ceil(totalStudent / limit),
+      total: totalStudent,
+    }
+  };
 };
 
 const getStudentById = async (id: string, user: IRequestUser) => {
@@ -212,7 +234,7 @@ const studentUpdate = async (
   payload: IUpdateStudentPayload,
   user: IRequestUser,
 ) => {
-  console.log(id);
+
   const isStudentExist = await prisma.student.findUnique({
     where: {
       id,

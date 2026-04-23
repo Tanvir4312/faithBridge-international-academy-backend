@@ -63,6 +63,18 @@ const assignSubjectToTeacher = async (
             teacherId,
             subjectId: subject.id,
           },
+          select: {
+            subject: {
+              select: {
+                name: true
+              }
+            },
+            teacher: {
+              select: {
+                name: true
+              }
+            }
+          }
         });
         teacherSubjectField.push(teacherSubject);
       }
@@ -80,7 +92,7 @@ const assignSubjectToTeacher = async (
 
 const teacherPrimarySubjectUpdate = async (
   payload: ITeacherPrimarySubjetUpdate,
- 
+
 ) => {
   const teacher = await prisma.teacher.findUnique({
     where: {
@@ -115,8 +127,8 @@ const teacherPrimarySubjectUpdate = async (
   });
 };
 
-const teacherSubjectDelete = async(payload : ITeacherSubjetDelete ) =>{
-  
+const teacherSubjectDelete = async (payload: ITeacherSubjetDelete) => {
+
   const teacherSubject = await prisma.teacherSubject.findUnique({
     where: {
       teacherId_subjectId: payload,
@@ -135,5 +147,6 @@ const teacherSubjectDelete = async(payload : ITeacherSubjetDelete ) =>{
 export const TeacherSubjectService = {
   teacherPrimarySubjectUpdate,
   assignSubjectToTeacher,
-  teacherSubjectDelete
+  teacherSubjectDelete,
+
 };

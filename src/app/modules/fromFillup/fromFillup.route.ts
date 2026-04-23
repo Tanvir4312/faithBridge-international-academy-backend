@@ -17,6 +17,14 @@ router.get(
   FromFillupController.getAllFromFillup,
 );
 
+//TODO Student see their own formFillup
+
+router.get(
+  "/:studentId",
+  checkAuth(Role.STUDENT, Role.SUPER_ADMIN),
+  FromFillupController.getStudentFromFillupById,
+);
+
 router.put(
   "/:id",
   checkAuth(Role.SUPER_ADMIN, Role.ADMIN),

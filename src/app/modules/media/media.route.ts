@@ -9,7 +9,7 @@ const router = Router();
 router.post(
   "/upload",
   checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
-  multerUpload.array("media", 20),
+  multerUpload.fields([{ name: "media", maxCount: 20 }]),
   (req: Request, res: Response, next: NextFunction) => {
     if (req.body.data) {
       const parsData = JSON.parse(req.body.data);
@@ -34,7 +34,7 @@ router.post(
 
 router.get(
   "/",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+
   MediaController.getAllMedia,
 );
 

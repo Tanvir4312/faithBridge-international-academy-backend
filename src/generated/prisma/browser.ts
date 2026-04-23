@@ -28,6 +28,11 @@ export type AcademicLevel = Prisma.AcademicLevelModel
  */
 export type Admin = Prisma.AdminModel
 /**
+ * Model AdmissionConfig
+ * 
+ */
+export type AdmissionConfig = Prisma.AdmissionConfigModel
+/**
  * Model Application
  * 
  */
@@ -62,6 +67,11 @@ export type Class = Prisma.ClassModel
  * 
  */
 export type ClassSubject = Prisma.ClassSubjectModel
+/**
+ * Model ClassTeacher
+ * 
+ */
+export type ClassTeacher = Prisma.ClassTeacherModel
 /**
  * Model DocumentRequest
  * 

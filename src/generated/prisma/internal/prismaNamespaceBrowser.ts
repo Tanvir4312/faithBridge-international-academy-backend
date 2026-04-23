@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   AcademicLevel: 'AcademicLevel',
   Admin: 'Admin',
+  AdmissionConfig: 'AdmissionConfig',
   Application: 'Application',
   User: 'User',
   Session: 'Session',
@@ -60,6 +61,7 @@ export const ModelName = {
   Verification: 'Verification',
   Class: 'Class',
   ClassSubject: 'ClassSubject',
+  ClassTeacher: 'ClassTeacher',
   DocumentRequest: 'DocumentRequest',
   Exam: 'Exam',
   FormFillup: 'FormFillup',
@@ -121,6 +123,17 @@ export const AdminScalarFieldEnum = {
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const AdmissionConfigScalarFieldEnum = {
+  id: 'id',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  year: 'year'
+} as const
+
+export type AdmissionConfigScalarFieldEnum = (typeof AdmissionConfigScalarFieldEnum)[keyof typeof AdmissionConfigScalarFieldEnum]
 
 
 export const ApplicationScalarFieldEnum = {
@@ -248,6 +261,17 @@ export const ClassSubjectScalarFieldEnum = {
 export type ClassSubjectScalarFieldEnum = (typeof ClassSubjectScalarFieldEnum)[keyof typeof ClassSubjectScalarFieldEnum]
 
 
+export const ClassTeacherScalarFieldEnum = {
+  id: 'id',
+  classId: 'classId',
+  teacherId: 'teacherId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ClassTeacherScalarFieldEnum = (typeof ClassTeacherScalarFieldEnum)[keyof typeof ClassTeacherScalarFieldEnum]
+
+
 export const DocumentRequestScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
@@ -270,6 +294,7 @@ export const ExamScalarFieldEnum = {
   year: 'year',
   formFillupStart: 'formFillupStart',
   formFillupEnd: 'formFillupEnd',
+  examDate: 'examDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -316,6 +341,7 @@ export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof Me
 export const NoticeScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  details: 'details',
   type: 'type',
   authorId: 'authorId',
   createdAt: 'createdAt',

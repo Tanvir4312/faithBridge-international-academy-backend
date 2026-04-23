@@ -12,6 +12,7 @@ import { envVars } from "../../config/env";
 import { generateAdmitCardPDF } from "./fromFillup.utils";
 import { uploadFileToCloudinary } from "../../config/cloudinary.config";
 import { sendEmail } from "../../utils/email";
+import { IRequestUser } from "../../interfaces/requestUser.inteface";
 
 const createFromFillup = async (payload: ICreateFromFillupPayload) => {
   const alreadyFromFillup = await prisma.formFillup.findUnique({
@@ -52,6 +53,7 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
   const result = await prisma.$transaction(async (tx) => {
     const fromFillupData = await tx.formFillup.create({
       data: payload,
+
     });
 
     const studentClass = await tx.class.findUnique({
@@ -115,21 +117,79 @@ const createFromFillup = async (payload: ICreateFromFillupPayload) => {
 
     return {
       fromFillupData,
+      studentClass,
+      exam,
       paymentData,
       paymentUrl: session.url,
     };
   });
   return {
     fromFillupData: result.fromFillupData,
+    studentClass: result.studentClass,
+    exam: result.exam,
     paymentData: result.paymentData,
     paymentUrl: result.paymentUrl,
   };
 };
 
 const getAllFromFillup = async () => {
-  const result = await prisma.formFillup.findMany();
+  const result = await prisma.formFillup.findMany({
 
- 
+    include: {
+      student: true,
+      class: {
+        select: {
+          name: true
+        }
+      },
+      exam: {
+        select: {
+          name: true,
+          year: true,
+        },
+      },
+    },
+  });
+
+
+  return result;
+};
+
+
+
+const getStudentFromFillupById = async (studentId: string, user: IRequestUser) => {
+  if (user.role === "STUDENT") {
+    const student = await prisma.student.findUnique({
+      where: {
+        userId: user.userId,
+      },
+    });
+    if (!student) {
+      throw new AppError(status.NOT_FOUND, "Student not found");
+    }
+    if (student.id !== studentId) {
+      throw new AppError(status.UNAUTHORIZED, "Unauthorized");
+    }
+  }
+  const result = await prisma.formFillup.findMany({
+    where: {
+      studentId,
+    },
+    include: {
+      student: true,
+      class: {
+        select: {
+          name: true
+        }
+      },
+      exam: {
+        select: {
+          name: true,
+          year: true,
+        },
+      },
+    },
+  });
   return result;
 };
 
@@ -145,8 +205,11 @@ const updateFromFillUpStatus = async (
   if (!fromFillupData) {
     throw new AppError(status.NOT_FOUND, "From fillup not found");
   }
-  if (payload.status === fromFillupData.status) {
-    throw new AppError(status.BAD_REQUEST, "From fillup already approved");
+  if (fromFillupData.paymentStatus !== "PAID" && payload.status === "APPROVED") {
+    throw new AppError(status.BAD_REQUEST, "Payment not done before approve form");
+  }
+  if (fromFillupData.status !== "PENDING" && (payload.status === "APPROVED" || payload.status === "REJECTED")) {
+    throw new AppError(status.BAD_REQUEST, `Form fillup already ${fromFillupData.status}`);
   }
   const student = await prisma.student.findUnique({
     where: {
@@ -257,5 +320,6 @@ export const FromFillupService = {
   createFromFillup,
   updateFromFillUpStatus,
   getAllFromFillup,
+  getStudentFromFillupById,
   deleteFromFillup,
 };

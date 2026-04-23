@@ -4,6 +4,7 @@ import { catchAsync } from "../../shared/cathAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import status from "http-status";
 import { ApplicationService } from "./application.services";
+import { getPaginationOptions } from "../../helper/paginationHelper";
 
 
 const createApplication = catchAsync(async (req: Request, res: Response) => {
@@ -22,8 +23,11 @@ const createApplication = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllApplication = catchAsync(async (req: Request, res: Response) => {
-
-  const result = await ApplicationService.getAllApplication();
+  const { searchTerm } = req.query
+  const { sortOrder } = req.query
+  const { sortBy } = req.query
+  const { page, limit, skip } = getPaginationOptions(req.query)
+  const result = await ApplicationService.getAllApplication(searchTerm as string, page, limit, skip, sortOrder as string, sortBy as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Application fetched successfully",
@@ -32,16 +36,17 @@ const getAllApplication = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getApplicationById = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const result = await ApplicationService.getApplicationById(id as string);
-  sendResponse(res, {
-    httpStatusCode: status.OK,
-    message: "Application fetched successfully",
-    success: true,
-    data: result,
-  });
-});
+// const getApplicationById = catchAsync(async (req: Request, res: Response) => {
+//   const id = req.params.id;
+//   const user = req.user;
+//   const result = await ApplicationService.getApplicationById(id as string, user);
+//   sendResponse(res, {
+//     httpStatusCode: status.OK,
+//     message: "Application fetched successfully",
+//     success: true,
+//     data: result,
+//   });
+// });
 
 const getOwnApplication = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -101,7 +106,7 @@ const applicationRejectByAdmin = catchAsync(
 export const ApplicationController = {
   createApplication,
   getAllApplication,
-  getApplicationById,
+  // getApplicationById,
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,

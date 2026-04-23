@@ -10,6 +10,13 @@ import { TeacherSubjectRoutes } from "../modules/teacherSubject/teacherSubject.r
 import { MediaRoutes } from "../modules/media/media.route";
 import { ExamRoutes } from "../modules/exam/exam.route";
 import { FromFillupRoutes } from "../modules/fromFillup/fromFillup.route";
+import { NoticeRoutes } from "../modules/notice/notice.route";
+import { ClassDataRoutes } from "../modules/classData/classData.route";
+import { AcademicLevelRoutes } from "../modules/academin_level/academicLevel.route";
+import { StatsRoutes } from "../modules/stats/stats.route";
+import { ClassTeacherRoutes } from "../modules/classTeacher/classTeacher.route";
+import { PaymentRoutes } from "../modules/payment/payment.route";
+import { admissionConfigRoutes } from "../modules/admission_config/admissionConfig.route";
 
 const router = Router();
 
@@ -24,5 +31,12 @@ router.use("/teacher-subject", TeacherSubjectRoutes);
 router.use("/media", MediaRoutes);
 router.use("/exams", ExamRoutes);
 router.use("/from-fillup", FromFillupRoutes);
+router.use("/notices", NoticeRoutes);
+router.use("/classes", ClassDataRoutes);
+router.use("/academic-level", AcademicLevelRoutes);
+router.use("/stats", StatsRoutes);
+router.use("/class-teacher", ClassTeacherRoutes);
+router.use("/payments", PaymentRoutes);
+router.use("/admission-config", admissionConfigRoutes);
 
 export const IndexRoutes = router;

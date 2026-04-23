@@ -4,6 +4,7 @@ import { stripe } from "../../config/stripe.config";
 import status from "http-status";
 import { PaymentService } from "./payment.service";
 import { sendResponse } from "../../shared/sendResponse";
+import { catchAsync } from "../../shared/cathAsync";
 
 const handleStripeWebhookEvent = async (req: Request, res: Response) => {
   const signature = req.headers["stripe-signature"] as string;
@@ -42,6 +43,39 @@ const handleStripeWebhookEvent = async (req: Request, res: Response) => {
   }
 };
 
+const getAllPayment = catchAsync(async (req: Request, res: Response) => {
+  const result = await PaymentService.getAllPayment();
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Payment fetched successfully",
+    success: true,
+    data: result,
+  });
+});
+
+const getPaymentByStudentId = catchAsync(async (req: Request, res: Response) => {
+  const result = await PaymentService.getPaymentByStudentId(req.params.studentId as string);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Payment fetched successfully",
+    success: true,
+    data: result,
+  });
+});
+
+const getPaymentByApplicantId = catchAsync(async (req: Request, res: Response) => {
+  const result = await PaymentService.getPaymentByApplicantId(req.params.applicantId as string);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Payment fetched successfully",
+    success: true,
+    data: result,
+  });
+});
+
 export const PaymentController = {
   handleStripeWebhookEvent,
+  getAllPayment,
+  getPaymentByStudentId,
+  getPaymentByApplicantId,
 };

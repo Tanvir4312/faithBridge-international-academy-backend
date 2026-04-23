@@ -29,7 +29,7 @@ export const sendEmail = async ({
       `src/app/templates/${templateName}.ejs`,
     );
     const html = await ejs.renderFile(templatePath, templateData);
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: envVars.EMAIL_SENDER.SMTP_FROM,
       to: to,
       subject: subject,
@@ -40,7 +40,7 @@ export const sendEmail = async ({
         contentType: attachment.contentType,
       })),
     });
-    console.log(`Email sent to ${to} : ${info.messageId}`);
+
   } catch (error: any) {
     console.log("Email Sending Error", error.message);
     throw new AppError(status.INTERNAL_SERVER_ERROR, "Failed to send email");

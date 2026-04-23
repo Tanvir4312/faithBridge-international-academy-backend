@@ -1,6 +1,7 @@
 model Notice {
   id        String     @id @default(uuid())
   title     String
+  details   String?
   type      NoticeType @default(GENERAL)
   authorId  String
   author    User       @relation(fields: [authorId], references: [id])

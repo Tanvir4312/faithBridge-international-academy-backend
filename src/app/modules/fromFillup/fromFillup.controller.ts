@@ -26,6 +26,18 @@ const getAllFromFillup = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getStudentFromFillupById = catchAsync(async (req: Request, res: Response) => {
+    const studentId = req.params.studentId;
+    const user = req.user;
+    const result = await FromFillupService.getStudentFromFillupById(studentId as string, user);
+    sendResponse(res, {
+        httpStatusCode: status.OK,
+        message: "FromFillup fetched successfully",
+        success: true,
+        data: result,
+    });
+});
+
 const updateFromFillUpStatus = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id;
     const payload = req.body;
@@ -53,5 +65,6 @@ export const FromFillupController = {
     createFromFillup,
     updateFromFillUpStatus,
     getAllFromFillup,
+    getStudentFromFillupById,
     deleteFromFillup,
 };

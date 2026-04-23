@@ -1,0 +1,12 @@
+model ClassTeacher {
+    id        String   @id @default(uuid())
+    classId   String   @unique 
+    teacherId String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    class   Class   @relation(fields: [classId], references: [id])
+    teacher Teacher @relation(fields: [teacherId], references: [id])
+
+    @@map("classTeachers")
+}

@@ -24,7 +24,7 @@ router.get(
 
 router.patch(
   "/update/:id",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.TEACHER),
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.STUDENT),
   multerUpload.single("profileImage"),
   validateRequest(updateStudentSchema),
   StudentController.studentUpdate,

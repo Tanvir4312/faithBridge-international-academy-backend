@@ -24,4 +24,10 @@ router.post(
   UserController.createAdmin,
 );
 
+router.get(
+  "/",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  UserController.getAllUsers,
+);
+
 export const UserRoutes = router;

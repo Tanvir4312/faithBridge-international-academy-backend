@@ -3,6 +3,7 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { ITeacherUpadatePayload } from "./teacher.interface";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
+import { UserStatus } from "../../../generated/prisma/enums";
 
 const getAllTeacher = async () => {
   const teacher = await prisma.teacher.findMany({
@@ -26,10 +27,7 @@ const getTeacherById = async (id: string, user: IRequestUser) => {
     where: {
       id,
       isDeleted: false,
-    },
-    include: {
-      user: true,
-    },
+    }
   });
   if (!isExisTeacher) {
     throw new AppError(status.NOT_FOUND, "Teacher not found");
@@ -52,8 +50,36 @@ const getTeacherById = async (id: string, user: IRequestUser) => {
       user: true,
 
       teacherSubjects: {
-        include: {
-          subject: true,
+        select: {
+          subject: {
+            select: {
+              name: true,
+            }
+          }
+        }
+      },
+      classTeacher: {
+        select: {
+          class: {
+            select: {
+              name: true,
+              notices: {
+                select: {
+                  notice: {
+                    select: {
+                      title: true,
+                      type: true,
+                      details: true,
+                      createdAt: true,
+                      updatedAt: true,
+                    }
+                  }
+                }
+              },
+              students: true
+            }
+          },
+
         },
       },
     },
@@ -65,8 +91,9 @@ const teacherUpdate = async (
   id: string,
   payload: ITeacherUpadatePayload,
   user: IRequestUser,
-  profilePhoto: string
+
 ) => {
+
   const isTeacherExis = await prisma.teacher.findUnique({
     where: {
       id,
@@ -90,27 +117,36 @@ const teacherUpdate = async (
     }
   }
 
-  const { teacher: teacherData } = payload;
+
 
   return await prisma.$transaction(async (tx) => {
-    if (teacherData) {
+    if (payload) {
       await tx.teacher.update({
         where: {
           id,
         },
         data: {
-          ...teacherData,
-          profilePhoto : profilePhoto
-        },
+          ...payload
+        }
       });
     }
-    if (teacherData?.name) {
+    if (payload?.name) {
       await tx.user.update({
         where: {
           id: isTeacherExis.userId,
         },
         data: {
-          name: teacherData?.name,
+          name: payload?.name,
+        },
+      });
+    }
+    if (payload?.email) {
+      await tx.user.update({
+        where: {
+          id: isTeacherExis.userId,
+        },
+        data: {
+          email: payload?.email,
         },
       });
     }
@@ -157,8 +193,8 @@ const teacherDelete = async (id: string) => {
         id: isExisTeacher.userId,
       },
       data: {
-        isDeleted: true,
-        deletedAt: new Date(),
+        status: UserStatus.INACTIVE,
+
       },
     });
     await tx.teacherSubject.updateMany({

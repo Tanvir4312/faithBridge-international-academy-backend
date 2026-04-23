@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   AcademicLevel: 'AcademicLevel',
   Admin: 'Admin',
+  AdmissionConfig: 'AdmissionConfig',
   Application: 'Application',
   User: 'User',
   Session: 'Session',
@@ -393,6 +394,7 @@ export const ModelName = {
   Verification: 'Verification',
   Class: 'Class',
   ClassSubject: 'ClassSubject',
+  ClassTeacher: 'ClassTeacher',
   DocumentRequest: 'DocumentRequest',
   Exam: 'Exam',
   FormFillup: 'FormFillup',
@@ -423,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "academicLevel" | "admin" | "application" | "user" | "session" | "account" | "verification" | "class" | "classSubject" | "documentRequest" | "exam" | "formFillup" | "media" | "notice" | "noticeClass" | "payment" | "result" | "routine" | "student" | "studentClassHistory" | "subject" | "teacher" | "teacherSubject" | "timeSlot"
+    modelProps: "academicLevel" | "admin" | "admissionConfig" | "application" | "user" | "session" | "account" | "verification" | "class" | "classSubject" | "classTeacher" | "documentRequest" | "exam" | "formFillup" | "media" | "notice" | "noticeClass" | "payment" | "result" | "routine" | "student" | "studentClassHistory" | "subject" | "teacher" | "teacherSubject" | "timeSlot"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -572,6 +574,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AdminCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AdminCountAggregateOutputType> | number
+        }
+      }
+    }
+    AdmissionConfig: {
+      payload: Prisma.$AdmissionConfigPayload<ExtArgs>
+      fields: Prisma.AdmissionConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdmissionConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdmissionConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.AdmissionConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdmissionConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        findMany: {
+          args: Prisma.AdmissionConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>[]
+        }
+        create: {
+          args: Prisma.AdmissionConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        createMany: {
+          args: Prisma.AdmissionConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdmissionConfigCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>[]
+        }
+        delete: {
+          args: Prisma.AdmissionConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        update: {
+          args: Prisma.AdmissionConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdmissionConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdmissionConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdmissionConfigUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdmissionConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdmissionConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.AdmissionConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdmissionConfig>
+        }
+        groupBy: {
+          args: Prisma.AdmissionConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdmissionConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdmissionConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdmissionConfigCountAggregateOutputType> | number
         }
       }
     }
@@ -1090,6 +1166,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ClassSubjectCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ClassSubjectCountAggregateOutputType> | number
+        }
+      }
+    }
+    ClassTeacher: {
+      payload: Prisma.$ClassTeacherPayload<ExtArgs>
+      fields: Prisma.ClassTeacherFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClassTeacherFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClassTeacherFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        findFirst: {
+          args: Prisma.ClassTeacherFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClassTeacherFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        findMany: {
+          args: Prisma.ClassTeacherFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>[]
+        }
+        create: {
+          args: Prisma.ClassTeacherCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        createMany: {
+          args: Prisma.ClassTeacherCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClassTeacherCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>[]
+        }
+        delete: {
+          args: Prisma.ClassTeacherDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        update: {
+          args: Prisma.ClassTeacherUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClassTeacherDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClassTeacherUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClassTeacherUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClassTeacherUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClassTeacherPayload>
+        }
+        aggregate: {
+          args: Prisma.ClassTeacherAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClassTeacher>
+        }
+        groupBy: {
+          args: Prisma.ClassTeacherGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassTeacherGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClassTeacherCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClassTeacherCountAggregateOutputType> | number
         }
       }
     }
@@ -2272,6 +2422,17 @@ export const AdminScalarFieldEnum = {
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
+export const AdmissionConfigScalarFieldEnum = {
+  id: 'id',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  year: 'year'
+} as const
+
+export type AdmissionConfigScalarFieldEnum = (typeof AdmissionConfigScalarFieldEnum)[keyof typeof AdmissionConfigScalarFieldEnum]
+
+
 export const ApplicationScalarFieldEnum = {
   id: 'id',
   type: 'type',
@@ -2397,6 +2558,17 @@ export const ClassSubjectScalarFieldEnum = {
 export type ClassSubjectScalarFieldEnum = (typeof ClassSubjectScalarFieldEnum)[keyof typeof ClassSubjectScalarFieldEnum]
 
 
+export const ClassTeacherScalarFieldEnum = {
+  id: 'id',
+  classId: 'classId',
+  teacherId: 'teacherId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ClassTeacherScalarFieldEnum = (typeof ClassTeacherScalarFieldEnum)[keyof typeof ClassTeacherScalarFieldEnum]
+
+
 export const DocumentRequestScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
@@ -2419,6 +2591,7 @@ export const ExamScalarFieldEnum = {
   year: 'year',
   formFillupStart: 'formFillupStart',
   formFillupEnd: 'formFillupEnd',
+  examDate: 'examDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -2465,6 +2638,7 @@ export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof Me
 export const NoticeScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  details: 'details',
   type: 'type',
   authorId: 'authorId',
   createdAt: 'createdAt',
@@ -3009,6 +3183,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   academicLevel?: Prisma.AcademicLevelOmit
   admin?: Prisma.AdminOmit
+  admissionConfig?: Prisma.AdmissionConfigOmit
   application?: Prisma.ApplicationOmit
   user?: Prisma.UserOmit
   session?: Prisma.SessionOmit
@@ -3016,6 +3191,7 @@ export type GlobalOmitConfig = {
   verification?: Prisma.VerificationOmit
   class?: Prisma.ClassOmit
   classSubject?: Prisma.ClassSubjectOmit
+  classTeacher?: Prisma.ClassTeacherOmit
   documentRequest?: Prisma.DocumentRequestOmit
   exam?: Prisma.ExamOmit
   formFillup?: Prisma.FormFillupOmit

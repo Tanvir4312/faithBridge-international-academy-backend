@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Setup Instructions</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 620px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background: #111827;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .box {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px dashed #d1d5db;
+            margin: 20px 0;
+        }
+
+        .steps {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .steps li {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .warning {
+            margin-top: 20px;
+            padding: 12px;
+            background: #fff3cd;
+            border-left: 4px solid #f59e0b;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            padding: 15px;
+            background: #f9fafb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h2>Welcome to <%= appName %> 🎉</h2>
+        </div>
+
+        <div class="content">
+
+            <p>Hello <strong>
+                    <%= name %>
+                </strong>,</p>
+
+            <p>
+                Your account has been created by the administrator. To start using your account, please follow the steps
+                below carefully.
+            </p>
+
+            <div class="box">
+                <p><strong>Email:</strong>
+                    <%= email %>
+                </p>
+                <p><strong>Temporary Password:</strong>
+                    <%= password %>
+                </p>
+            </div>
+
+            <h3>🔐 কী করতে হবে (Step-by-step)</h3>
+
+            <ol class="steps">
+                <li>Login page এ গিয়ে আপনার email এবং temporary password দিয়ে login করুন।</li>
+                <!-- <li>প্রথমবার login করলে আপনাকে <strong>Email Verify (OTP)</strong> করতে বলা হবে।</li> -->
+                <!-- <li>Email verify সম্পন্ন হলে আপনাকে আবার <strong>Login page</strong> page এ নেওয়া হবে।</li> -->
+                <li>Temporary password পরিবর্তন করে নিজের নতুন secure password সেট করুন।</li>
+                <li>Password change না করা পর্যন্ত আপনি system ব্যবহার করতে পারবেন না।</li>
+            </ol>
+
+            <a href="<%= loginUrl %>" class="btn">Go to Login</a>
+
+            <div class="warning">
+                ⚠️ <strong>Important:</strong>
+                - Temporary password শুধুমাত্র প্রথম login এর জন্য
+                - অবশ্যই password পরিবর্তন করতে হবে
+                - কারো সাথে আপনার password share করবেন না
+            </div>
+
+            <p style="margin-top:20px;">
+                If you did not expect this email, please ignore it.
+            </p>
+
+        </div>
+
+        <div class="footer">
+            <p>© <%= new Date().getFullYear() %>
+                    <%= appName %>. All rights reserved.</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -11,6 +11,7 @@ import { Role } from "../../../generated/prisma/enums";
 
 import { sendEmail } from "../../utils/email";
 import { generateRegistrationId } from "./application.generateRegistrationId";
+import { ApplicationWhereInput } from "../../../generated/prisma/models";
 
 const createApplication = async (
   payload: ICreateApplicationPayload,
@@ -62,74 +63,259 @@ const createApplication = async (
         transactionId,
       },
     });
-
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      line_items: [
-        {
-          price_data: {
-            currency: "bdt",
-            product_data: {
-              name: `Admission Application: ${application.nameEn}`,
-              description: `Class: ${application.desiredClass} | Session: ${application.admissionYear}`,
-            },
-            unit_amount: applicationFee * 100,
-          },
-          quantity: 1,
-        },
-      ],
-      metadata: {
-        applicationId: application.id,
-        paymentId: paymentData.id,
-      },
-
-      success_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-success`,
-
-      // cancel_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-failed`,
-      cancel_url: `${envVars.FRONTEND_URL}/dashboard/appointments`,
-    });
-
-    //TODO CREATE PAYMENT INVOICE PDF AND SENDING PAYMENT INVOICE EMAIL
-
-    try {
-      await sendEmail({
-        to: application.user.email as string,
-        subject:
-          "You have received an admission application request from the school",
-        templateName: "application",
-        templateData: {
-          studentName: application?.nameEn,
-
-          className: application?.desiredClass,
-
-          session: application?.admissionYear,
-          applicationId: application?.applicationNo,
-          paymentUrl: session.url,
-          currentYear: new Date().getFullYear(),
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-
     return {
       application,
       paymentData,
-      paymentUrl: session.url,
+
     };
   });
+
+
+  //TODO CREATE PAYMENT INVOICE PDF AND SENDING PAYMENT INVOICE EMAIL
+  const session = await stripe.checkout.sessions.create({
+
+    payment_method_types: ["card"],
+    mode: "payment",
+    line_items: [
+      {
+        price_data: {
+          currency: "bdt",
+          product_data: {
+            name: `Admission Application: ${result.application.nameEn}`,
+            description: `Class: ${result.application.desiredClass} | Session: ${result.application.admissionYear}`,
+          },
+          unit_amount: result.application.applicationFee * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      applicationId: result.application.id,
+      paymentId: result.paymentData.id,
+    },
+
+    success_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-success`,
+
+    // cancel_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-failed`,
+    cancel_url: `${envVars.FRONTEND_URL}/dashboard/appointments`,
+  });
+
+  // SEND EMAIL AFTER CREATING APPLICATION
+  try {
+    await sendEmail({
+      to: result.application.user.email as string,
+      subject:
+        "You have received an admission application request from the school",
+      templateName: "application",
+      templateData: {
+        studentName: result.application.nameEn,
+
+        className: result.application.desiredClass,
+
+        session: result.application.admissionYear,
+        applicationId: result.application.applicationNo,
+        paymentUrl: session.url,
+        currentYear: new Date().getFullYear(),
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
   return {
     application: result.application,
     paymentData: result.paymentData,
-    paymentUrl: result.paymentUrl,
+    paymentUrl: session.url,
   };
 };
 
-const getAllApplication = async () => {
+const getAllApplication = async (
+  searchTerm: string,
+  page: number,
+  limit: number,
+  skip: number,
+  sortOrder?: string,
+  sortBy: string = "createdAt"
+
+) => {
+  //search by status
+  const status = searchTerm?.toUpperCase() === "APPROVED"
+    ? "APPROVED"
+    : searchTerm?.toUpperCase() === "REJECTED"
+      ? "REJECTED"
+      : searchTerm?.toUpperCase() === "PENDING"
+        ? "PENDING"
+        : undefined;
+  //search by gender
+  const gender = searchTerm?.toUpperCase() === "MALE"
+    ? "MALE"
+    : searchTerm?.toUpperCase() === "FEMALE"
+      ? "FEMALE" : undefined
+
+  const andCondition: ApplicationWhereInput[] = [];
+  if (searchTerm) {
+    andCondition.push({
+      OR: [
+        {
+          user: {
+            name: {
+              contains: searchTerm,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          user: {
+            email: {
+              contains: searchTerm,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          status: {
+            equals: status,
+          },
+        },
+        {
+          gender: {
+            equals: gender,
+          },
+        },
+        {
+          nameBn: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        {
+          nameEn: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        {
+          birthCertificateNo: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        {
+          desiredClass: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+        {
+          applicationNo: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+      ],
+    });
+  }
+
   const result = await prisma.application.findMany({
+    take: limit,
+    skip: skip,
+    orderBy: {
+      [sortBy]: sortOrder === "asc" ? "asc" : "desc",
+    },
+    where:
+      andCondition.length > 0
+        ? {
+          AND: andCondition,
+        }
+        : {
+          isDeleted: false,
+        },
+
     include: {
       user: true,
+      payment: {
+        select: {
+          amount: true,
+          paymentFor: true,
+          status: true,
+          transactionId: true,
+          stripeEventId: true,
+        },
+      },
+    },
+  });
+  const totalApplication = await prisma.application.count()
+  return {
+    data: result,
+    meta: {
+      limit,
+      current_Page: page,
+      total_page: Math.ceil(totalApplication / limit),
+      total: totalApplication,
+    },
+  };
+};
+
+// const getApplicationById = async (id: string, user: IRequestUser) => {
+//   const isApplicationExist = await prisma.application.findUnique({
+//     where: {
+//       id,
+//     },
+//   });
+//   if (!isApplicationExist) {
+//     throw new AppError(status.NOT_FOUND, "Application not found");
+//   }
+//   if (isApplicationExist.userId !== user.userId) {
+//     throw new AppError(status.UNAUTHORIZED, "You are not authorized to view this application");
+//   }
+//   const result = await prisma.application.findUnique({
+//     where: {
+//       id,
+//     },
+//     include: {
+//       user: {
+//         select: {
+//           email: true,
+//           status: true,
+//         }
+//       },
+//       payment: {
+//         select: {
+//           amount: true,
+//           paymentFor: true,
+//           status: true,
+//           transactionId: true,
+//           stripeEventId: true,
+//         },
+//       },
+//     },
+//   });
+//   return result;
+// };
+
+const getOwnApplication = async (id: string, user: IRequestUser) => {
+  const isApplicationExist = await prisma.application.findUnique({
+    where: {
+      id,
+    },
+  });
+  if (!isApplicationExist) {
+    throw new AppError(status.NOT_FOUND, "Application not found");
+  }
+  if (isApplicationExist.userId !== user.userId) {
+    throw new AppError(status.UNAUTHORIZED, "You are not authorized to view this application");
+  }
+  const result = await prisma.application.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      user: {
+        select: {
+          email: true,
+          status: true,
+        }
+      },
       payment: {
         select: {
           amount: true,
@@ -144,30 +330,6 @@ const getAllApplication = async () => {
   return result;
 };
 
-const getApplicationById = async (id: string) => {
-  const result = await prisma.application.findUnique({
-    where: {
-      id,
-    },
-  });
-  return result;
-};
-
-const getOwnApplication = async (id: string, user: IRequestUser) => {
-  const applicationdata = await prisma.application.findUnique({
-    where: {
-      userId: user.userId,
-    },
-  });
-
-  if (applicationdata?.id !== id) {
-    throw new AppError(
-      status.UNAUTHORIZED,
-      "You are not authorized to view this application",
-    );
-  }
-  return applicationdata;
-};
 
 const applicationSoftDelete = async (id: string) => {
   const result = await prisma.application.update({
@@ -247,33 +409,15 @@ const applicationUpdateByAdmin = async (id: string) => {
         },
       });
 
-      const primaryClasses = ["one", "two", "three", "four", "five"];
-      const academicData = primaryClasses.includes(
-        isApplicationExist.desiredClass,
-      )
-        ? "PRIMARY"
-        : "SECONDARY";
-
-      const academic_level = await tx.academicLevel.upsert({
-        where: {
-          name: academicData,
-        },
-        update: {},
-        create: {
-          name: academicData,
-        },
-      });
-
-      const classData = await tx.class.upsert({
+      const classData = await tx.class.findUnique({
         where: {
           name: isApplicationExist.desiredClass,
         },
-        update: {},
-        create: {
-          name: isApplicationExist.desiredClass,
-          AcademicLevelId: academic_level.id,
-        },
       });
+
+      if (!classData) {
+        throw new AppError(status.NOT_FOUND, "Class not found");
+      }
 
       const lastStudent = await tx.student.findFirst({
         where: {
@@ -424,9 +568,12 @@ const deleteUnpaidApplications = async () => {
   if (now >= triggerTime && now <= targetTime) {
     await prisma.application.deleteMany({
       where: {
-        isDeleted: false,
-        status: "PENDING",
         paymentStatus: "UNPAID",
+        OR: [
+          { status: "PENDING" },
+          { status: "REJECTED" }
+        ]
+
       },
     });
   }
@@ -434,7 +581,7 @@ const deleteUnpaidApplications = async () => {
 export const ApplicationService = {
   createApplication,
   getAllApplication,
-  getApplicationById,
+  // getApplicationById,
   getOwnApplication,
   applicationSoftDelete,
   applicationUpdateByAdmin,

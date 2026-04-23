@@ -124,16 +124,22 @@ const logoutUser = catchAsync(async (req: Request, res: Response) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
+    path: "/",
+    partitioned: true,
   });
   cookieUtils.clearCookie(res, "refreshToken", {
     httpOnly: true,
     secure: true,
     sameSite: "none",
+    path: "/",
+    partitioned: true,
   });
   cookieUtils.clearCookie(res, "better-auth.session_token", {
     httpOnly: true,
     secure: true,
     sameSite: "none",
+    path: "/",
+    partitioned: true,
   });
 
   sendResponse(res, {

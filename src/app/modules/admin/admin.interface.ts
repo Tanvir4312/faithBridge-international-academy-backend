@@ -1,20 +1,20 @@
-import { Role } from "better-auth/plugins";
-import { UserStatus } from "../../../generated/prisma/enums";
+
+import { Role, UserStatus } from "../../../generated/prisma/enums";
 
 export interface IUpdateAdminPayload {
-    admin?: {
-        name?: string;
-        profilePhoto?: string;
-        contactNumber?: string;
-    }
+
+    name?: string;
+    profilePhoto?: string;
+    contactNumber?: string;
+
 }
 
 export interface IChangeUserStatusPayload {
-    userId : string;
-    userStatus : UserStatus;
+
+    userStatus: UserStatus;
 }
 
 export interface IChangeUserRolePayload {
-    userId : string;
-    role : Role;
+
+    role: Role;
 }

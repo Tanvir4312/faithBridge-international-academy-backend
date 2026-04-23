@@ -7,7 +7,16 @@ const createSubject = async (payload: Subject) => {
 };
 
 const getAllSubject = async () => {
-  const result = await prisma.subject.findMany();
+  const result = await prisma.subject.findMany({
+    include: {
+      teacherSubjects: {
+        select : {
+          teacher : true,
+          isPrimary : true
+        }
+      },
+    },
+  });
   return result;
 };
 

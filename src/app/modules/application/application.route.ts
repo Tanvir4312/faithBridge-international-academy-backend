@@ -27,11 +27,11 @@ router.get(
   ApplicationController.getOwnApplication,
 );
 
-router.get(
-  "/:id",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.APPLICANT),
-  ApplicationController.getApplicationById,
-);
+// router.get(
+//   "/:id",
+//   checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.APPLICANT),
+//   ApplicationController.getApplicationById,
+// );
 
 router.delete(
   "/delete/:id",

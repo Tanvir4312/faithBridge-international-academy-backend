@@ -6,7 +6,25 @@ import { deleteFileFromCloudinary } from "../../config/cloudinary.config";
 
 const createMedia = async (payload: ICreateMediaPayload) => {
   const { sectionName, description, mediaFiles } = payload;
+
+  if (!mediaFiles || mediaFiles.length === 0) {
+    throw new Error("No files uploaded");
+  }
+
   const result = await prisma.$transaction(async (tx) => {
+
+    const existingMedia = await tx.media.findMany({
+      where: {
+        key: {
+          in: mediaFiles.map((file: IMediaFiles) => file.key),
+        },
+      },
+    });
+
+    if (existingMedia.length > 0) {
+      throw new AppError(status.BAD_REQUEST, "Media already exists");
+    }
+
     await tx.media.createMany({
       data: mediaFiles.map((file: IMediaFiles) => {
         return {
@@ -40,27 +58,16 @@ const deleteMedia = async (id: string) => {
   }
 
   return await prisma.$transaction(async (tx) => {
-    const result = await tx.media.update({
+    const result = await tx.media.delete({
       where: {
         id,
         isDeleted: false,
       },
-      data: {
-        isDeleted: true,
-        deletedAt: new Date(),
-      },
     });
 
-    if (result.isDeleted) {
-      await tx.media.delete({
-        where: {
-          id,
-          isDeleted: true,
-        },
-      });
-    }
 
-    if (result.isDeleted) {
+
+    if (result) {
       await deleteFileFromCloudinary(result.url);
     }
   });

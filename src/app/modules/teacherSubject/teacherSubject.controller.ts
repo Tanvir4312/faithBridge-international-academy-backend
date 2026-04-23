@@ -32,6 +32,8 @@ const teacherPrimarySubjectUpdate = catchAsync(
   },
 );
 
+
+
 const teacherSubjectDelete = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const result = await TeacherSubjectService.teacherSubjectDelete(payload);
@@ -46,5 +48,6 @@ const teacherSubjectDelete = catchAsync(async (req: Request, res: Response) => {
 export const TeacherSubjectController = {
   assignSubjectToTeacher,
   teacherPrimarySubjectUpdate,
-  teacherSubjectDelete
+  teacherSubjectDelete,
+
 };
