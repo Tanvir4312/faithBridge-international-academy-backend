@@ -51,6 +51,8 @@ const getTeacherById = async (id: string, user: IRequestUser) => {
 
       teacherSubjects: {
         select: {
+          subjectId: true,
+          isPrimary: true,
           subject: {
             select: {
               name: true,

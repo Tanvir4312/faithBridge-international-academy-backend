@@ -96,7 +96,7 @@ export const auth = betterAuth({
           }
         }
       },
-      expiresIn: 2 * 60,
+      expiresIn: 5 * 60,
       otpLength: 6,
     }),
   ],

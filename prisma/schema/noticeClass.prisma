@@ -7,8 +7,8 @@ model NoticeClass {
   isDeleted Boolean   @default(false)
   deletedAt DateTime?
 
-  notice Notice @relation(fields: [noticeId], references: [id])
-  class  Class  @relation(fields: [classId], references: [id])
+  notice Notice @relation(fields: [noticeId], references: [id], onDelete: Cascade)
+  class  Class  @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   @@unique([noticeId, classId])
   @@index([classId])

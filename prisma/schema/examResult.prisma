@@ -1,0 +1,17 @@
+model ExamResult {
+  id        String   @id @default(uuid())
+  studentId String
+  examId    String
+
+  totalMarks Float
+  grade      String   // 👉 overall grade
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  student Student @relation(fields: [studentId], references: [id])
+  exam    Exam    @relation(fields: [examId], references: [id])
+
+  @@unique([studentId, examId])
+  @@map("exam_result")
+}

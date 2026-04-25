@@ -1,12 +1,16 @@
+
 model Result {
   id        String    @id @default(uuid())
   studentId String
   subjectId String
   examId    String
   marks     Float
-  grade     String?
+  grade     String?  // subject-wise grade
+  isAbsent Boolean @default(false)
+
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
+
   isDeleted Boolean   @default(false)
   deletedAt DateTime?
 
@@ -15,7 +19,4 @@ model Result {
   exam    Exam    @relation(fields: [examId], references: [id])
 
   @@unique([studentId, subjectId, examId])
-  @@index([studentId])
-  @@index([examId])
-  @@map("result")
 }

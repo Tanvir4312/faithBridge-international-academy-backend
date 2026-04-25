@@ -34,6 +34,7 @@ model Student {
   formFillups      FormFillup[]
   classHistories   StudentClassHistory[]
   documentRequests DocumentRequest[]
+  examResults      ExamResult[]
 
  
   @@index([classId])

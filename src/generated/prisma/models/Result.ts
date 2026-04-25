@@ -41,6 +41,7 @@ export type ResultMinAggregateOutputType = {
   examId: string | null
   marks: number | null
   grade: string | null
+  isAbsent: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -54,6 +55,7 @@ export type ResultMaxAggregateOutputType = {
   examId: string | null
   marks: number | null
   grade: string | null
+  isAbsent: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   isDeleted: boolean | null
@@ -67,6 +69,7 @@ export type ResultCountAggregateOutputType = {
   examId: number
   marks: number
   grade: number
+  isAbsent: number
   createdAt: number
   updatedAt: number
   isDeleted: number
@@ -90,6 +93,7 @@ export type ResultMinAggregateInputType = {
   examId?: true
   marks?: true
   grade?: true
+  isAbsent?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -103,6 +107,7 @@ export type ResultMaxAggregateInputType = {
   examId?: true
   marks?: true
   grade?: true
+  isAbsent?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -116,6 +121,7 @@ export type ResultCountAggregateInputType = {
   examId?: true
   marks?: true
   grade?: true
+  isAbsent?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -216,6 +222,7 @@ export type ResultGroupByOutputType = {
   examId: string
   marks: number
   grade: string | null
+  isAbsent: boolean
   createdAt: Date
   updatedAt: Date | null
   isDeleted: boolean
@@ -252,6 +259,7 @@ export type ResultWhereInput = {
   examId?: Prisma.StringFilter<"Result"> | string
   marks?: Prisma.FloatFilter<"Result"> | number
   grade?: Prisma.StringNullableFilter<"Result"> | string | null
+  isAbsent?: Prisma.BoolFilter<"Result"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Result"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Result"> | Date | string | null
   isDeleted?: Prisma.BoolFilter<"Result"> | boolean
@@ -268,6 +276,7 @@ export type ResultOrderByWithRelationInput = {
   examId?: Prisma.SortOrder
   marks?: Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
+  isAbsent?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -288,6 +297,7 @@ export type ResultWhereUniqueInput = Prisma.AtLeast<{
   examId?: Prisma.StringFilter<"Result"> | string
   marks?: Prisma.FloatFilter<"Result"> | number
   grade?: Prisma.StringNullableFilter<"Result"> | string | null
+  isAbsent?: Prisma.BoolFilter<"Result"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Result"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Result"> | Date | string | null
   isDeleted?: Prisma.BoolFilter<"Result"> | boolean
@@ -304,6 +314,7 @@ export type ResultOrderByWithAggregationInput = {
   examId?: Prisma.SortOrder
   marks?: Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
+  isAbsent?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -325,6 +336,7 @@ export type ResultScalarWhereWithAggregatesInput = {
   examId?: Prisma.StringWithAggregatesFilter<"Result"> | string
   marks?: Prisma.FloatWithAggregatesFilter<"Result"> | number
   grade?: Prisma.StringNullableWithAggregatesFilter<"Result"> | string | null
+  isAbsent?: Prisma.BoolWithAggregatesFilter<"Result"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Result"> | Date | string
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Result"> | Date | string | null
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Result"> | boolean
@@ -335,6 +347,7 @@ export type ResultCreateInput = {
   id?: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -351,6 +364,7 @@ export type ResultUncheckedCreateInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -361,6 +375,7 @@ export type ResultUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -377,6 +392,7 @@ export type ResultUncheckedUpdateInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -390,6 +406,7 @@ export type ResultCreateManyInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -400,6 +417,7 @@ export type ResultUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -413,6 +431,7 @@ export type ResultUncheckedUpdateManyInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -442,6 +461,7 @@ export type ResultCountOrderByAggregateInput = {
   examId?: Prisma.SortOrder
   marks?: Prisma.SortOrder
   grade?: Prisma.SortOrder
+  isAbsent?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -459,6 +479,7 @@ export type ResultMaxOrderByAggregateInput = {
   examId?: Prisma.SortOrder
   marks?: Prisma.SortOrder
   grade?: Prisma.SortOrder
+  isAbsent?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -472,6 +493,7 @@ export type ResultMinOrderByAggregateInput = {
   examId?: Prisma.SortOrder
   marks?: Prisma.SortOrder
   grade?: Prisma.SortOrder
+  isAbsent?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -612,6 +634,7 @@ export type ResultCreateWithoutExamInput = {
   id?: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -626,6 +649,7 @@ export type ResultUncheckedCreateWithoutExamInput = {
   subjectId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -668,6 +692,7 @@ export type ResultScalarWhereInput = {
   examId?: Prisma.StringFilter<"Result"> | string
   marks?: Prisma.FloatFilter<"Result"> | number
   grade?: Prisma.StringNullableFilter<"Result"> | string | null
+  isAbsent?: Prisma.BoolFilter<"Result"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Result"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"Result"> | Date | string | null
   isDeleted?: Prisma.BoolFilter<"Result"> | boolean
@@ -678,6 +703,7 @@ export type ResultCreateWithoutStudentInput = {
   id?: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -692,6 +718,7 @@ export type ResultUncheckedCreateWithoutStudentInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -728,6 +755,7 @@ export type ResultCreateWithoutSubjectInput = {
   id?: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -742,6 +770,7 @@ export type ResultUncheckedCreateWithoutSubjectInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -780,6 +809,7 @@ export type ResultCreateManyExamInput = {
   subjectId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -790,6 +820,7 @@ export type ResultUpdateWithoutExamInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -804,6 +835,7 @@ export type ResultUncheckedUpdateWithoutExamInput = {
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -816,6 +848,7 @@ export type ResultUncheckedUpdateManyWithoutExamInput = {
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -828,6 +861,7 @@ export type ResultCreateManyStudentInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -838,6 +872,7 @@ export type ResultUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -852,6 +887,7 @@ export type ResultUncheckedUpdateWithoutStudentInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -864,6 +900,7 @@ export type ResultUncheckedUpdateManyWithoutStudentInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -876,6 +913,7 @@ export type ResultCreateManySubjectInput = {
   examId: string
   marks: number
   grade?: string | null
+  isAbsent?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string | null
   isDeleted?: boolean
@@ -886,6 +924,7 @@ export type ResultUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -900,6 +939,7 @@ export type ResultUncheckedUpdateWithoutSubjectInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -912,6 +952,7 @@ export type ResultUncheckedUpdateManyWithoutSubjectInput = {
   examId?: Prisma.StringFieldUpdateOperationsInput | string
   marks?: Prisma.FloatFieldUpdateOperationsInput | number
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isAbsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -927,6 +968,7 @@ export type ResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   examId?: boolean
   marks?: boolean
   grade?: boolean
+  isAbsent?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -943,6 +985,7 @@ export type ResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   examId?: boolean
   marks?: boolean
   grade?: boolean
+  isAbsent?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -959,6 +1002,7 @@ export type ResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   examId?: boolean
   marks?: boolean
   grade?: boolean
+  isAbsent?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -975,13 +1019,14 @@ export type ResultSelectScalar = {
   examId?: boolean
   marks?: boolean
   grade?: boolean
+  isAbsent?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
 }
 
-export type ResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "subjectId" | "examId" | "marks" | "grade" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["result"]>
+export type ResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "subjectId" | "examId" | "marks" | "grade" | "isAbsent" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["result"]>
 export type ResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -1012,6 +1057,7 @@ export type $ResultPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     examId: string
     marks: number
     grade: string | null
+    isAbsent: boolean
     createdAt: Date
     updatedAt: Date | null
     isDeleted: boolean
@@ -1448,6 +1494,7 @@ export interface ResultFieldRefs {
   readonly examId: Prisma.FieldRef<"Result", 'String'>
   readonly marks: Prisma.FieldRef<"Result", 'Float'>
   readonly grade: Prisma.FieldRef<"Result", 'String'>
+  readonly isAbsent: Prisma.FieldRef<"Result", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Result", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Result", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"Result", 'Boolean'>

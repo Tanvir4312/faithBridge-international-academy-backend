@@ -83,6 +83,11 @@ export type DocumentRequest = Prisma.DocumentRequestModel
  */
 export type Exam = Prisma.ExamModel
 /**
+ * Model ExamResult
+ * 
+ */
+export type ExamResult = Prisma.ExamResultModel
+/**
  * Model FormFillup
  * 
  */

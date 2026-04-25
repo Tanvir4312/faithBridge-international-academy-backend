@@ -75,11 +75,13 @@ const updateAdmin = async (id: string, payload: IUpdateAdminPayload, userId: str
   }
 
 
-  if (user?.id !== isAdminExist.userId) {
-    throw new AppError(
-      status.UNAUTHORIZED,
-      "You are not authorized to update other admin only super admin can update all admin",
-    );
+  if (user?.role !== "SUPER_ADMIN") {
+    if (user?.id !== isAdminExist.userId) {
+      throw new AppError(
+        status.UNAUTHORIZED,
+        "You are not authorized to update other admin only super admin can update all admin",
+      );
+    }
   }
 
 
@@ -230,19 +232,39 @@ const changeUserStatus = async (
     );
   }
 
+  return await prisma.$transaction(async (tx) => {
+    const updateUser = await tx.user.update({
+      where: {
+        id,
+      },
+      data: {
+        status: userStatus,
 
+      },
+    });
+    if (userStatus === UserStatus.INACTIVE) {
+      await tx.session.deleteMany({
+        where: {
+          userId: id,
+        },
+      });
+    }
 
-  const updateUser = await prisma.user.update({
-    where: {
-      id,
-    },
-    data: {
-      status: userStatus,
-      isDeleted: userStatus === UserStatus.ACTIVE ? false : true,
-    },
-  });
-  return updateUser;
-};
+    if (userStatus === UserStatus.SUSPENDED) {
+      await tx.session.deleteMany({
+        where: {
+          userId: id,
+        },
+      });
+      await tx.account.deleteMany({
+        where: {
+          userId: id,
+        },
+      });
+    }
+    return updateUser;
+  })
+}
 
 const changeUserRole = async (
   user: IRequestUser,
@@ -262,6 +284,11 @@ const changeUserRole = async (
     throw new AppError(status.NOT_FOUND, "Super admin not found");
   }
 
+
+  if (user?.role !== "SUPER_ADMIN") {
+    throw new AppError(status.UNAUTHORIZED, "You are not authorized to change user role");
+  }
+
   const { role } = payload;
 
   const userToChangeRole = await prisma.user.findUnique({
@@ -274,6 +301,7 @@ const changeUserRole = async (
   if (selfRoleChange) {
     throw new AppError(status.BAD_REQUEST, "You cannot change your own role");
   }
+
 
   const updateUser = await prisma.user.update({
     where: {

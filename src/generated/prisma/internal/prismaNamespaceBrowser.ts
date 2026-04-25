@@ -64,6 +64,7 @@ export const ModelName = {
   ClassTeacher: 'ClassTeacher',
   DocumentRequest: 'DocumentRequest',
   Exam: 'Exam',
+  ExamResult: 'ExamResult',
   FormFillup: 'FormFillup',
   Media: 'Media',
   Notice: 'Notice',
@@ -304,6 +305,19 @@ export const ExamScalarFieldEnum = {
 export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
 
 
+export const ExamResultScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  examId: 'examId',
+  totalMarks: 'totalMarks',
+  grade: 'grade',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt'
+} as const
+
+export type ExamResultScalarFieldEnum = (typeof ExamResultScalarFieldEnum)[keyof typeof ExamResultScalarFieldEnum]
+
+
 export const FormFillupScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
@@ -398,6 +412,7 @@ export const ResultScalarFieldEnum = {
   examId: 'examId',
   marks: 'marks',
   grade: 'grade',
+  isAbsent: 'isAbsent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',

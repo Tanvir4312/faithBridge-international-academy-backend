@@ -12,6 +12,7 @@ model Exam {
 
   results     Result[]
   formFillups FormFillup[]
+  examResults ExamResult[]
 
   @@unique([name, year])
   @@index([year])

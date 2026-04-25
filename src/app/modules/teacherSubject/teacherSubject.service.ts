@@ -128,10 +128,13 @@ const teacherPrimarySubjectUpdate = async (
 };
 
 const teacherSubjectDelete = async (payload: ITeacherSubjetDelete) => {
-
+  console.log(payload);
   const teacherSubject = await prisma.teacherSubject.findUnique({
     where: {
-      teacherId_subjectId: payload,
+      teacherId_subjectId: {
+        teacherId: payload.teacherId,
+        subjectId: payload.subjectId,
+      },
     },
   });
   if (!teacherSubject) {
