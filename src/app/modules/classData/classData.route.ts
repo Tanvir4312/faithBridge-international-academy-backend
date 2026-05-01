@@ -13,7 +13,6 @@ router.post(
 
 router.get(
   "/",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
   ClassDataController.getallClaasData,
 );
 

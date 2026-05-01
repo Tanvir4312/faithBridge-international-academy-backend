@@ -3,9 +3,29 @@ import { catchAsync } from "../../shared/cathAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import status from "http-status";
 import { TeacherService } from "./teacher.service";
+import pick from "../../shared/pick";
+import { teacherFilterableFields } from "./teacher.constant";
+import { getPaginationOptions } from "../../helper/paginationHelper";
 
 const getAllTeacher = catchAsync(async (req: Request, res: Response) => {
-  const result = await TeacherService.getAllTeacher();
+  const filters = pick(req.query, teacherFilterableFields);
+  const { page, limit, skip } = getPaginationOptions(req.query);
+  const sortBy = req.query.sortBy as string;
+  const sortOrder = req.query.sortOrder as string;
+
+  const result = await TeacherService.getAllTeacher(
+    filters,
+    { page, limit, skip, sortBy, sortOrder }
+  );
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    message: "Teacher fetched successfully",
+    success: true,
+    data: result,
+  });
+});
+const getAllTeacherwithoutQuery = catchAsync(async (req: Request, res: Response) => {
+  const result = await TeacherService.getAllTeacherwithoutQuery();
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Teacher fetched successfully",
@@ -16,8 +36,7 @@ const getAllTeacher = catchAsync(async (req: Request, res: Response) => {
 
 const getTeacherById = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-  const user = req.user;
-  const result = await TeacherService.getTeacherById(id as string, user);
+  const result = await TeacherService.getTeacherById(id as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     message: "Teacher fetched successfully",
@@ -63,6 +82,7 @@ const teacherDelete = catchAsync(async (req: Request, res: Response) => {
 
 export const TeacherController = {
   getAllTeacher,
+  getAllTeacherwithoutQuery,
   getTeacherById,
   teacherUpdate,
   teacherDelete,

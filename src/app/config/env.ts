@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 interface EnvConfig {
-  PORT: string;
+  // PORT: string;
   DATABASE_URL: string;
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
@@ -19,9 +19,9 @@ interface EnvConfig {
     SMTP_PORT: string;
     SMTP_FROM: string;
   };
-  // GOOGLE_CLIENT_ID: string;
-  // GOOGLE_CLIENT_SECRET: string;
-  // GOOGLE_CALLBACK_URL: string;
+  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_SECRET: string;
+  GOOGLE_CALLBACK_URL: string;
   FRONTEND_URL: string;
   STRIPE: {
     STRIPE_SECRET_KEY: string;
@@ -38,7 +38,7 @@ interface EnvConfig {
 
 const loadEnvVariables = (): EnvConfig => {
   const requireEnvVariables = [
-    "PORT",
+    // "PORT",
     "DATABASE_URL",
     "BETTER_AUTH_SECRET",
     "BETTER_AUTH_URL",
@@ -52,9 +52,9 @@ const loadEnvVariables = (): EnvConfig => {
     "EMAIL_SENDER_SMTP_HOST",
     "EMAIL_SENDER_SMTP_PORT",
     "EMAIL_SENDER_SMTP_FROM",
-    // "GOOGLE_CLIENT_ID",
-    // "GOOGLE_CLIENT_SECRET",
-    // "GOOGLE_CALLBACK_URL",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_CALLBACK_URL",
     "FRONTEND_URL",
     "STRIPE_SECRET_KEY",
     "STRIPE_WEBHOOK_KEY",
@@ -72,7 +72,7 @@ const loadEnvVariables = (): EnvConfig => {
   });
 
   return {
-    PORT: process.env.PORT as string,
+    // PORT: process.env.PORT as string,
     DATABASE_URL: process.env.DATABASE_URL as string,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
@@ -88,9 +88,9 @@ const loadEnvVariables = (): EnvConfig => {
       SMTP_PORT: process.env.EMAIL_SENDER_SMTP_PORT as string,
       SMTP_FROM: process.env.EMAIL_SENDER_SMTP_FROM as string,
     },
-    // GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID as string,
-    // GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
-    // GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID as string,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
+    GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
     FRONTEND_URL: process.env.FRONTEND_URL as string,
     STRIPE: {
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,

@@ -100,23 +100,23 @@ export const auth = betterAuth({
       otpLength: 6,
     }),
   ],
-  // socialProviders: {
-  //   google: {
-  //     clientId: envVars.GOOGLE_CLIENT_ID as string,
-  //     clientSecret: envVars.GOOGLE_CLIENT_SECRET as string,
-  //     redirectURI: envVars.GOOGLE_CALLBACK_URL,
-  //     mapProfileToUser: () => {
-  //       return {
-  //         role: Role.APPLICANT,
-  //         status: UserStatus.ACTIVE,
-  //         emailVerified: true,
-  //         needPasswordChange: false,
-  //         isDeleted: false,
-  //         deletedAt: null,
-  //       };
-  //     },
-  //   },
-  // },
+  socialProviders: {
+    google: {
+      clientId: envVars.GOOGLE_CLIENT_ID as string,
+      clientSecret: envVars.GOOGLE_CLIENT_SECRET as string,
+      redirectURI: envVars.GOOGLE_CALLBACK_URL,
+      mapProfileToUser: () => {
+        return {
+          role: Role.APPLICANT,
+          status: UserStatus.ACTIVE,
+          emailVerified: true,
+          needPasswordChange: false,
+          isDeleted: false,
+          deletedAt: null,
+        };
+      },
+    },
+  },
 
   session: {
     expiresIn: 60 * 60 * 60 * 24,

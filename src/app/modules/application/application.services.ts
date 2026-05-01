@@ -51,7 +51,7 @@ const createApplication = async (
         user: true,
       },
     });
-    // TODO SEND EMAIL AFTER CREATING APPLICATION
+
 
     const transactionId = String(uuidv7());
 

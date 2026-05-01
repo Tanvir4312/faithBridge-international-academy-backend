@@ -1,28 +1,185 @@
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
-import { ITeacherUpadatePayload } from "./teacher.interface";
+import { ITeacherUpadatePayload, ITeacherFilterRequest } from "./teacher.interface";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
 import { UserStatus } from "../../../generated/prisma/enums";
+import { TeacherWhereInput } from "../../../generated/prisma/models";
+import { teacherSearchableFields } from "./teacher.constant";
 
-const getAllTeacher = async () => {
+const getAllTeacher = async (
+  filters: ITeacherFilterRequest,
+  options: {
+    page: number;
+    limit: number;
+    skip: number;
+    sortBy?: string;
+    sortOrder?: string;
+  }
+) => {
+  const { searchTerm, subject, isPrimary, class: className, ...filterData } = filters;
+  const { limit, skip, page } = options;
+  const sortBy = options.sortBy || "createdat";
+  const sortOrder = options.sortOrder || "desc";
+
+  const andCondition: TeacherWhereInput[] = [];
+
+  if (searchTerm) {
+    andCondition.push({
+      OR: teacherSearchableFields.map((field) => {
+        if (field === "name" || field === "email") {
+          return {
+            user: {
+              [field]: {
+                contains: searchTerm,
+                mode: "insensitive",
+              },
+            },
+          };
+        }
+        return {
+          [field]: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        };
+      }),
+    });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    andCondition.push({
+      AND: Object.entries(filterData).map(([field, value]) => ({
+        [field]: {
+          equals: value,
+        },
+      })),
+    });
+  }
+
+  if (subject || isPrimary) {
+    const subjectCondition: any = {};
+    if (subject) {
+      subjectCondition.subject = {
+        name: {
+          contains: subject,
+          mode: "insensitive",
+        },
+      };
+    }
+    if (isPrimary !== undefined) {
+      subjectCondition.isPrimary = isPrimary === "true";
+    }
+
+    andCondition.push({
+      teacherSubjects: {
+        some: subjectCondition,
+      },
+    });
+  }
+
+  if (className) {
+    andCondition.push({
+      classTeacher: {
+        class: {
+          name: {
+            contains: className,
+            mode: "insensitive",
+          },
+        },
+      },
+    });
+  }
+
+  const whereConditions: TeacherWhereInput =
+    andCondition.length > 0 ? { AND: andCondition } : {};
+
   const teacher = await prisma.teacher.findMany({
+    take: limit,
+    skip,
+    orderBy: {
+      [sortBy]: sortOrder === "asc" ? "asc" : "desc",
+    },
     where: {
+      ...whereConditions,
       isDeleted: false,
     },
     include: {
       user: true,
       teacherSubjects: {
-        include: {
-          subject: true,
+        select: {
+          isPrimary: true,
+          subject: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+      classTeacher: {
+        select: {
+          class: {
+            select: {
+              name: true,
+            },
+          },
         },
       },
     },
   });
-  return teacher;
+
+  const totalTeacher = await prisma.teacher.count({
+    where: {
+      ...whereConditions,
+      isDeleted: false,
+    },
+  });
+
+  return {
+    data: teacher,
+    meta: {
+      limit,
+      current_Page: page,
+      total_page: Math.ceil(totalTeacher / limit),
+      total: totalTeacher,
+    },
+  };
+};
+const getAllTeacherwithoutQuery = async () => {
+  const teacher = await prisma.teacher.findMany({
+    include: {
+      user: true,
+      teacherSubjects: {
+        select: {
+          isPrimary: true,
+          subject: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+      classTeacher: {
+        select: {
+          class: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+
+
+  return {
+    data: teacher,
+
+  };
 };
 
-const getTeacherById = async (id: string, user: IRequestUser) => {
+const getTeacherById = async (id: string) => {
   const isExisTeacher = await prisma.teacher.findUnique({
     where: {
       id,
@@ -33,14 +190,6 @@ const getTeacherById = async (id: string, user: IRequestUser) => {
     throw new AppError(status.NOT_FOUND, "Teacher not found");
   }
 
-  if (user.role === "TEACHER") {
-    if (user.userId !== isExisTeacher.userId) {
-      throw new AppError(
-        status.UNAUTHORIZED,
-        "You are not authorized to access this teacher",
-      );
-    }
-  }
 
   const teacher = await prisma.teacher.findUnique({
     where: {
@@ -218,6 +367,7 @@ const teacherDelete = async (id: string) => {
 
 export const TeacherService = {
   getAllTeacher,
+  getAllTeacherwithoutQuery,
   getTeacherById,
   teacherUpdate,
   teacherDelete,

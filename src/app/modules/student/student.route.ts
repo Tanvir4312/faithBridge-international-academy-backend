@@ -12,7 +12,7 @@ const router = Router();
 
 router.get(
   "/",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.TEACHER),
+
   StudentController.getAllStudent,
 );
 

@@ -9,14 +9,19 @@ import { multerUpload } from "../../config/multer.config";
 const router = Router();
 
 router.get(
-  "/",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  "/query",
+
   TeacherController.getAllTeacher,
+);
+router.get(
+  "/",
+
+  TeacherController.getAllTeacherwithoutQuery,
 );
 
 router.get(
   "/:id",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.TEACHER),
+
   TeacherController.getTeacherById,
 );
 
