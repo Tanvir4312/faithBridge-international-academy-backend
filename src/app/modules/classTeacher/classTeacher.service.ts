@@ -78,6 +78,52 @@ const createClassTeacher = async (payload: IClassTeacherPayload) => {
 
 }
 
+const getAllClassTeacher = async () => {
+    const classTeacher = await prisma.classTeacher.findMany({
+        include: {
+            class: {
+                select: {
+                    name: true
+                }
+            },
+            teacher: {
+                select: {
+                    name: true,
+                    contactNumber: true,
+                    email: true,
+                    profilePhoto: true,
+                    gender: true,
+                    createdat: true,
+                    updatedAt: true
+                }
+
+            }
+        }
+    })
+    return classTeacher;
+
+}
+
+const deleteClassTeacher = async (id: string) => {
+    const isExist = await prisma.classTeacher.findUnique({
+        where: {
+            id
+        }
+    })
+    if (!isExist) {
+        throw new AppError(status.NOT_FOUND, "Class teacher not found");
+    }
+    const classTeacher = await prisma.classTeacher.delete({
+        where: {
+            id
+        }
+    })
+    return classTeacher;
+
+}
+
 export const ClassTeacherService = {
-    createClassTeacher
+    createClassTeacher,
+    getAllClassTeacher,
+    deleteClassTeacher
 }

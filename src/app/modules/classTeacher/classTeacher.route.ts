@@ -11,4 +11,18 @@ router.post(
     ClassTeacherController.createClassTeacher,
 );
 
+router.get(
+    "/",
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    ClassTeacherController.getAllClassTeacher,
+);
+
+router.delete(
+    "/:id",
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+    ClassTeacherController.deleteClassTeacher,
+);
+
+
+
 export const ClassTeacherRoutes = router
