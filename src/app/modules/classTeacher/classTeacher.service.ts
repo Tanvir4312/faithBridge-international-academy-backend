@@ -81,6 +81,7 @@ const createClassTeacher = async (payload: IClassTeacherPayload) => {
 const getAllClassTeacher = async () => {
     const classTeacher = await prisma.classTeacher.findMany({
         include: {
+
             class: {
                 select: {
                     name: true
@@ -88,16 +89,21 @@ const getAllClassTeacher = async () => {
             },
             teacher: {
                 select: {
+                    id: true,
                     name: true,
                     contactNumber: true,
                     email: true,
                     profilePhoto: true,
                     gender: true,
-                    createdat: true,
-                    updatedAt: true
+                    classTeacher: {
+                        select: {
+                            createdAt: true,
+                        }
+                    }
                 }
 
             }
+
         }
     })
     return classTeacher;
