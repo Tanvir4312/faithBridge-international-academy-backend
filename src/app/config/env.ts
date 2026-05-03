@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 interface EnvConfig {
-  // PORT: string;
+  PORT: string;
   DATABASE_URL: string;
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
@@ -34,11 +34,12 @@ interface EnvConfig {
   };
   SUPER_ADMIN_EMAIL: string;
   SUPER_ADMIN_PASS: string;
+  GEMINI_API_KEY: string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
   const requireEnvVariables = [
-    // "PORT",
+    "PORT",
     "DATABASE_URL",
     "BETTER_AUTH_SECRET",
     "BETTER_AUTH_URL",
@@ -63,6 +64,7 @@ const loadEnvVariables = (): EnvConfig => {
     "CLOUDINARY_API_SECRET",
     "SUPER_ADMIN_EMAIL",
     "SUPER_ADMIN_PASS",
+    "GEMINI_API_KEY",
   ];
 
   requireEnvVariables.forEach((envVariable) => {
@@ -72,7 +74,7 @@ const loadEnvVariables = (): EnvConfig => {
   });
 
   return {
-    // PORT: process.env.PORT as string,
+    PORT: process.env.PORT as string,
     DATABASE_URL: process.env.DATABASE_URL as string,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
@@ -103,6 +105,7 @@ const loadEnvVariables = (): EnvConfig => {
     },
     SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL as string,
     SUPER_ADMIN_PASS: process.env.SUPER_ADMIN_PASS as string,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY as string,
   };
 };
 

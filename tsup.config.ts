@@ -13,4 +13,14 @@ export default defineConfig({
     return { js: ".mjs" };
   },
   clean: true,
+  esbuildPlugins: [
+    {
+      name: 'rewrite-prisma',
+      setup(build) {
+        build.onResolve({ filter: /generated\/prisma\/index\.js$/ }, args => {
+          return { path: '../src/generated/prisma/index.js', external: true }
+        })
+      }
+    }
+  ]
 });

@@ -1,5 +1,5 @@
 
-import { Role, UserStatus } from "../../../generated/prisma/enums";
+import { Role, UserStatus } from "../../../generated/prisma/index.js";
 
 export interface IUpdateAdminPayload {
 

@@ -17,6 +17,7 @@ import { StatsRoutes } from "../modules/stats/stats.route";
 import { ClassTeacherRoutes } from "../modules/classTeacher/classTeacher.route";
 import { PaymentRoutes } from "../modules/payment/payment.route";
 import { admissionConfigRoutes } from "../modules/admission_config/admissionConfig.route";
+import { ChatRoutes } from "../modules/chat/chat.route";
 
 const router = Router();
 
@@ -38,5 +39,6 @@ router.use("/stats", StatsRoutes);
 router.use("/class-teacher", ClassTeacherRoutes);
 router.use("/payments", PaymentRoutes);
 router.use("/admission-config", admissionConfigRoutes);
+router.use("/chat", ChatRoutes);
 
 export const IndexRoutes = router;

@@ -6,7 +6,7 @@ import {
   createTeacherValidationSchema,
 } from "./user.validation";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 
 const router = Router();
 

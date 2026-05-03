@@ -1,5 +1,5 @@
 
-import { Role } from "../../generated/prisma/enums";
+import { Role } from "../../generated/prisma/index.js";
 
 import { prisma } from "../lib/prisma";
 import { auth } from "../lib/auth";

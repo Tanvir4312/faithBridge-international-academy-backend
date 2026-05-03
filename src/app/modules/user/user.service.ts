@@ -3,7 +3,7 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { ICreateAdmin, ICreateTeacherPayload } from "./user.interface";
 import { auth } from "../../lib/auth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { UserWhereInput } from "../../../generated/prisma/models";
 import { sendEmail } from "../../utils/email";
 import { envVars } from "../../config/env";

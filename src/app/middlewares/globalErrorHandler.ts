@@ -10,9 +10,9 @@ import { envVars } from "../config/env";
 import AppError from "../errorHelpers/AppError";
 import z from "zod";
 import { simplifiedZodError } from "../errorHelpers/handleZodError";
-import { deleteFileFromCloudinary } from "../config/cloudinary.config";
+
 import { deleteUploadedFilesFromGlobalErrorHandler } from "../utils/deleteUploadedFilesFromGlobalErrorHandler";
-import { Prisma } from "../../generated/prisma/client";
+import { Prisma } from "../../generated/prisma/index.js";
 import {
   handlePrismaClientKnownRequestError,
   handlePrismaClientUnknownError,

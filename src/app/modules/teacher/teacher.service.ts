@@ -3,7 +3,7 @@ import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
 import { ITeacherUpadatePayload, ITeacherFilterRequest } from "./teacher.interface";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
-import { UserStatus } from "../../../generated/prisma/enums";
+import { UserStatus } from "../../../generated/prisma/index.js";
 import { TeacherWhereInput } from "../../../generated/prisma/models";
 import { teacherSearchableFields } from "./teacher.constant";
 

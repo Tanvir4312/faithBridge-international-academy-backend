@@ -1,5 +1,5 @@
 import status from "http-status";
-import { Prisma } from "../../generated/prisma/client";
+import { Prisma } from "../../generated/prisma/index.js";
 import {
   ITErrorResponse,
   ITErrorSources,

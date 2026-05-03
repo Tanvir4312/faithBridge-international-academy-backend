@@ -7,7 +7,7 @@ import { ICreateApplicationPayload } from "./application.interface";
 import { v7 as uuidv7 } from "uuid";
 import { stripe } from "../../config/stripe.config";
 import { envVars } from "../../config/env";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 
 import { sendEmail } from "../../utils/email";
 import { generateRegistrationId } from "./application.generateRegistrationId";

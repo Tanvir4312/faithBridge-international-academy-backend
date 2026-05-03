@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ApplicationController } from "./application.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { createStudentApplicationSchema } from "./application.validation";
 import { multerUpload } from "../../config/multer.config";

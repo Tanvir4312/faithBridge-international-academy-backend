@@ -8,7 +8,7 @@
 import { Router } from "express";
 import { AcademicLevelController } from "./academicLevel.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { validateRequest } from "../../middlewares/validateRequest";
 import {
   AcademicLevelCreateZodSchema,

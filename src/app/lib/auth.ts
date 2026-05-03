@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
-import { Role, UserStatus } from "../../generated/prisma/enums";
+import { Role, UserStatus } from "../../generated/prisma/index.js";
 import { bearer, emailOTP, oAuthProxy } from "better-auth/plugins";
 import { sendEmail } from "../utils/email";
 import { envVars } from "../config/env";
@@ -131,7 +131,7 @@ export const auth = betterAuth({
 
 
 
-  redirecURLs: {
+  redirectURLs: {
     signIn: `${envVars.BETTER_AUTH_URL}/api/v1/auth/google/success`,
   },
 
@@ -167,7 +167,7 @@ export const auth = betterAuth({
           sameSite: "none",
           secure: true,
           httpOnly: true,
-          partitioned: true,
+          // partitioned: true,
           path: "/",
         },
       },

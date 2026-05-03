@@ -3,7 +3,7 @@ import { TeacherController } from "./teacher.controller";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { updateTeacherValidationSchema } from "./teacher.validation";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { multerUpload } from "../../config/multer.config";
 
 const router = Router();

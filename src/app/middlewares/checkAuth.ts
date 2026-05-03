@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from "express";
-import { Role, UserStatus } from "../../generated/prisma/enums";
+import { Role, UserStatus } from "../../generated/prisma/index.js";
 import { cookieUtils } from "../utils/cookie";
 import AppError from "../errorHelpers/AppError";
 import status from "http-status";

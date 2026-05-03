@@ -6,7 +6,7 @@ import {
   ITeacherPrimarySubjetUpdate,
   ITeacherSubjetDelete,
 } from "./teacherSubject.interface";
-import { Subject } from "../../../generated/prisma/client";
+import { Subject } from "../../../generated/prisma/index.js";
 
 
 const assignSubjectToTeacher = async (

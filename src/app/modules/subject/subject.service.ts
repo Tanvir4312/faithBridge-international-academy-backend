@@ -1,4 +1,4 @@
-import { Subject } from "../../../generated/prisma/client";
+import { Subject } from "../../../generated/prisma/index.js";
 import { prisma } from "../../lib/prisma";
 
 const createSubject = async (payload: Subject) => {

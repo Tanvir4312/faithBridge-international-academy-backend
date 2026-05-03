@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Stripe from "stripe";
 import { prisma } from "../../lib/prisma";
-import { PaymentStatus } from "../../../generated/prisma/enums";
+import { PaymentStatus } from "../../../generated/prisma/index.js";
 
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";

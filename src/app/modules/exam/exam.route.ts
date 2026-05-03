@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ExamController } from "./exam.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { examSchema, examUpdateSchema } from "./exam.validation";
 

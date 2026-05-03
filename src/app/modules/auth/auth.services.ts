@@ -8,7 +8,7 @@ import {
   ILoginData,
   IRegisterData,
 } from "./auth.interface";
-import { UserStatus } from "../../../generated/prisma/enums";
+import { UserStatus } from "../../../generated/prisma/index.js";
 import { tokenUtils } from "../../utils/token";
 import { prisma } from "../../lib/prisma";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";

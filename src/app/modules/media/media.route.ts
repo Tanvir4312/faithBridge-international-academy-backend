@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { MediaController } from "./media.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { multerUpload } from "../../config/multer.config";
 
 const router = Router();

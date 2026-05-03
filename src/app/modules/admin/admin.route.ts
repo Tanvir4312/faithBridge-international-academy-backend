@@ -3,7 +3,7 @@ import { AdminController } from "./admin.controller";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { updateAdminZodSchema } from "./admin.validation";
-import { Role } from "../../../generated/prisma/enums";
+import { Role } from "../../../generated/prisma/index.js";
 import { multerUpload } from "../../config/multer.config";
 
 const router = Router();

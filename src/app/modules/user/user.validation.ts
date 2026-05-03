@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Gender } from "../../../generated/prisma/enums";
+import { Gender } from "../../../generated/prisma/index.js";
 
 export const createTeacherValidationSchema = z.object({
   password: z

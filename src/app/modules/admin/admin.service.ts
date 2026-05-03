@@ -7,7 +7,7 @@ import {
   IUpdateAdminPayload,
 } from "./admin.interface";
 
-import { Role, UserStatus } from "../../../generated/prisma/enums";
+import { Role, UserStatus } from "../../../generated/prisma/index.js";
 import { IRequestUser } from "../../interfaces/requestUser.inteface";
 
 const getAllAdmin = async (page: number,

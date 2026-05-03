@@ -1,0 +1,7 @@
+model AiKnowledge {
+  id        String                @id @default(uuid())
+  content   String
+  embedding Unsupported("vector")
+
+  @@map("ai_knowledge")
+}
