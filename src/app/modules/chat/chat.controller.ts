@@ -49,8 +49,6 @@ IMPORTANT:
 - Always try to be helpful even if full data is not available
 `;
 
-// NEW CODE END
-
 export const ChatController = {
   handleChat: async (req: Request, res: Response) => {
     try {
@@ -79,6 +77,9 @@ export const ChatController = {
         return res.status(400).json({ error: "Question cannot be empty" });
       }
 
+      // ✅ শেষ ১০টা message নিন (token বাঁচাবে)
+      const recentMessages = messages.slice(-10);
+
       // 1. Generate embedding
       const { embedding } = await embed({
         model: google.embedding("gemini-embedding-001"),
@@ -89,14 +90,14 @@ export const ChatController = {
 
       // 2. Vector search (RAG)
       const contextResults = await prisma.$queryRawUnsafe<any[]>(
-        `SELECT content FROM ai_knowledge ORDER BY embedding <=> $1::vector LIMIT 5`,
+        `SELECT content FROM ai_knowledge ORDER BY embedding <=> $1::vector LIMIT 3`,
         embeddingString
       );
 
       const context = contextResults.map((r) => r.content).join("\n\n");
 
       // Convert messages
-      const modelMessages = await convertToModelMessages(messages);
+      const modelMessages = await convertToModelMessages(recentMessages);
 
       // 3. Generate smart response
       const result = streamText({
@@ -111,6 +112,7 @@ ${context}
 `,
 
         messages: modelMessages,
+
       });
 
       // 4. Stream response
@@ -118,6 +120,16 @@ ${context}
 
     } catch (error: any) {
       console.error("Chat API Error:", error.message || error);
+
+      // ✅ 429 Rate limit handle
+      if (error.status === 429 || error?.statusCode === 429) {
+        if (!res.headersSent) {
+          return res.status(429).json({
+            error: "অনুগ্রহ করে কিছুক্ষণ অপেক্ষা করুন, আবার চেষ্টা করুন।",
+          });
+        }
+        return res.end();
+      }
 
       if (!res.headersSent) {
         res.status(500).json({ error: "Internal Server Error" });
